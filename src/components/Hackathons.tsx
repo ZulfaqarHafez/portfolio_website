@@ -171,21 +171,21 @@ const Hackathons = () => {
   };
 
   return (
-    <section id="hackathons" className="section-padding bg-luxury-cream overflow-hidden">
+    <section id="hackathons" className="section-padding bg-primary overflow-hidden">
       <div className="container-custom">
         <div className="max-w-6xl mx-auto">
           {/* Section Title */}
-          <div className="text-center mb-20 relative">
+          <div className="text-center mb-12 md:mb-20 relative px-4">
              {/* Background decorative blur */}
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/5 rounded-full blur-3xl -z-10"></div>
 
-            <h2 className="text-5xl md:text-6xl font-bold font-serif text-primary mb-5 relative inline-block z-10">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-white mb-5 relative inline-block z-10">
               Hackathons
               {/* Decorative Sparkle */}
-              <span className="absolute -top-6 -right-8 text-5xl animate-pulse text-accent filter drop-shadow-lg">✨</span>
+              <span className="absolute -top-4 -right-6 sm:-top-6 sm:-right-8 text-3xl sm:text-4xl md:text-5xl animate-pulse text-accent filter drop-shadow-lg">✨</span>
             </h2>
-            <div className="w-24 h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto rounded-full mb-6"></div>
-            <p className="text-neutral-600 text-lg max-w-2xl mx-auto leading-relaxed">
+            <div className="w-20 md:w-24 h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto rounded-full mb-4 md:mb-6"></div>
+            <p className="text-neutral-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed px-4">
               Pushing boundaries and building innovative solutions in high-pressure environments.
             </p>
           </div>

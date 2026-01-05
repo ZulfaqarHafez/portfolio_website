@@ -8,7 +8,7 @@ const Hero = () => {
       <div className="container-custom section-padding text-center relative z-10">
         <div className="max-w-5xl mx-auto">
           {/* Profile Image - Small circular */}
-          <div className="mb-10 animate-fade-in">
+          <div className="mb-10 mt-8 md:mt-12 animate-fade-in">
             {/* Added 'overflow-hidden' to clip the image to the circle */}
             <div className="w-48 h-48 mx-auto bg-gold-gradient rounded-full flex items-center justify-center shadow-luxury-lg border-4 border-accent hover:scale-105 transition-transform duration-300 overflow-hidden">
               <img 
@@ -20,37 +20,37 @@ const Hero = () => {
           </div>
 
           {/* Greeting */}
-          <p className="text-xl md:text-2xl text-neutral-300 mb-4 animate-fade-in font-light">
+          <p className="text-lg md:text-xl lg:text-2xl text-neutral-300 mb-4 animate-fade-in font-light">
             Hi there! I'm
           </p>
 
           {/* Name */}
-          <h1 className="text-6xl md:text-8xl font-bold font-serif text-white mb-6 animate-fade-in-up tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold font-serif text-white mb-6 animate-fade-in-up tracking-tight px-4">
             Zulfaqar Hafez
           </h1>
 
           {/* Title/Role */}
-          <h2 className="text-3xl md:text-5xl font-semibold text-accent mb-10 animate-fade-in-up">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-accent mb-8 md:mb-10 animate-fade-in-up px-4">
             AI Engineer & Community Innovator
           </h2>
 
           {/* Description */}
-          <p className="text-xl md:text-2xl text-neutral-200 mb-14 max-w-3xl mx-auto animate-fade-in-up leading-relaxed font-light">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-200 mb-12 md:mb-14 max-w-3xl mx-auto animate-fade-in-up leading-relaxed font-light px-6">
             Passionate about leveraging AI and machine learning to solve real-world problems.
             Transforming community problems into tech solutions.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-5 justify-center animate-fade-in-up">
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-5 justify-center animate-fade-in-up px-6">
             <a
               href="#projects"
-              className="px-10 py-4 bg-gold-gradient text-primary rounded-xl font-semibold text-lg hover:shadow-luxury-lg transition-all duration-300 shadow-luxury transform hover:-translate-y-1 hover:scale-105"
+              className="px-8 md:px-10 py-3 md:py-4 bg-gold-gradient text-primary rounded-xl font-semibold text-base md:text-lg hover:shadow-luxury-lg transition-all duration-300 shadow-luxury transform hover:-translate-y-1 hover:scale-105"
             >
               View My Work
             </a>
             <a
               href="#about"
-              className="px-10 py-4 bg-transparent text-white border-2 border-white rounded-xl font-semibold text-lg hover:bg-white hover:text-primary transition-all duration-300 shadow-luxury hover:shadow-luxury-lg transform hover:-translate-y-1 hover:scale-105"
+              className="px-8 md:px-10 py-3 md:py-4 bg-transparent text-white border-2 border-white rounded-xl font-semibold text-base md:text-lg hover:bg-white hover:text-primary transition-all duration-300 shadow-luxury hover:shadow-luxury-lg transform hover:-translate-y-1 hover:scale-105"
             >
               Learn More
             </a>

@@ -31,13 +31,13 @@ const Footer = () => {
 
   return (
     <footer className="bg-primary text-neutral-300 border-t border-accent/30">
-      <div className="container-custom">
-        <div className="py-12">
-          <div className="grid md:grid-cols-3 gap-8">
+      <div className="container-custom px-6 sm:px-8">
+        <div className="py-10 md:py-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10">
             {/* Brand */}
-            <div>
-              <h3 className="text-2xl font-bold font-serif text-accent mb-4">Zulfaqar Hafez</h3>
-              <p className="text-neutral-400 mb-4 leading-relaxed">
+            <div className="sm:col-span-2 md:col-span-1">
+              <h3 className="text-xl sm:text-2xl font-bold font-serif text-accent mb-3 md:mb-4">Zulfaqar Hafez</h3>
+              <p className="text-neutral-300 text-sm sm:text-base mb-4 leading-relaxed">
                 AI Engineer & Community Innovator passionate about transforming data into insights
                 and building intelligent solutions.
               </p>
@@ -45,13 +45,13 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-lg font-semibold text-luxury-cream mb-4">Quick Links</h4>
+              <h4 className="text-base sm:text-lg font-semibold text-luxury-cream mb-3 md:mb-4">Quick Links</h4>
               <ul className="space-y-2">
                 {quickLinks.map((link, idx) => (
                   <li key={idx}>
                     <a
                       href={link.href}
-                      className="hover:text-accent transition-colors duration-300"
+                      className="text-sm sm:text-base hover:text-accent transition-colors duration-300 inline-block py-1 touch-manipulation"
                     >
                       {link.name}
                     </a>
@@ -62,15 +62,15 @@ const Footer = () => {
 
             {/* Social Links */}
             <div>
-              <h4 className="text-lg font-semibold text-luxury-cream mb-4">Connect With Me</h4>
-              <div className="flex gap-4">
+              <h4 className="text-base sm:text-lg font-semibold text-luxury-cream mb-3 md:mb-4">Connect With Me</h4>
+              <div className="flex gap-3 sm:gap-4">
                 {socialLinks.map((social, idx) => (
                   <a
                     key={idx}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center hover:bg-gold-gradient hover:text-primary transition-all duration-300 transform hover:-translate-y-1 border border-accent/20"
+                    className="w-11 h-11 sm:w-12 sm:h-12 bg-secondary rounded-lg flex items-center justify-center hover:bg-gold-gradient hover:text-primary transition-all duration-300 transform hover:-translate-y-1 border border-accent/20 touch-manipulation"
                     aria-label={social.name}
                   >
                     {social.icon}
@@ -82,12 +82,12 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-accent/30 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-neutral-400 text-sm">
+        <div className="border-t border-accent/30 py-5 md:py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4 text-center md:text-left">
+            <p className="text-neutral-400 text-xs sm:text-sm">
               © {currentYear} Zulfaqar Hafez. All rights reserved.
             </p>
-            <p className="text-neutral-400 text-sm">
+            <p className="text-neutral-400 text-xs sm:text-sm">
               Built with React, TypeScript & Tailwind CSS
             </p>
           </div>

@@ -45,34 +45,34 @@ const Certifications = () => {
   ];
 
   return (
-    <section id="certifications" className="section-padding bg-primary">
+    <section id="certifications" className="section-padding bg-white">
       <div className="container-custom">
         <div className="max-w-6xl mx-auto">
           {/* Section Title */}
-          <h2 className="text-5xl md:text-6xl font-bold font-serif text-center text-white mb-5">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-center text-primary mb-5 px-4">
             Certifications
           </h2>
-          <div className="w-24 h-1.5 bg-accent mx-auto mb-20 rounded-full"></div>
+          <div className="w-20 md:w-24 h-1.5 bg-accent mx-auto mb-12 md:mb-20 rounded-full"></div>
 
           {/* Certifications Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, idx) => (
               <div
                 key={idx}
-                className="bg-secondary p-8 rounded-2xl shadow-luxury hover:shadow-luxury-lg transition-all duration-300 transform hover:-translate-y-2 border-2 border-accent/30 hover:border-accent/50"
+                className="bg-primary p-8 rounded-2xl shadow-luxury hover:shadow-luxury-lg transition-all duration-300 transform hover:-translate-y-2 border-2 border-accent/30 hover:border-accent/50"
               >
                 {/* Icon */}
                 <div className="text-6xl mb-5">{cert.icon}</div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-bold text-white mb-3 leading-tight">{cert.title}</h3>
+                <h3 className="text-2xl font-bold text-luxury-cream mb-3 leading-tight">{cert.title}</h3>
                 <p className="text-accent font-semibold mb-3 text-lg">{cert.issuer}</p>
-                <p className="text-base text-neutral-300 mb-4 font-medium">{cert.date}</p>
+                <p className="text-base text-neutral-200 mb-4 font-medium">{cert.date}</p>
 
                 {/* Credential ID */}
                 <div className="pt-4 border-t-2 border-accent/30">
-                  <p className="text-sm text-neutral-400 font-medium mb-1">Credential ID</p>
-                  <p className="text-base font-mono text-white">{cert.credentialId}</p>
+                  <p className="text-sm text-neutral-300 font-medium mb-1">Credential ID</p>
+                  <p className="text-base font-mono text-luxury-cream">{cert.credentialId}</p>
                 </div>
               </div>
             ))}

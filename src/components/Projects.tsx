@@ -184,18 +184,18 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="section-padding bg-primary">
+    <section id="projects" className="section-padding bg-white">
       <div className="container-custom">
         <div className="max-w-6xl mx-auto">
           {/* Section Title */}
-          <div className="text-center mb-16 relative">
+          <div className="text-center mb-12 md:mb-16 relative px-4">
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/5 rounded-full blur-3xl -z-10"></div>
-            <h2 className="text-5xl md:text-6xl font-bold font-serif text-luxury-cream mb-5 relative inline-block">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-primary mb-5 relative inline-block">
               Featured Projects
-              <span className="absolute -top-4 -right-8 text-4xl animate-pulse text-accent">🚀</span>
+              <span className="absolute -top-3 -right-6 sm:-top-4 sm:-right-8 text-2xl sm:text-3xl md:text-4xl animate-pulse text-accent">🚀</span>
             </h2>
-            <div className="w-24 h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto rounded-full mb-6"></div>
-            <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
+            <div className="w-20 md:w-24 h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto rounded-full mb-4 md:mb-6"></div>
+            <p className="text-neutral-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
               A showcase of technical solutions and creative problem solving.
             </p>
           </div>

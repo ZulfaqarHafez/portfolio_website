@@ -15,7 +15,6 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
     { name: 'Hackathons', href: '#hackathons' },
@@ -49,19 +48,19 @@ const Navbar = () => {
         isScrolled ? 'bg-primary shadow-lg border-b border-accent/30' : 'bg-primary/95 backdrop-blur-md'
       }`}
     >
-      <div className="container-custom">
+      <div className="container-custom px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo and Name */}
           <a
             href="#home"
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2 sm:gap-3 group"
           >
-            <div className="w-10 h-10 bg-gold-gradient text-primary rounded-lg flex items-center justify-center font-bold text-lg group-hover:shadow-lg transition-all">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gold-gradient text-primary rounded-lg flex items-center justify-center font-bold text-base sm:text-lg group-hover:shadow-lg transition-all">
               ZH
             </div>
             <div className="hidden sm:block">
-              <div className="text-lg font-bold font-serif text-accent">Zulfaqar Hafez</div>
-              <div className="text-xs text-luxury-platinum">AI Engineer & Community Innovator</div>
+              <div className="text-base sm:text-lg font-bold font-serif text-accent">Zulfaqar Hafez</div>
+              <div className="text-[10px] sm:text-xs text-luxury-platinum">AI Engineer & Community Innovator</div>
             </div>
           </a>
 
@@ -98,11 +97,11 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-luxury-cream hover:text-accent transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-secondary text-luxury-cream hover:text-accent transition-colors touch-manipulation"
             aria-label="Toggle menu"
           >
             <svg
-              className="w-6 h-6"
+              className="w-7 h-7"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -128,25 +127,25 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 bg-secondary shadow-lg border-t border-accent/30">
+          <div className="md:hidden py-4 bg-secondary shadow-lg border-t border-accent/30 animate-fade-in">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block py-3 px-4 text-luxury-cream hover:bg-luxury-charcoal hover:text-accent transition-colors font-medium"
+                className="block py-4 px-6 text-luxury-cream hover:bg-luxury-charcoal hover:text-accent transition-colors font-medium text-base touch-manipulation active:bg-luxury-charcoal"
               >
                 {link.name}
               </a>
             ))}
-            <div className="flex gap-3 px-4 pt-4 border-t border-accent/30 mt-4">
+            <div className="flex gap-4 px-6 pt-5 border-t border-accent/30 mt-4">
               {socialLinks.map((social, idx) => (
                 <a
                   key={idx}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 bg-luxury-charcoal hover:bg-gold-gradient text-luxury-cream hover:text-primary rounded-lg flex items-center justify-center transition-all duration-300 border border-accent/20"
+                  className="w-11 h-11 bg-luxury-charcoal hover:bg-gold-gradient text-luxury-cream hover:text-primary rounded-lg flex items-center justify-center transition-all duration-300 border border-accent/20 touch-manipulation"
                   aria-label={social.name}
                 >
                   {social.icon}

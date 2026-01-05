@@ -35,14 +35,14 @@ const Experience = () => {
   return (
     <div className="max-w-full">
       {/* Section Header */}
-      <div className="text-center mb-16">
-        <div className="inline-block p-3 rounded-full bg-accent/10 text-3xl mb-4 text-accent">
+      <div className="text-center mb-12 md:mb-16">
+        <div className="inline-block p-3 rounded-full bg-accent/10 text-2xl sm:text-3xl mb-4 text-accent">
           💼
         </div>
-        <h2 className="text-4xl md:text-5xl font-bold font-serif text-primary mb-3">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-white mb-3 px-4">
           Experience
         </h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto"></div>
+        <div className="w-20 md:w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto"></div>
       </div>
 
       {/* Modern Vertical Timeline */}
@@ -51,25 +51,25 @@ const Experience = () => {
         <div className="absolute left-[1.65rem] md:left-[2.65rem] top-4 bottom-4 w-px bg-gradient-to-b from-accent/50 via-accent/20 to-transparent"></div>
 
         {experiences.map((exp, idx) => (
-          <div key={idx} className="relative pl-12 md:pl-16 group">
+          <div key={idx} className="relative pl-10 md:pl-14 group">
             {/* Timeline Node */}
-            <div className="absolute left-4 md:left-8 top-1.5 w-4 h-4 rounded-full bg-luxury-cream border-[3px] border-accent z-10 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent group-hover:shadow-[0_0_15px_rgba(201,169,96,0.6)]"></div>
+            <div className="absolute left-[0.9rem] md:left-[1.65rem] top-6 w-4 h-4 rounded-full bg-luxury-cream border-[3px] border-accent z-10 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent group-hover:shadow-[0_0_15px_rgba(201,169,96,0.6)]"></div>
 
             {/* Content Card */}
-            <div className="relative p-6 bg-white rounded-xl shadow-sm border border-neutral-100 hover:shadow-luxury hover:border-accent/30 transition-all duration-300 transform hover:-translate-y-1">
-              
+            <div className="relative p-6 bg-secondary rounded-xl shadow-sm border border-accent/20 hover:shadow-luxury hover:border-accent/30 transition-all duration-300 transform hover:-translate-y-1">
+
               {/* Header: Role & Date */}
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-2">
-                <div>
-                  <h3 className="text-xl md:text-2xl font-bold font-serif text-primary group-hover:text-accent transition-colors duration-300">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-2">
+                <div className="flex-1">
+                  <h3 className="text-xl md:text-2xl font-bold font-serif text-luxury-cream group-hover:text-accent transition-colors duration-300">
                     {exp.title}
                   </h3>
-                  <div className="text-lg font-medium text-neutral-600 mt-1">
+                  <div className="text-lg font-medium text-neutral-200 mt-1">
                     {exp.company}
                   </div>
                 </div>
-                
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-luxury-cream text-accent border border-accent/20 self-start mt-1">
+
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-luxury-cream text-accent border border-accent/20 shrink-0">
                   {exp.period}
                 </span>
               </div>
@@ -77,7 +77,7 @@ const Experience = () => {
               {/* Description List */}
               <ul className="mt-4 space-y-3">
                 {exp.description.map((item, itemIdx) => (
-                  <li key={itemIdx} className="flex items-start gap-3 text-neutral-600 leading-relaxed text-sm md:text-base group-hover:text-neutral-800 transition-colors">
+                  <li key={itemIdx} className="flex items-start gap-3 text-neutral-200 leading-relaxed text-sm md:text-base group-hover:text-white transition-colors">
                     <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent/60 shrink-0"></span>
                     <span>{item}</span>
                   </li>

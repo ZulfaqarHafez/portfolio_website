@@ -4,12 +4,12 @@ const About = () => {
       <div className="container-custom">
         <div className="max-w-6xl mx-auto">
           {/* Section Title */}
-          <h2 className="text-4xl md:text-5xl font-bold font-serif text-center text-primary mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-center text-primary mb-4">
             About Me
           </h2>
-          <div className="w-20 h-1 bg-accent mx-auto mb-16"></div>
+          <div className="w-20 h-1 bg-accent mx-auto mb-12 md:mb-16"></div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Image Placeholder */}
             <div className="order-2 md:order-1">
               <div className="relative">
@@ -29,10 +29,10 @@ const About = () => {
 
             {/* About Content */}
             <div className="order-1 md:order-2">
-              <h3 className="text-3xl md:text-4xl font-semibold font-serif text-primary mb-8">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold font-serif text-primary mb-6 md:mb-8">
                 Hello! I'm Zulfaqar Hafez
               </h3>
-              <div className="space-y-5 text-neutral-700 text-lg leading-relaxed">
+              <div className="space-y-4 md:space-y-5 text-neutral-700 text-base sm:text-lg leading-relaxed">
                 <p>
                   I'm a passionate <span className="font-semibold text-accent">AI Engineer & Community Innovator</span>  dedicated 
                   to bridging the gap between complex technology and social impact.
@@ -51,14 +51,14 @@ const About = () => {
               </div>
 
               {/* Quick Facts */}
-              <div className="mt-10 grid grid-cols-2 gap-5">
+              <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="p-5 bg-white rounded-xl border-2 border-neutral-300 hover:border-accent hover:shadow-luxury transition-all duration-300">
                   <p className="text-sm text-neutral-600 mb-2 font-medium">📍 Location</p>
                   <p className="font-semibold text-primary text-base">Singapore</p>
                 </div>
                 <div className="p-5 bg-white rounded-xl border-2 border-neutral-300 hover:border-accent hover:shadow-luxury transition-all duration-300">
                   <p className="text-sm text-neutral-600 mb-2 font-medium">✉️ Email</p>
-                  <p className="font-semibold text-primary text-base">zulfaqarhafez@gmail.com</p>
+                  <p className="font-semibold text-primary text-sm sm:text-base break-words">zulfaqarhafez@gmail.com</p>
                 </div>
               </div>
             </div>
