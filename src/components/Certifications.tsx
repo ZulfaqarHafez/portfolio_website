@@ -49,20 +49,27 @@ const Certifications = () => {
       <div className="container-custom">
         <div className="max-w-6xl mx-auto">
           {/* Section Title */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-center text-primary mb-5 px-4">
-            Certifications
-          </h2>
-          <div className="w-20 md:w-24 h-1.5 bg-accent mx-auto mb-12 md:mb-20 rounded-full"></div>
+          <div className="text-center mb-12 md:mb-20 relative px-4">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/5 rounded-full blur-3xl -z-10"></div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-primary mb-5 relative inline-block">
+              Certifications
+              <span className="absolute -top-3 -right-6 sm:-top-4 sm:-right-8 text-2xl sm:text-3xl md:text-4xl animate-pulse text-accent">🏆</span>
+            </h2>
+            <div className="w-20 md:w-24 h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto rounded-full mb-4 md:mb-6"></div>
+            <p className="text-neutral-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
+              Professional certifications and achievements in AI, machine learning, and software development.
+            </p>
+          </div>
 
           {/* Certifications Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, idx) => (
               <div
                 key={idx}
-                className="bg-primary p-8 rounded-2xl shadow-luxury hover:shadow-luxury-lg transition-all duration-300 transform hover:-translate-y-2 border-2 border-accent/30 hover:border-accent/50"
+                className="bg-primary p-8 rounded-2xl shadow-luxury hover:shadow-luxury-lg transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 hover:rotate-1 border-2 border-accent/30 hover:border-accent/60 group cursor-pointer"
               >
                 {/* Icon */}
-                <div className="text-6xl mb-5">{cert.icon}</div>
+                <div className="text-6xl mb-5 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">{cert.icon}</div>
 
                 {/* Content */}
                 <h3 className="text-2xl font-bold text-luxury-cream mb-3 leading-tight">{cert.title}</h3>

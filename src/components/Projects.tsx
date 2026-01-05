@@ -85,11 +85,11 @@ const Projects = () => {
           transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
           transition: 'transform 0.1s ease-out',
         }}
-        className="group relative rounded-2xl bg-secondary border border-accent/20 overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-2xl hover:shadow-accent/10"
+        className="group relative rounded-2xl bg-secondary border border-accent/20 overflow-hidden shadow-lg transition-all duration-500 hover:shadow-2xl hover:shadow-accent/10 hover:scale-[1.02] hover:-translate-y-1"
       >
         {/* Spotlight Overlay */}
         <div
-          className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100 z-30"
+          className="pointer-events-none absolute -inset-px opacity-0 transition duration-500 group-hover:opacity-100 z-30"
           style={{
             opacity,
             background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(201, 169, 96, 0.15), transparent 40%)`,
@@ -108,11 +108,11 @@ const Projects = () => {
               </div>
             ) : (
               // Real Image with Zoom Effect
-              <div className="h-full w-full relative">
+              <div className="h-full w-full relative overflow-hidden">
                  <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
                 />
                 {/* Overlay on hover */}
                 <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

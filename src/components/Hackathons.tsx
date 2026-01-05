@@ -90,7 +90,7 @@ const Hackathons = () => {
             transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
             transition: 'transform 0.1s ease-out', // Smooth instantaneous movement
         }}
-        className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white px-8 py-10 shadow-lg transition-shadow duration-300 hover:shadow-2xl group cursor-pointer"
+        className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white px-8 py-10 shadow-lg transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-2 group cursor-pointer"
       >
         {/* Spotlight Overlay (Gold Glow) */}
         <div
@@ -128,8 +128,8 @@ const Hackathons = () => {
               </h3>
             </div>
             {/* Floating Award Icon */}
-            <div 
-                className="flex items-center justify-center w-14 h-14 text-4xl bg-luxury-cream rounded-full border border-accent/20 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:shadow-md group-hover:rotate-12"
+            <div
+                className="flex items-center justify-center w-14 h-14 text-4xl bg-luxury-cream rounded-full border border-accent/20 shadow-sm transition-all duration-500 group-hover:scale-125 group-hover:shadow-lg group-hover:rotate-12 animate-float"
                 style={{ transform: `translate(${rotation.y * 3}px, ${rotation.x * 3}px)` }} // Parallax effect
             >
               {hack.award}

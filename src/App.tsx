@@ -6,10 +6,12 @@ import Projects from './components/Projects'
 import Hackathons from './components/Hackathons'
 import Certifications from './components/Certifications'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
     <div className="App bg-luxury-cream">
+      <ScrollToTop />
       <Navbar />
       <Hero />
       <About />
