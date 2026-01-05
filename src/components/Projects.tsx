@@ -85,7 +85,7 @@ const Projects = () => {
           transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
           transition: 'transform 0.1s ease-out',
         }}
-        className="group relative rounded-2xl bg-secondary border border-accent/20 overflow-hidden shadow-lg transition-all duration-500 hover:shadow-2xl hover:shadow-accent/10 hover:scale-[1.02] hover:-translate-y-1"
+        className="group relative rounded-2xl bg-secondary border border-accent/20 overflow-hidden shadow-lg transition-all duration-500 hover:shadow-2xl hover:shadow-accent/10 hover:scale-[1.02] hover:-translate-y-1 card-entrance"
       >
         {/* Spotlight Overlay */}
         <div

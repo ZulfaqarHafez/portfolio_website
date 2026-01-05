@@ -51,7 +51,7 @@ const Experience = () => {
         <div className="absolute left-[1.65rem] md:left-[2.65rem] top-4 bottom-4 w-px bg-gradient-to-b from-accent/50 via-accent/20 to-transparent"></div>
 
         {experiences.map((exp, idx) => (
-          <div key={idx} className="relative pl-10 md:pl-14 group">
+          <div key={idx} className="relative pl-10 md:pl-14 group card-entrance">
             {/* Timeline Node */}
             <div className="absolute left-[0.9rem] md:left-[1.65rem] top-6 w-4 h-4 rounded-full bg-luxury-cream border-[3px] border-accent z-10 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent group-hover:shadow-[0_0_15px_rgba(201,169,96,0.6)]"></div>
 

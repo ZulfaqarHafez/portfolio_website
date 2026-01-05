@@ -90,7 +90,7 @@ const Hackathons = () => {
             transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
             transition: 'transform 0.1s ease-out', // Smooth instantaneous movement
         }}
-        className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white px-8 py-10 shadow-lg transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-2 group cursor-pointer"
+        className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white px-8 py-10 shadow-lg transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-2 group cursor-pointer card-entrance"
       >
         {/* Spotlight Overlay (Gold Glow) */}
         <div

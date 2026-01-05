@@ -66,7 +66,7 @@ const Certifications = () => {
             {certifications.map((cert, idx) => (
               <div
                 key={idx}
-                className="bg-primary p-8 rounded-2xl shadow-luxury hover:shadow-luxury-lg transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 hover:rotate-1 border-2 border-accent/30 hover:border-accent/60 group cursor-pointer"
+                className="bg-primary p-8 rounded-2xl shadow-luxury hover:shadow-luxury-lg transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 hover:rotate-1 border-2 border-accent/30 hover:border-accent/60 group cursor-pointer card-entrance"
               >
                 {/* Icon */}
                 <div className="text-6xl mb-5 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">{cert.icon}</div>
