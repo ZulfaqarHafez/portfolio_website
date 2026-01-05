@@ -1,86 +1,91 @@
 const Experience = () => {
   const experiences = [
     {
-      title: 'Senior Data Analyst',
-      company: 'Tech Company A',
-      period: '2022 - Present',
-      logo: '🏢',
+      title: 'Product Manager (Citizen Developer)',
+      company: 'People\'s Association',
+      period: 'Sept 2025 - Present',
       description: [
-        'Led development of ML models serving 1M+ users',
-        'Implemented data pipelines reducing processing time by 60%',
-        'Mentored junior analysts and conducted code reviews',
+        'Primary liaison between the technical team and the People\'s Association, translating community requirements into technical specifications for the allotment garden solution.',
+        'Led the product roadmap for the community garden initiative, prioritizing features that directly addressed the needs of local residents and garden volunteers.',
+        'Conducted on-ground requirements gathering with community members to ensure the final product effectively supported the allotment garden\'s operations and sustainability goals.',
       ],
     },
     {
-      title: 'Data Scientist',
-      company: 'Startup Inc',
-      period: '2020 - 2022',
-      logo: '🚀',
+      title: 'President',
+      company: 'SIT Magical Hearts',
+      period: 'Dec 2024 - Dec 2025',
       description: [
-        'Built predictive models using Python and scikit-learn',
-        'Optimized database queries improving performance by 40%',
-        'Created interactive dashboards using Tableau and Power BI',
+        'BScaled club human capital by 50% through recruitment strategies and improved member engagement',
+        'Identified inefficiencies in volunteer management and streamlined the registration system, resulting in faster deployment of volunteers for events.',
+        'Directed resources to maximize community reach, successfully delivering value to 300+ beneficiaries across multiple outreach programs.',
       ],
     },
     {
-      title: 'Junior Data Analyst',
-      company: 'Analytics Firm',
-      period: '2019 - 2020',
-      logo: '📊',
+      title: 'Order Management Specialist',
+      company: 'Infineon Technologies',
+      period: 'Mar 2021 - Aug 2021',
       description: [
-        'Analyzed large datasets to extract business insights',
-        'Participated in agile development processes',
-        'Created reports and visualizations for stakeholders',
+        'Developed a Python-based web scraping solution to automate the gathering of market news in the semiconductor industry.',
+        'Used Python Selenium and Beautiful Soup for efficient data extraction, reducing manual effort and increasing information accuracy.',
+        'Collaborated with Customer Logistics Managers to optimize delivery note creation and operational report generation.',
       ],
     },
   ];
 
   return (
     <div className="max-w-full">
-      {/* Section Title */}
-      <h2 className="text-4xl md:text-5xl font-bold font-serif text-center text-primary mb-4">
-        Experience
-      </h2>
-      <div className="w-20 h-1 bg-accent mx-auto mb-16"></div>
-
-      {/* Tree Structure */}
-      <div className="relative">
-        {/* Vertical trunk line */}
-        <div className="absolute left-8 md:left-12 top-0 bottom-0 w-0.5 bg-accent/30"></div>
-
-        {/* Experience Items */}
-        <div className="space-y-12">
-          {experiences.map((exp, idx) => (
-            <div key={idx} className="relative pl-20 md:pl-28">
-              {/* Branch node */}
-              <div className="absolute left-8 md:left-12 top-6 w-8 md:w-12 h-0.5 bg-accent/30"></div>
-
-              {/* Circle node with logo */}
-              <div className="absolute left-4 md:left-6 top-2 w-16 h-16 bg-white border-4 border-accent rounded-full flex items-center justify-center shadow-lg text-2xl">
-                {exp.logo}
-              </div>
-
-              {/* Content Card */}
-              <div className="bg-luxury-cream p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-accent/20">
-                <div className="mb-3">
-                  <span className="inline-block px-4 py-1.5 bg-gold-gradient text-primary text-sm font-semibold rounded-full">
-                    {exp.period}
-                  </span>
-                </div>
-                <h3 className="text-2xl font-bold font-serif text-primary mb-2">{exp.title}</h3>
-                <p className="text-lg text-accent font-semibold mb-4">{exp.company}</p>
-                <ul className="space-y-2 text-neutral-700">
-                  {exp.description.map((item, itemIdx) => (
-                    <li key={itemIdx} className="flex items-start gap-2">
-                      <span className="text-accent mt-1 font-bold">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
+      {/* Section Header */}
+      <div className="text-center mb-16">
+        <div className="inline-block p-3 rounded-full bg-accent/10 text-3xl mb-4 text-accent">
+          💼
         </div>
+        <h2 className="text-4xl md:text-5xl font-bold font-serif text-primary mb-3">
+          Experience
+        </h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto"></div>
+      </div>
+
+      {/* Modern Vertical Timeline */}
+      <div className="relative pl-4 md:pl-8 space-y-12">
+        {/* Continuous Line */}
+        <div className="absolute left-[1.65rem] md:left-[2.65rem] top-4 bottom-4 w-px bg-gradient-to-b from-accent/50 via-accent/20 to-transparent"></div>
+
+        {experiences.map((exp, idx) => (
+          <div key={idx} className="relative pl-12 md:pl-16 group">
+            {/* Timeline Node */}
+            <div className="absolute left-4 md:left-8 top-1.5 w-4 h-4 rounded-full bg-luxury-cream border-[3px] border-accent z-10 transition-all duration-300 group-hover:scale-125 group-hover:bg-accent group-hover:shadow-[0_0_15px_rgba(201,169,96,0.6)]"></div>
+
+            {/* Content Card */}
+            <div className="relative p-6 bg-white rounded-xl shadow-sm border border-neutral-100 hover:shadow-luxury hover:border-accent/30 transition-all duration-300 transform hover:-translate-y-1">
+              
+              {/* Header: Role & Date */}
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-2">
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold font-serif text-primary group-hover:text-accent transition-colors duration-300">
+                    {exp.title}
+                  </h3>
+                  <div className="text-lg font-medium text-neutral-600 mt-1">
+                    {exp.company}
+                  </div>
+                </div>
+                
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-luxury-cream text-accent border border-accent/20 self-start mt-1">
+                  {exp.period}
+                </span>
+              </div>
+
+              {/* Description List */}
+              <ul className="mt-4 space-y-3">
+                {exp.description.map((item, itemIdx) => (
+                  <li key={itemIdx} className="flex items-start gap-3 text-neutral-600 leading-relaxed text-sm md:text-base group-hover:text-neutral-800 transition-colors">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent/60 shrink-0"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

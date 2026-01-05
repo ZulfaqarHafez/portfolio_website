@@ -1,99 +1,199 @@
+import React, { useRef, useState } from 'react';
+
 const Hackathons = () => {
   const hackathons = [
     {
-      title: 'AI for Good Hackathon 2023',
-      position: '1st Place Winner',
-      date: 'November 2023',
-      project: 'Healthcare Diagnosis Assistant',
+      title: 'OGP Community Hackathon 2025',
+      position: 'Sparks Community Innovation Fund',
+      date: 'July 2025',
+      project: 'Churp',
       description:
-        'Built an AI-powered diagnostic tool using computer vision and NLP to assist doctors in preliminary diagnosis.',
-      technologies: ['Python', 'TensorFlow', 'OpenCV', 'FastAPI'],
+        'A web allotment garden booking system with Sparks Community Innovation Taskforce @ Tengah.',
+      // technologies: ['Python', 'TensorFlow', 'OpenCV', 'FastAPI'],
       award: '🏆',
     },
     {
-      title: 'Data Science Challenge',
-      position: 'Top 5 Finalist',
-      date: 'August 2023',
-      project: 'Predictive Maintenance System',
+      title: 'SIT HackRift 2025',
+      position: 'Finalist',
+      date: 'December 2025',
+      project: 'GuideMeSG',
       description:
-        'Developed ML models to predict equipment failures in manufacturing, reducing downtime by 35%.',
-      technologies: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit'],
-      award: '🥈',
+        'Empowering Persons with Intellectual Disabilities to navigate Singapore\'s public transport independently with AR guidance, real-time alerts, and emergency support.',
+      // technologies: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit'],
+      award: '⭐',
     },
     {
-      title: 'FinTech Innovation Summit',
-      position: '2nd Place',
-      date: 'May 2023',
-      project: 'Fraud Detection Engine',
+      title: 'SMU Hack For Cities 2025',
+      position: 'Finalist',
+      date: 'February 2025',
+      project: 'GreenMerlion',
       description:
-        'Created real-time fraud detection system using anomaly detection and deep learning algorithms.',
-      technologies: ['Python', 'PyTorch', 'Redis', 'Docker'],
-      award: '🥈',
+        'A recycling web application that includes a computer vision for waste classification, chatbot, and gamification system.',
+      // technologies: ['Python', 'PyTorch', 'Redis', 'Docker'],
+      award: '⭐',
     },
     {
-      title: 'Smart City Hackathon',
-      position: 'Best Technical Implementation',
-      date: 'March 2023',
-      project: 'Traffic Flow Optimizer',
+      title: 'Google for Startups Cloud Hackathon Singapore 2022',
+      position: 'Top 20',
+      date: 'May 2022',
+      project: 'CareFall Vision',
       description:
-        'Built intelligent traffic management system using computer vision and reinforcement learning.',
-      technologies: ['Python', 'OpenCV', 'TensorFlow', 'MongoDB'],
+        ' computer vision and pose estimation to detect seniors who fell down at home, alerting their caregiver for assistance.',
+      // technologies: ['Python', 'OpenCV', 'TensorFlow', 'MongoDB'],
       award: '⭐',
     },
   ];
 
+  // Advanced Interactive Card with 3D Tilt & Spotlight
+  const HackathonCard = ({ hack }: { hack: typeof hackathons[0] }) => {
+    const divRef = useRef<HTMLDivElement>(null);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [opacity, setOpacity] = useState(0);
+    const [rotation, setRotation] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!divRef.current) return;
+
+      const div = divRef.current;
+      const rect = div.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      setPosition({ x, y });
+
+      // Calculate Rotation for 3D Tilt Effect
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -2; // Max rotation 2deg
+      const rotateY = ((x - centerX) / centerX) * 2;  // Max rotation 2deg
+
+      setRotation({ x: rotateX, y: rotateY });
+    };
+
+    const handleMouseEnter = () => {
+      setOpacity(1);
+    };
+
+    const handleMouseLeave = () => {
+      setOpacity(0);
+      setRotation({ x: 0, y: 0 }); // Reset rotation on leave
+    };
+
+    return (
+      <div
+        ref={divRef}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{
+            transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+            transition: 'transform 0.1s ease-out', // Smooth instantaneous movement
+        }}
+        className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-white px-8 py-10 shadow-lg transition-shadow duration-300 hover:shadow-2xl group cursor-pointer"
+      >
+        {/* Spotlight Overlay (Gold Glow) */}
+        <div
+          className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
+          style={{
+            opacity,
+            background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(201, 169, 96, 0.1), transparent 40%)`,
+          }}
+        />
+        
+        {/* Border Reveal (Gold) */}
+        <div
+            className="pointer-events-none absolute inset-0 transition duration-300 group-hover:opacity-100"
+            style={{
+                opacity,
+                background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(201, 169, 96, 0.4), transparent 40%)`,
+                maskImage: 'linear-gradient(black, black), linear-gradient(black, black)',
+                maskClip: 'content-box, border-box',
+                padding: '1px',
+                maskComposite: 'exclude',
+                WebkitMaskComposite: 'xor',
+            }}
+        />
+
+        {/* Card Content */}
+        <div className="relative z-10 h-full flex flex-col transform transition-transform duration-300 group-hover:translate-z-10" style={{ transformStyle: 'preserve-3d' }}>
+          {/* Header */}
+          <div className="flex justify-between items-start mb-6">
+            <div className="flex flex-col">
+              <span className="inline-block self-start px-3 py-1 mb-3 text-xs font-bold tracking-wider uppercase border rounded-full text-accent border-accent/20 bg-luxury-cream shadow-sm">
+                {hack.date}
+              </span>
+              <h3 className="text-2xl font-bold font-serif text-primary transition-colors duration-300 group-hover:text-accent">
+                {hack.title}
+              </h3>
+            </div>
+            {/* Floating Award Icon */}
+            <div 
+                className="flex items-center justify-center w-14 h-14 text-4xl bg-luxury-cream rounded-full border border-accent/20 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:shadow-md group-hover:rotate-12"
+                style={{ transform: `translate(${rotation.y * 3}px, ${rotation.x * 3}px)` }} // Parallax effect
+            >
+              {hack.award}
+            </div>
+          </div>
+
+          <div className="mb-6 flex-grow">
+            <h4 className="text-lg font-semibold text-secondary mb-2 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+              {hack.project}
+            </h4>
+            <p className="text-neutral-600 leading-relaxed text-sm md:text-base">
+              {hack.description}
+            </p>
+          </div>
+
+          {/* Footer Info */}
+          <div className="pt-6 border-t border-neutral-100 mt-auto">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-sm font-bold text-primary flex items-center gap-2 bg-neutral-50 px-3 py-1.5 rounded-lg border border-neutral-100">
+                <span className="text-accent">🏅</span> {hack.position}
+              </span>
+            </div>
+            
+            {/* <div className="flex flex-wrap gap-2">
+              {hack.technologies.map((tech, i) => (
+                <span 
+                  key={i} 
+                  className="px-2.5 py-1 text-xs font-medium text-neutral-600 bg-neutral-50 rounded-md border border-neutral-200 transition-all duration-300 group-hover:border-accent/30 group-hover:bg-white group-hover:text-primary group-hover:shadow-sm"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div> */}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <section id="hackathons" className="section-padding bg-primary">
+    <section id="hackathons" className="section-padding bg-luxury-cream overflow-hidden">
       <div className="container-custom">
         <div className="max-w-6xl mx-auto">
           {/* Section Title */}
-          <h2 className="text-4xl md:text-5xl font-bold font-serif text-center text-luxury-cream mb-4">
-            Hackathons & Competitions
-          </h2>
-          <div className="w-20 h-1 bg-accent mx-auto mb-16"></div>
+          <div className="text-center mb-20 relative">
+             {/* Background decorative blur */}
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/5 rounded-full blur-3xl -z-10"></div>
+
+            <h2 className="text-5xl md:text-6xl font-bold font-serif text-primary mb-5 relative inline-block z-10">
+              Hackathons
+              {/* Decorative Sparkle */}
+              <span className="absolute -top-6 -right-8 text-5xl animate-pulse text-accent filter drop-shadow-lg">✨</span>
+            </h2>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto rounded-full mb-6"></div>
+            <p className="text-neutral-600 text-lg max-w-2xl mx-auto leading-relaxed">
+              Pushing boundaries and building innovative solutions in high-pressure environments.
+            </p>
+          </div>
 
           {/* Hackathons Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 perspective-1000">
             {hackathons.map((hack, idx) => (
-              <div
-                key={idx}
-                className="bg-secondary rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-accent/20 group"
-              >
-                {/* Header with Award */}
-                <div className="bg-gold-gradient p-6 relative overflow-hidden">
-                  <div className="absolute top-2 right-2 text-5xl opacity-20 group-hover:opacity-30 transition-opacity">
-                    {hack.award}
-                  </div>
-                  <div className="relative z-10">
-                    <span className="inline-block px-3 py-1 bg-primary/30 backdrop-blur-sm text-primary text-xs font-semibold rounded-full mb-3">
-                      {hack.date}
-                    </span>
-                    <h3 className="text-2xl font-bold font-serif text-primary mb-2">{hack.title}</h3>
-                    <div className="flex items-center gap-2">
-                      <span className="text-3xl">{hack.award}</span>
-                      <p className="text-luxury-charcoal font-semibold text-lg">{hack.position}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h4 className="text-xl font-bold text-luxury-cream mb-3">{hack.project}</h4>
-                  <p className="text-neutral-300 mb-4 leading-relaxed">{hack.description}</p>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
-                    {hack.technologies.map((tech, techIdx) => (
-                      <span
-                        key={techIdx}
-                        className="px-3 py-1 bg-luxury-charcoal text-accent text-sm font-medium rounded-lg border border-accent/30"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <HackathonCard key={idx} hack={hack} />
             ))}
           </div>
         </div>

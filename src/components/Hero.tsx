@@ -9,8 +9,13 @@ const Hero = () => {
         <div className="max-w-5xl mx-auto">
           {/* Profile Image - Small circular */}
           <div className="mb-10 animate-fade-in">
-            <div className="w-36 h-36 mx-auto bg-gold-gradient rounded-full flex items-center justify-center shadow-luxury-lg border-4 border-accent hover:scale-105 transition-transform duration-300">
-              <span className="text-primary text-5xl font-bold">ZH</span>
+            {/* Added 'overflow-hidden' to clip the image to the circle */}
+            <div className="w-48 h-48 mx-auto bg-gold-gradient rounded-full flex items-center justify-center shadow-luxury-lg border-4 border-accent hover:scale-105 transition-transform duration-300 overflow-hidden">
+              <img 
+                src={"/images/zul.jpg"} 
+                alt="Zulfaqar Hafez" 
+                className="w-full h-full object-cover" 
+              />
             </div>
           </div>
 
@@ -26,13 +31,13 @@ const Hero = () => {
 
           {/* Title/Role */}
           <h2 className="text-3xl md:text-5xl font-semibold text-accent mb-10 animate-fade-in-up">
-            Data Analyst & AI Engineer
+            AI Engineer & Community Innovator
           </h2>
 
           {/* Description */}
           <p className="text-xl md:text-2xl text-neutral-200 mb-14 max-w-3xl mx-auto animate-fade-in-up leading-relaxed font-light">
-            Transforming data into actionable insights and building intelligent solutions.
             Passionate about leveraging AI and machine learning to solve real-world problems.
+            Transforming community problems into tech solutions.
           </p>
 
           {/* CTA Buttons */}

@@ -15,11 +15,11 @@ const About = () => {
               <div className="relative">
                 {/* Main profile image */}
                 <div className="aspect-square bg-luxury-gradient rounded-2xl shadow-2xl flex items-center justify-center overflow-hidden border-4 border-accent">
-                  <div className="text-accent text-8xl font-bold opacity-90">ZH</div>
-                  {/* Overlay text for image replacement */}
-                  <div className="absolute bottom-4 left-4 right-4 bg-luxury-charcoal/90 backdrop-blur-sm p-3 rounded-lg border border-accent/30">
-                    <p className="text-xs text-accent text-center">Replace with your photo</p>
-                  </div>
+                  <img 
+                    src={"/images/formal.png"}
+                    alt="Zulfaqar Hafez" 
+                    className="w-full h-full object-cover" 
+                  />
                 </div>
                 {/* Decorative elements */}
                 <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl"></div>
@@ -34,18 +34,19 @@ const About = () => {
               </h3>
               <div className="space-y-5 text-neutral-700 text-lg leading-relaxed">
                 <p>
-                  I'm a passionate <span className="font-semibold text-accent">Data Analyst & AI Engineer</span> with
-                  a strong foundation in extracting insights from complex datasets and building intelligent solutions.
+                  I'm a passionate <span className="font-semibold text-accent">AI Engineer & Community Innovator</span>  dedicated 
+                  to bridging the gap between complex technology and social impact.
                 </p>
                 <p>
-                  My journey in data science has equipped me with expertise in machine learning,
-                  statistical analysis, and data visualization, enabling me to transform raw data
-                  into actionable business intelligence.
+                  My academic journey at the Singapore Institute of Technology (SIT) has provided me with a rigorous
+                  foundation in Machine Learning,Deep Learning and SWE skillsets. However, I believe theory is best learned
+                  through action. I actively implement these advanced concepts into tangible projects, transforming 
+                  classroom knowledge into intelligent solutions.
                 </p>
                 <p>
-                  I thrive on solving challenging problems and continuously expand my knowledge in
-                  emerging AI technologies. When I'm not analyzing data, you can find me exploring
-                  the latest developments in ML and contributing to data science communities.
+                  Beyond just code, I strive to use these technical skills to innovate for the community. Whether 
+                  it's building apps for accessibility or optimizing processes for non-profits, I am driven 
+                  to solve real community problems through technology.
                 </p>
               </div>
 
@@ -53,11 +54,11 @@ const About = () => {
               <div className="mt-10 grid grid-cols-2 gap-5">
                 <div className="p-5 bg-white rounded-xl border-2 border-neutral-300 hover:border-accent hover:shadow-luxury transition-all duration-300">
                   <p className="text-sm text-neutral-600 mb-2 font-medium">📍 Location</p>
-                  <p className="font-semibold text-primary text-base">Your City</p>
+                  <p className="font-semibold text-primary text-base">Singapore</p>
                 </div>
                 <div className="p-5 bg-white rounded-xl border-2 border-neutral-300 hover:border-accent hover:shadow-luxury transition-all duration-300">
                   <p className="text-sm text-neutral-600 mb-2 font-medium">✉️ Email</p>
-                  <p className="font-semibold text-primary text-base">your@email.com</p>
+                  <p className="font-semibold text-primary text-base">zulfaqarhafez@gmail.com</p>
                 </div>
               </div>
             </div>
