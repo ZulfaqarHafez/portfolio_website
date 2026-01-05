@@ -20,7 +20,7 @@ const About = () => {
                 {/* Main profile image */}
                 <div className="aspect-square bg-luxury-gradient rounded-2xl shadow-2xl flex items-center justify-center overflow-hidden border-4 border-accent transition-all duration-500 hover:scale-105 hover:rotate-2">
                   <img
-                    src={"/images/formal.png"}
+                    src="/images/formal.png"
                     alt="Zulfaqar Hafez"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />

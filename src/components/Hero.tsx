@@ -12,7 +12,7 @@ const Hero = () => {
             {/* Added 'overflow-hidden' to clip the image to the circle */}
             <div className="w-48 h-48 mx-auto bg-gold-gradient rounded-full flex items-center justify-center shadow-luxury-lg border-4 border-accent hover:scale-110 transition-all duration-500 overflow-hidden animate-pulse-glow">
               <img
-                src={"/images/zul.jpg"}
+                src="/images/zul.jpg"
                 alt="Zulfaqar Hafez"
                 className="w-full h-full object-cover hover:rotate-6 transition-transform duration-700"
               />

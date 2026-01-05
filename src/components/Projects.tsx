@@ -9,7 +9,7 @@ const Projects = () => {
       technologies: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS'],
       github: 'https://github.com/ZulfaqarHafez/GuideMeSG',
       live: 'https://guide-me-sg-r22y.vercel.app/',
-      image: 'images/guideme.png',
+      image: '/images/guideme.png',
     },
     {
       title: 'PPE compliance Dashboard',
@@ -18,7 +18,7 @@ const Projects = () => {
       technologies: ['FastAPI', 'YOLOv8', 'Mediapipe', 'postgreSQL', 'supabase', 'Huggingface'],
       github: 'https://github.com/ZulfaqarHafez/AAI3001_Deep_Learning',
       live: 'https://youtu.be/0caldjkLU7g',
-      image: 'images/ppecompliance.png',
+      image: '/images/ppecompliance.png',
     },
     {
       title: 'EduQuery SG',
@@ -27,7 +27,7 @@ const Projects = () => {
       technologies: ['Node.js', 'MongoDB Atlas', 'PostgreSQL', 'Express.js', 'Leaftlet.js'],
       github: 'https://github.com/ZulfaqarHafez/INF2003_EduQuery',
       live: 'https://youtu.be/Wo4YhykGx-8',
-      image: 'images/eduquery.png',
+      image: '/images/eduquery.png',
     },
     {
       title: 'Fairwork Contract',
@@ -36,7 +36,7 @@ const Projects = () => {
       technologies: ['Next.js', 'Gemini', 'FastAPI', 'Hugging Face', 'PaddeOCR'],
       github: 'https://github.com/KevanSoon/FairWork-Contract',
       live: 'https://fair-work-contract.vercel.app/',
-      image: 'images/fairwork.png',
+      image: '/images/fairwork.png',
     },
   ];
 
