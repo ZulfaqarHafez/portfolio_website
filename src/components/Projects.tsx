@@ -1,8 +1,6 @@
 import React, { useRef, useState } from 'react';
 
 const Projects = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
   const projects = [
     {
       title: 'GuideMeSG Mobile App',
@@ -90,7 +88,7 @@ const Projects = () => {
           transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) ${isHovering ? 'scale(1.02) translateY(-0.25rem)' : ''}`,
           transition: rotation.x === 0 && rotation.y === 0 ? 'all 0.3s ease' : 'none',
         }}
-        className="group relative rounded-2xl bg-secondary border border-accent/20 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-accent/10 card-entrance"
+        className="group relative rounded-2xl bg-secondary border border-accent/20 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-accent/10 card-entrance h-full flex flex-col"
       >
         {/* Spotlight Overlay */}
         <div
@@ -103,13 +101,13 @@ const Projects = () => {
 
         {/* Content Container */}
         <div className="relative z-20 h-full flex flex-col">
-          
+
           {/* Image Section */}
           <div className="relative h-56 overflow-hidden border-b border-accent/20">
             {typeof project.image === 'string' && project.image.startsWith('bg-') ? (
               // Fallback Gradient
               <div className={`h-full w-full ${project.image} flex items-center justify-center`}>
-                 
+
               </div>
             ) : (
               // Real Image with Zoom Effect
@@ -205,59 +203,11 @@ const Projects = () => {
             </p>
           </div>
 
-          {/* Carousel Container */}
-          <div className="relative px-4 md:px-12">
-            {/* Carousel Track */}
-            <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                {projects.map((project, idx) => (
-                  <div key={idx} className="w-full flex-shrink-0 px-4">
-                    <div className="max-w-2xl mx-auto">
-                      <ProjectCard project={project} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Navigation Buttons */}
-            <button
-              onClick={() => setCurrentSlide((prev) => (prev === 0 ? projects.length - 1 : prev - 1))}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-secondary/90 backdrop-blur-sm hover:bg-secondary text-luxury-cream p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-accent/30 hover:border-accent/60 hover:scale-110 z-10"
-              aria-label="Previous project"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={() => setCurrentSlide((prev) => (prev === projects.length - 1 ? 0 : prev + 1))}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-secondary/90 backdrop-blur-sm hover:bg-secondary text-luxury-cream p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-accent/30 hover:border-accent/60 hover:scale-110 z-10"
-              aria-label="Next project"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            {/* Dot Indicators */}
-            <div className="flex justify-center gap-3 mt-8">
-              {projects.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentSlide(idx)}
-                  className={`transition-all duration-300 rounded-full ${
-                    currentSlide === idx
-                      ? 'w-12 h-3 bg-accent shadow-[0_0_15px_rgba(201,169,96,0.5)]'
-                      : 'w-3 h-3 bg-neutral-400 hover:bg-accent/60 hover:scale-125'
-                  }`}
-                  aria-label={`Go to project ${idx + 1}`}
-                />
-              ))}
-            </div>
+          {/* Projects Grid - 2 Columns */}
+          <div className="grid md:grid-cols-2 gap-8 px-4">
+            {projects.map((project, idx) => (
+              <ProjectCard key={idx} project={project} />
+            ))}
           </div>
         </div>
       </div>

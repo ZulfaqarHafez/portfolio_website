@@ -39,7 +39,7 @@ const Experience = () => {
         <div className="inline-block p-3 rounded-full bg-accent/10 text-2xl sm:text-3xl mb-4 text-accent">
           💼
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-white mb-3 px-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-primary mb-3 px-4">
           Experience
         </h2>
         <div className="w-20 md:w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto"></div>
