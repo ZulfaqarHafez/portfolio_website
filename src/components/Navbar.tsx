@@ -87,7 +87,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-3">
             {/* Resume Download Button */}
             <a
-              href="/resume.pdf"
+              href="/Zulf_Resume.pdf"
               download
               className="px-4 py-2 bg-gold-gradient text-primary rounded-lg font-bold text-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 transform"
             >
