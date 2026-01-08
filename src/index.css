@@ -78,14 +78,16 @@
 /* Custom Utilities */
 @layer utilities {
   .section-padding {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
   @media (min-width: 640px) {
     .section-padding {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
@@ -93,6 +95,8 @@
 
   @media (min-width: 1024px) {
     .section-padding {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
       padding-left: 2rem;
       padding-right: 2rem;
     }

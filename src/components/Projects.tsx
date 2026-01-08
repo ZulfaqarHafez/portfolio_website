@@ -103,7 +103,7 @@ const Projects = () => {
         <div className="relative z-20 h-full flex flex-col">
 
           {/* Image Section */}
-          <div className="relative h-56 overflow-hidden border-b border-accent/20">
+          <div className="relative h-36 overflow-hidden border-b border-accent/20">
             {typeof project.image === 'string' && project.image.startsWith('bg-') ? (
               // Fallback Gradient
               <div className={`h-full w-full ${project.image} flex items-center justify-center`}>
@@ -125,20 +125,20 @@ const Projects = () => {
           </div>
 
           {/* Text Content */}
-          <div className="p-6 flex flex-col flex-grow">
-            <h3 className="text-2xl font-bold font-serif text-luxury-cream mb-3 group-hover:text-accent transition-colors duration-300">
+          <div className="p-3 flex flex-col flex-grow">
+            <h3 className="text-base md:text-lg font-bold font-serif text-luxury-cream mb-1.5 group-hover:text-accent transition-colors duration-300">
               {project.title}
             </h3>
-            <p className="text-neutral-400 mb-6 text-sm leading-relaxed flex-grow">
+            <p className="text-neutral-400 mb-3 text-xs leading-relaxed flex-grow">
               {project.description}
             </p>
 
             {/* Technologies */}
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-1.5 mb-3">
               {project.technologies.map((tech, techIdx) => (
                 <span
                   key={techIdx}
-                  className="px-2.5 py-1 bg-luxury-charcoal text-neutral-300 text-xs font-medium rounded-md border border-accent/10 group-hover:border-accent/30 transition-colors"
+                  className="px-1.5 py-0.5 bg-luxury-charcoal text-neutral-300 text-xs font-medium rounded-md border border-accent/10 group-hover:border-accent/30 transition-colors"
                 >
                   {tech}
                 </span>
@@ -146,7 +146,7 @@ const Projects = () => {
             </div>
 
             {/* Links */}
-            <div className="flex gap-4 mt-auto pt-4 border-t border-accent/10">
+            <div className="flex gap-2.5 mt-auto pt-2.5 border-t border-accent/10">
               <a
                 href={project.github}
                 target="_blank"
@@ -190,21 +190,21 @@ const Projects = () => {
     <section id="projects" className="section-padding bg-white">
       <div className="container-custom">
         <div className="max-w-6xl mx-auto">
-          {/* Section Title */}
-          <div className="text-center mb-12 md:mb-16 relative px-4">
+          {/* Section Title - Compact */}
+          <div className="text-center mb-6 md:mb-8 relative px-4">
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/5 rounded-full blur-3xl -z-10"></div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-primary mb-5 relative inline-block">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif text-primary mb-2 relative inline-block">
               Featured Projects
-              <span className="absolute -top-3 -right-6 sm:-top-4 sm:-right-8 text-2xl sm:text-3xl md:text-4xl animate-pulse text-accent">🚀</span>
+              <span className="absolute -top-2 -right-5 text-xl sm:text-2xl animate-pulse text-accent">🚀</span>
             </h2>
-            <div className="w-20 md:w-24 h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto rounded-full mb-4 md:mb-6"></div>
-            <p className="text-neutral-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
+            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto rounded-full mb-2"></div>
+            <p className="text-neutral-600 text-sm max-w-2xl mx-auto px-4">
               A showcase of technical solutions and creative problem solving.
             </p>
           </div>
 
           {/* Projects Grid - 2 Columns */}
-          <div className="grid md:grid-cols-2 gap-8 px-4">
+          <div className="grid md:grid-cols-2 gap-5 px-4">
             {projects.map((project, idx) => (
               <ProjectCard key={idx} project={project} />
             ))}

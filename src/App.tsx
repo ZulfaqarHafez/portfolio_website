@@ -6,7 +6,6 @@ import Skills from './components/Skills'
 import ExperienceEducation from './components/ExperienceEducation'
 import Projects from './components/Projects'
 import Hackathons from './components/Hackathons'
-import Certifications from './components/Certifications'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import { initGA, trackPageView } from './utils/analytics'
@@ -27,11 +26,10 @@ function App() {
       <Navbar />
       <Hero />
       <About />
-      <Skills />
       <ExperienceEducation />
       <Projects />
       <Hackathons />
-      <Certifications />
+      <Skills />
       <Footer />
     </div>
   )

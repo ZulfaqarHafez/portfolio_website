@@ -3,40 +3,35 @@ const About = () => {
     <section id="about" className="section-padding bg-luxury-cream">
       <div className="container-custom">
         <div className="max-w-6xl mx-auto">
-          {/* Section Title */}
-          <div className="text-center mb-12 md:mb-16 relative px-4">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/5 rounded-full blur-3xl -z-10"></div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-primary mb-5 relative inline-block animate-fade-in-down animate-once">
+          {/* Section Title - Compact */}
+          <div className="text-center mb-8 md:mb-10 relative px-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif text-primary mb-3 relative inline-block">
               About Me
-              <span className="absolute -top-3 -right-6 sm:-top-4 sm:-right-8 text-2xl sm:text-3xl md:text-4xl animate-pulse text-accent">👨‍💻</span>
+              <span className="absolute -top-2 -right-5 text-xl sm:text-2xl animate-pulse text-accent">👨‍💻</span>
             </h2>
-            <div className="w-20 md:w-24 h-1.5 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto rounded-full mb-4 md:mb-6 animate-scale-in animate-delay-200 animate-once"></div>
+            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Image Placeholder */}
-            <div className="order-2 md:order-1 animate-slide-in-left animate-delay-300 animate-once">
-              <div className="relative group">
-                {/* Main profile image */}
-                <div className="aspect-square bg-luxury-gradient rounded-2xl shadow-2xl flex items-center justify-center overflow-hidden border-4 border-accent transition-all duration-500 hover:scale-105 hover:rotate-2">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
+            {/* Image - Smaller */}
+            <div className="order-2 md:order-1">
+              <div className="relative group max-w-sm mx-auto">
+                <div className="aspect-square bg-luxury-gradient rounded-xl shadow-lg flex items-center justify-center overflow-hidden border-2 border-accent transition-all duration-500 hover:scale-105">
                   <img
                     src="/images/formal.png"
                     alt="Zulfaqar Hafez"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
-                {/* Decorative elements */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl animate-float"></div>
-                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-accent/10 rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
               </div>
             </div>
 
-            {/* About Content */}
-            <div className="order-1 md:order-2 animate-slide-in-right animate-delay-400 animate-once">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold font-serif text-primary mb-6 md:mb-8">
+            {/* About Content - Compact */}
+            <div className="order-1 md:order-2">
+              <h3 className="text-xl sm:text-2xl font-semibold font-serif text-primary mb-4">
                 Hello! I'm Zulfaqar Hafez
               </h3>
-              <div className="space-y-4 md:space-y-5 text-neutral-700 text-base sm:text-lg leading-relaxed">
+              <div className="space-y-3 text-neutral-700 text-sm sm:text-base leading-relaxed">
                 <p>
                   I'm a passionate <span className="font-semibold text-accent">AI Engineer & Community Innovator</span>  dedicated 
                   to bridging the gap between complex technology and social impact.
@@ -50,19 +45,19 @@ const About = () => {
                 <p>
                   Beyond just code, I strive to use these technical skills to innovate for the community. Whether 
                   it's building apps for accessibility or optimizing processes for non-profits, I am driven 
-                  to solve real community problems through technology.
+                  to solve real community problems through technology. I believe I could do anything through grit and perseverance.
                 </p>
               </div>
 
-              {/* Quick Facts */}
-              <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="p-5 bg-white rounded-xl border-2 border-neutral-300 hover:border-accent hover:shadow-luxury transition-all duration-300 hover:scale-105 hover:-translate-y-1 animate-fade-in-up animate-delay-500 animate-once">
-                  <p className="text-sm text-neutral-600 mb-2 font-medium">📍 Location</p>
-                  <p className="font-semibold text-primary text-base">Singapore</p>
+              {/* Quick Facts - Compact */}
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="p-3 bg-white rounded-lg border border-neutral-300 hover:border-accent transition-all duration-300">
+                  <p className="text-xs text-neutral-600 mb-1 font-medium">📍 Location</p>
+                  <p className="font-semibold text-primary text-sm">Singapore</p>
                 </div>
-                <div className="p-5 bg-white rounded-xl border-2 border-neutral-300 hover:border-accent hover:shadow-luxury transition-all duration-300 hover:scale-105 hover:-translate-y-1 animate-fade-in-up animate-delay-600 animate-once">
-                  <p className="text-sm text-neutral-600 mb-2 font-medium">✉️ Email</p>
-                  <p className="font-semibold text-primary text-sm sm:text-base break-words">zulfaqarhafez@gmail.com</p>
+                <div className="p-3 bg-white rounded-lg border border-neutral-300 hover:border-accent transition-all duration-300">
+                  <p className="text-xs text-neutral-600 mb-1 font-medium">✉️ Email</p>
+                  <p className="font-semibold text-primary text-xs sm:text-sm break-words">zulfaqarhafez@gmail.com</p>
                 </div>
               </div>
             </div>

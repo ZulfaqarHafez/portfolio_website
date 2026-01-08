@@ -18,8 +18,7 @@ const Navbar = () => {
     { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Certifications', href: '#certifications' },
-    
+    { name: 'Hackathons', href: '#hackathons' },
   ];
 
   const socialLinks = [
@@ -45,8 +44,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-primary shadow-lg border-b border-accent/30' : 'bg-primary/95 backdrop-blur-md'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+        isScrolled
+          ? 'bg-primary/95 backdrop-blur-lg shadow-2xl border-b border-accent/40 py-0'
+          : 'bg-primary/90 backdrop-blur-md py-1'
       }`}
     >
       <div className="container-custom px-4 sm:px-6">
@@ -67,14 +68,17 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
+            {navLinks.map((link, idx) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-luxury-cream hover:text-accent transition-colors font-medium text-sm tracking-wide relative group"
+                className="text-luxury-cream hover:text-accent transition-all duration-300 font-medium text-sm tracking-wide relative group transform hover:scale-110"
+                style={{
+                  animation: `fadeInDown 0.5s ease-out ${idx * 0.1}s both`
+                }}
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></span>
               </a>
             ))}
           </div>
@@ -85,9 +89,9 @@ const Navbar = () => {
             <a
               href="/resume.pdf"
               download
-              className="px-4 py-2 bg-gold-gradient text-primary rounded-lg font-bold text-sm hover:shadow-lg transition-all duration-300 flex items-center gap-2"
+              className="px-4 py-2 bg-gold-gradient text-primary rounded-lg font-bold text-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 transform"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               Resume
@@ -99,7 +103,7 @@ const Navbar = () => {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 bg-secondary hover:bg-gold-gradient text-luxury-cream hover:text-primary rounded-lg flex items-center justify-center transition-all duration-300 border border-accent/20"
+                className="w-9 h-9 bg-secondary hover:bg-gold-gradient text-luxury-cream hover:text-primary rounded-lg flex items-center justify-center transition-all duration-300 border border-accent/20 transform hover:scale-110 hover:rotate-6"
                 aria-label={social.name}
               >
                 {social.icon}
@@ -140,13 +144,13 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 bg-secondary shadow-lg border-t border-accent/30 animate-fade-in">
+          <div className="md:hidden py-4 pb-6 bg-secondary shadow-lg border-t border-accent/30 animate-fade-in max-h-[calc(100vh-4rem)] overflow-y-auto">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block py-4 px-6 text-luxury-cream hover:bg-luxury-charcoal hover:text-accent transition-colors font-medium text-base touch-manipulation active:bg-luxury-charcoal"
+                className="block py-3 px-6 text-luxury-cream hover:bg-luxury-charcoal hover:text-accent transition-colors font-medium text-base touch-manipulation active:bg-luxury-charcoal border-b border-accent/10 last:border-b-0"
               >
                 {link.name}
               </a>
@@ -155,7 +159,8 @@ const Navbar = () => {
             <a
               href="/resume.pdf"
               download
-              className="mx-6 mt-4 px-6 py-3 bg-gold-gradient text-primary rounded-lg font-bold text-base hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 touch-manipulation"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="mx-4 mt-4 mb-2 px-6 py-3 bg-gold-gradient text-primary rounded-lg font-bold text-base hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 touch-manipulation"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -163,14 +168,14 @@ const Navbar = () => {
               Download Resume
             </a>
 
-            <div className="flex gap-4 px-6 pt-5 border-t border-accent/30 mt-4">
+            <div className="flex gap-3 justify-center px-4 pt-4 border-t border-accent/30 mt-4">
               {socialLinks.map((social, idx) => (
                 <a
                   key={idx}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 bg-luxury-charcoal hover:bg-gold-gradient text-luxury-cream hover:text-primary rounded-lg flex items-center justify-center transition-all duration-300 border border-accent/20 touch-manipulation"
+                  className="w-12 h-12 bg-luxury-charcoal hover:bg-gold-gradient text-luxury-cream hover:text-primary rounded-lg flex items-center justify-center transition-all duration-300 border border-accent/20 touch-manipulation"
                   aria-label={social.name}
                 >
                   {social.icon}
