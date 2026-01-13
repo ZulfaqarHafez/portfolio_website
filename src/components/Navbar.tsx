@@ -157,7 +157,7 @@ const Navbar = () => {
             ))}
             {/* Resume Button - Mobile */}
             <a
-              href="/resume.pdf"
+              href="/Zulf_Resume.pdf"
               download
               onClick={() => setIsMobileMenuOpen(false)}
               className="mx-4 mt-4 mb-2 px-6 py-3 bg-gold-gradient text-primary rounded-lg font-bold text-base hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 touch-manipulation"
