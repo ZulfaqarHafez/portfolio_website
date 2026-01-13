@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
+import AboutSkills from './components/AboutSkills'
 import ExperienceEducation from './components/ExperienceEducation'
-import Projects from './components/Projects'
-import Hackathons from './components/Hackathons'
+import ProjectsHackathons from './components/ProjectsHackathons'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import { initGA, trackPageView } from './utils/analytics'
@@ -25,11 +23,9 @@ function App() {
       <ScrollToTop />
       <Navbar />
       <Hero />
-      <About />
+      <AboutSkills />
       <ExperienceEducation />
-      <Projects />
-      <Hackathons />
-      <Skills />
+      <ProjectsHackathons />
       <Footer />
     </div>
   )

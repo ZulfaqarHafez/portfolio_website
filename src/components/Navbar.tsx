@@ -10,7 +10,7 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 20);
       
       // Scroll spy logic
-      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'hackathons'];
+      const sections = ['home', 'about', 'experience', 'projects'];
       const scrollPosition = window.scrollY + 100;
       
       for (const section of sections) {
@@ -33,10 +33,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Hackathons', href: '#hackathons' },
   ];
 
   const socialLinks = [

@@ -1,37 +1,37 @@
 const About = () => {
   return (
-    <section id="about" className="section-padding bg-luxury-cream">
-      <div className="container-custom">
+    <section id="about" className="py-12 md:py-16 bg-luxury-cream">
+      <div className="container-custom px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Section Title - Compact */}
-          <div className="text-center mb-8 md:mb-10 relative px-4">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif text-primary mb-3 relative inline-block">
+          {/* Section Title */}
+          <div className="text-center mb-8 md:mb-10 relative">
+            <h2 className="text-2xl sm:text-3xl font-bold font-serif text-primary mb-3 relative inline-block">
               About Me
-              <span className="absolute -top-2 -right-5 text-xl sm:text-2xl animate-pulse text-accent">👨‍💻</span>
+              <span className="absolute -top-2 -right-5 text-lg sm:text-xl animate-pulse text-accent">👨‍💻</span>
             </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto rounded-full"></div>
+            <div className="w-12 h-1 bg-accent mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
-            {/* Image - Smaller */}
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-10 items-center">
+            {/* Image */}
             <div className="order-2 md:order-1">
-              <div className="relative group max-w-sm mx-auto">
-                <div className="aspect-square bg-luxury-gradient rounded-xl shadow-lg flex items-center justify-center overflow-hidden border-2 border-accent transition-all duration-500 hover:scale-105">
+              <div className="relative group max-w-xs sm:max-w-sm mx-auto">
+                <div className="aspect-square bg-luxury-gradient rounded-xl shadow-lg flex items-center justify-center overflow-hidden border-2 border-accent transition-all duration-300 hover:scale-105">
                   <img
                     src="/images/formal.png"
                     alt="Zulfaqar Hafez"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               </div>
             </div>
 
-            {/* About Content - Compact */}
+            {/* About Content */}
             <div className="order-1 md:order-2">
-              <h3 className="text-xl sm:text-2xl font-semibold font-serif text-primary mb-4">
+              <h3 className="text-lg sm:text-xl font-semibold font-serif text-primary mb-3">
                 Hello! I'm Zulfaqar Hafez
               </h3>
-              <div className="space-y-3 text-neutral-700 text-sm sm:text-base leading-relaxed">
+              <div className="space-y-2 text-neutral-700 text-sm leading-relaxed">
                 <p>
                   I'm a passionate <span className="font-semibold text-accent">AI Engineer & Community Innovator</span>  dedicated 
                   to bridging the gap between complex technology and social impact.
