@@ -1,4 +1,8 @@
+import { useTheme } from '../contexts/ThemeContext';
+
 const Experience = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const experiences = [
     {
       title: 'Product Manager (Citizen Developer)',
@@ -36,7 +40,7 @@ const Experience = () => {
     <div className="max-w-full">
       {/* Section Header */}
       <div className="mb-5">
-        <h2 className="text-2xl sm:text-3xl font-bold font-serif text-primary mb-2">
+        <h2 className={`text-2xl sm:text-3xl font-bold font-serif mb-2 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
           Experience
         </h2>
         <div className="w-12 h-1 bg-accent rounded-full"></div>

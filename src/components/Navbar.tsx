@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -105,8 +107,25 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Resume & Social Links */}
+          {/* Resume & Social Links & Theme Toggle */}
           <div className="hidden md:flex items-center gap-3">
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="w-9 h-9 bg-secondary hover:bg-accent/20 text-luxury-cream rounded-lg flex items-center justify-center transition-all duration-300 border border-accent/20 transform hover:scale-110"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
+            </button>
+
             {/* Resume Download Button */}
             <a
               href="/Zulf_Resume.pdf"
@@ -183,6 +202,22 @@ const Navbar = () => {
             ))}
 
             <div className="flex gap-3 justify-center px-4 pt-4 border-t border-accent/30 mt-4">
+              {/* Mobile Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className="w-12 h-12 bg-luxury-charcoal hover:bg-accent/20 text-luxury-cream rounded-lg flex items-center justify-center transition-all duration-300 border border-accent/20 touch-manipulation"
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                ) : (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  </svg>
+                )}
+              </button>
               {socialLinks.map((social, idx) => (
                 <a
                   key={idx}

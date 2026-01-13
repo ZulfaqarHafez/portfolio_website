@@ -1,4 +1,8 @@
+import { useTheme } from '../contexts/ThemeContext';
+
 const Footer = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -30,14 +34,14 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-primary text-neutral-300 border-t border-accent/30">
+    <footer className={`border-t scroll-fade-in ${isDark ? 'bg-primary text-neutral-300 border-accent/30' : 'bg-white text-neutral-600 border-neutral-200'}`}>
       <div className="container-custom px-4">
         <div className="py-8 md:py-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {/* Brand */}
             <div className="sm:col-span-2 md:col-span-1">
               <h3 className="text-lg sm:text-xl font-bold font-serif text-accent mb-3">Zulfaqar Hafez</h3>
-              <p className="text-neutral-300 text-sm mb-3 leading-relaxed">
+              <p className={`text-sm mb-3 leading-relaxed ${isDark ? 'text-neutral-300' : 'text-neutral-600'}`}>
                 AI Engineer & Community Innovator passionate about transforming data into insights
                 and building intelligent solutions.
               </p>
@@ -45,7 +49,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-sm sm:text-base font-semibold text-luxury-cream mb-3">Quick Links</h4>
+              <h4 className={`text-sm sm:text-base font-semibold mb-3 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>Quick Links</h4>
               <ul className="space-y-1.5">
                 {quickLinks.map((link, idx) => (
                   <li key={idx}>
@@ -62,7 +66,7 @@ const Footer = () => {
 
             {/* Social Links */}
             <div>
-              <h4 className="text-sm sm:text-base font-semibold text-luxury-cream mb-3">Connect With Me</h4>
+              <h4 className={`text-sm sm:text-base font-semibold mb-3 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>Connect With Me</h4>
               <div className="flex gap-3">
                 {socialLinks.map((social, idx) => (
                   <a
@@ -70,7 +74,7 @@ const Footer = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center hover:bg-gold-gradient hover:text-primary transition-all duration-300 transform hover:-translate-y-1 border border-accent/20 touch-manipulation"
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center hover:bg-gold-gradient hover:text-primary transition-all duration-300 transform hover:-translate-y-1 border touch-manipulation ${isDark ? 'bg-secondary border-accent/20' : 'bg-neutral-100 border-neutral-200'}`}
                     aria-label={social.name}
                   >
                     {social.icon}
@@ -82,12 +86,12 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-accent/30 py-4">
+        <div className={`border-t py-4 ${isDark ? 'border-accent/30' : 'border-neutral-200'}`}>
           <div className="flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
-            <p className="text-neutral-400 text-xs">
+            <p className={`text-xs ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}>
               © {currentYear} Zulfaqar Hafez. All rights reserved.
             </p>
-            <p className="text-neutral-400 text-xs">
+            <p className={`text-xs ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}>
               Built with React, TypeScript & Tailwind CSS
             </p>
           </div>

@@ -1,27 +1,19 @@
 @import "tailwindcss";
 
-/* LUXURY GREEN THEME
-   Replaced standard black/grey with Deep Emerald & Forest Greens.
-   Kept Gold accents for the "luxury" feel.
-*/
+/* LUXURY GREEN THEME WITH DARK/LIGHT MODE */
 @theme {
   /* --- Colors --- */
-  /* Primary is now a Deep Emerald Green instead of Black */
   --color-primary: #022c22; 
-  /* Secondary is a slightly lighter Forest Green */
   --color-secondary: #064e3b; 
-  /* Accent remains Gold, as it pairs perfectly with Green */
   --color-accent: #c9a960;
   
   --color-luxury-gold: #c9a960;
   --color-luxury-gold-light: #e6c882;
   --color-luxury-gold-dark: #9a7b3a;
   
-  /* Cream background for professional readability */
   --color-luxury-cream: #f8fafc; 
   --color-luxury-cream-dark: #f1f5f9;
   
-  /* Charcoal replaced with Dark Green-Grey */
   --color-luxury-charcoal: #134e4a;
   --color-luxury-platinum: #e2e8f0;
   --color-luxury-slate: #334155;
@@ -29,7 +21,6 @@
   --color-dark: #022c22;
   --color-light: #f8fafc;
 
-  /* Custom Neutral Palette (Cooler tones to match Green) */
   --color-neutral-50: #f8fafc;
   --color-neutral-100: #f1f5f9;
   --color-neutral-200: #e2e8f0;
@@ -41,19 +32,39 @@
   --color-neutral-800: #1e293b;
   --color-neutral-900: #0f172a;
 
-  /* --- Fonts --- */
   --font-serif: Georgia, Cambria, "Times New Roman", serif;
   --font-sans: Inter, system-ui, sans-serif;
 
-  /* --- Background Gradients --- */
-  /* Updated to Green Gradients */
   --background-image-luxury-gradient: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #065f46 100%);
   --background-image-gold-gradient: linear-gradient(135deg, #c9a960 0%, #e6c882 100%);
   --background-image-gold-shine: linear-gradient(135deg, #c9a960 0%, #e6c882 50%, #c9a960 100%);
 
-  /* --- Shadows --- */
   --shadow-luxury: 0 4px 20px rgba(6, 78, 59, 0.15);
   --shadow-luxury-lg: 0 10px 40px rgba(6, 78, 59, 0.25);
+}
+
+/* Light Mode (Default) */
+:root, .light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-dark: #064e3b;
+  --text-primary: #022c22;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+}
+
+/* Dark Mode */
+.dark {
+  --bg-primary: #022c22;
+  --bg-secondary: #064e3b;
+  --bg-card: #064e3b;
+  --bg-card-dark: #064e3b;
+  --text-primary: #f8fafc;
+  --text-secondary: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border-color: #134e4a;
 }
 
 /* Base Styles */
@@ -63,11 +74,12 @@
   }
 
   body {
-    background-color: var(--color-luxury-cream);
-    color: var(--color-primary); /* Text is now Deep Green */
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -316,6 +328,70 @@
   .card-entrance:nth-child(5) { animation-delay: 0.5s; }
   .card-entrance:nth-child(6) { animation-delay: 0.6s; }
 
+  /* Scroll-triggered fade in animations */
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .scroll-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scroll-fade-in-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .scroll-fade-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-fade-in-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .scroll-fade-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-scale-in {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .scroll-scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Staggered children animation */
+  .stagger-children > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+
+  .stagger-children.visible > *:nth-child(1) { transition-delay: 0.05s; }
+  .stagger-children.visible > *:nth-child(2) { transition-delay: 0.1s; }
+  .stagger-children.visible > *:nth-child(3) { transition-delay: 0.15s; }
+  .stagger-children.visible > *:nth-child(4) { transition-delay: 0.2s; }
+  .stagger-children.visible > *:nth-child(5) { transition-delay: 0.25s; }
+  .stagger-children.visible > *:nth-child(6) { transition-delay: 0.3s; }
+
+  .stagger-children.visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* Smooth scroll with offset for fixed navbar */
   html {
     scroll-padding-top: 100px;
@@ -327,5 +403,23 @@
     outline: 2px solid var(--color-accent);
     outline-offset: 4px;
     border-radius: 4px;
+  }
+
+  /* Theme transition for all elements */
+  * {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Light mode specific overrides */
+  .light .bg-secondary {
+    background-color: #064e3b;
+  }
+  
+  .light .bg-luxury-cream {
+    background-color: #f8fafc;
+  }
+
+  .light .bg-white {
+    background-color: #ffffff;
   }
 }

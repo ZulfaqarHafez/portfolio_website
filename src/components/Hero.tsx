@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Hero = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [typedText, setTypedText] = useState('');
   const fullText = 'AI Engineer & Community Innovator';
@@ -36,18 +39,18 @@ const Hero = () => {
   }, [typedText, fullText]);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center bg-luxury-gradient relative overflow-hidden pt-20 pb-12">
+    <section id="home" className={`min-h-screen flex items-center justify-center relative overflow-hidden pt-20 pb-12 ${isDark ? 'bg-luxury-gradient' : 'bg-gradient-to-br from-white via-neutral-50 to-neutral-100'}`}>
       {/* Animated gradient mesh background - Reduced */}
       <div className="absolute inset-0 opacity-20">
         <div
-          className="absolute top-10 left-5 w-48 h-48 bg-accent/20 rounded-full blur-3xl animate-blob-morph"
+          className={`absolute top-10 left-5 w-48 h-48 rounded-full blur-3xl animate-blob-morph ${isDark ? 'bg-accent/20' : 'bg-accent/30'}`}
           style={{
             transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
             transition: 'transform 0.3s ease-out',
           }}
         ></div>
         <div
-          className="absolute bottom-10 right-5 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-blob-morph"
+          className={`absolute bottom-10 right-5 w-64 h-64 rounded-full blur-3xl animate-blob-morph ${isDark ? 'bg-accent/10' : 'bg-accent/20'}`}
           style={{
             transform: `translate(${-mousePosition.x * 0.5}px, ${-mousePosition.y * 0.5}px)`,
             transition: 'transform 0.3s ease-out',
@@ -70,12 +73,12 @@ const Hero = () => {
           </div>
 
           {/* Greeting */}
-          <p className="text-base md:text-lg text-neutral-300 mb-3 animate-fade-in-down animate-delay-200 animate-once font-light">
+          <p className={`text-base md:text-lg mb-3 animate-fade-in-down animate-delay-200 animate-once font-light ${isDark ? 'text-neutral-300' : 'text-neutral-600'}`}>
             Hi there! I'm
           </p>
 
           {/* Name - Smaller */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-white mb-4 animate-fade-in-up animate-delay-300 animate-once tracking-tight">
+          <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif mb-4 animate-fade-in-up animate-delay-300 animate-once tracking-tight ${isDark ? 'text-white' : 'text-primary'}`}>
             Zulfaqar Hafez
           </h1>
 
@@ -88,7 +91,7 @@ const Hero = () => {
           </h2>
 
           {/* Description - Compact */}
-          <p className="text-sm sm:text-base md:text-lg text-neutral-200 mb-6 md:mb-8 max-w-2xl mx-auto animate-fade-in-up animate-delay-500 animate-once leading-relaxed font-light">
+          <p className={`text-sm sm:text-base md:text-lg mb-6 md:mb-8 max-w-2xl mx-auto animate-fade-in-up animate-delay-500 animate-once leading-relaxed font-light ${isDark ? 'text-neutral-200' : 'text-neutral-600'}`}>
             Leveraging AI and machine learning to solve real-world problems and transform community challenges into tech solutions.
           </p>
 
@@ -108,7 +111,7 @@ const Hero = () => {
             <a
               href="/Zulf_Resume.pdf"
               download
-              className="group px-6 py-3 bg-transparent text-white border-2 border-accent rounded-lg font-bold text-sm md:text-base hover:bg-accent hover:text-primary transition-all duration-300 shadow-luxury hover:shadow-luxury-lg transform hover:-translate-y-1 hover:scale-105"
+              className={`group px-6 py-3 bg-transparent border-2 border-accent rounded-lg font-bold text-sm md:text-base hover:bg-accent hover:text-primary transition-all duration-300 shadow-luxury hover:shadow-luxury-lg transform hover:-translate-y-1 hover:scale-105 ${isDark ? 'text-white' : 'text-primary'}`}
             >
               <span className="flex items-center justify-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

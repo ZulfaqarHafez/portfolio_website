@@ -1,4 +1,8 @@
+import { useTheme } from '../contexts/ThemeContext';
+
 const Education = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const education = [
     {
       degree: 'BSc (Hons) Applied Artificial Intelligence',
@@ -26,7 +30,7 @@ const Education = () => {
     <div className="max-w-full">
       {/* Section Header */}
       <div className="mb-5">
-        <h2 className="text-2xl sm:text-3xl font-bold font-serif text-primary mb-2">
+        <h2 className={`text-2xl sm:text-3xl font-bold font-serif mb-2 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
           Education
         </h2>
         <div className="w-12 h-1 bg-accent rounded-full"></div>

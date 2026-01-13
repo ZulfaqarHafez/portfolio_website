@@ -1,6 +1,10 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const ProjectsHackathons = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   const projects = [
     {
       title: 'GuideMeSG Mobile App',
@@ -80,7 +84,7 @@ const ProjectsHackathons = () => {
   ];
 
   // Compact Project Card
-  const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
+  const ProjectCard = ({ project, isDark }: { project: typeof projects[0]; isDark: boolean }) => {
     const divRef = useRef<HTMLDivElement>(null);
     const [isHovering, setIsHovering] = useState(false);
 
@@ -89,7 +93,7 @@ const ProjectsHackathons = () => {
         ref={divRef}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
-        className={`group relative rounded-xl bg-secondary border border-accent/20 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 ${isHovering ? 'scale-[1.02] -translate-y-1' : ''}`}
+        className={`group relative rounded-xl border overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 ${isHovering ? 'scale-[1.02] -translate-y-1' : ''} ${isDark ? 'bg-secondary border-accent/20' : 'bg-white border-neutral-200'}`}
       >
         {/* Image */}
         <div className="relative h-36 overflow-hidden">
@@ -98,7 +102,7 @@ const ProjectsHackathons = () => {
             alt={project.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent"></div>
+          <div className={`absolute inset-0 bg-gradient-to-t ${isDark ? 'from-secondary' : 'from-white'} to-transparent`}></div>
           <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-accent/90 text-primary text-xs font-bold rounded">
             {project.role}
           </span>
@@ -106,28 +110,28 @@ const ProjectsHackathons = () => {
 
         {/* Content */}
         <div className="p-4">
-          <h4 className="text-base font-bold text-luxury-cream mb-1 group-hover:text-accent transition-colors line-clamp-1">
+          <h4 className={`text-base font-bold mb-1 group-hover:text-accent transition-colors line-clamp-1 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
             {project.title}
           </h4>
-          <p className="text-neutral-400 text-sm leading-relaxed mb-2 line-clamp-2">
+          <p className={`text-sm leading-relaxed mb-2 line-clamp-2 ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
             {project.description}
           </p>
           
           {/* Tech Tags */}
           <div className="flex flex-wrap gap-1.5 mb-3">
             {project.technologies.map((tech, idx) => (
-              <span key={idx} className="px-2 py-0.5 bg-luxury-charcoal text-neutral-400 text-xs rounded">
+              <span key={idx} className={`px-2 py-0.5 text-xs rounded ${isDark ? 'bg-luxury-charcoal text-neutral-400' : 'bg-neutral-100 text-neutral-600'}`}>
                 {tech}
               </span>
             ))}
           </div>
 
           {/* Links */}
-          <div className="flex gap-4 pt-2 border-t border-accent/10">
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-accent text-sm font-medium">
+          <div className={`flex gap-4 pt-2 border-t ${isDark ? 'border-accent/10' : 'border-neutral-200'}`}>
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className={`hover:text-accent text-sm font-medium ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
               Code →
             </a>
-            <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-accent text-sm font-medium">
+            <a href={project.live} target="_blank" rel="noopener noreferrer" className={`hover:text-accent text-sm font-medium ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
               Demo →
             </a>
           </div>
@@ -137,31 +141,31 @@ const ProjectsHackathons = () => {
   };
 
   return (
-    <section id="projects" className="py-12 md:py-16 bg-white">
+    <section id="projects" className={`py-12 md:py-16 transition-colors duration-300 ${isDark ? 'bg-primary' : 'bg-luxury-cream'}`}>
       <div className="container-custom px-4">
         <div className="max-w-7xl mx-auto">
           {/* Two Column Layout */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-start">
             
             {/* Projects Column */}
-            <div>
+            <div className="scroll-fade-in-left">
               <div className="mb-5">
-                <h2 className="text-2xl sm:text-3xl font-bold font-serif text-primary mb-2">
+                <h2 className={`text-2xl sm:text-3xl font-bold font-serif mb-2 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
                   Projects
                 </h2>
                 <div className="w-12 h-1 bg-accent rounded-full"></div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 stagger-children">
                 {projects.map((project, idx) => (
-                  <ProjectCard key={idx} project={project} />
+                  <ProjectCard key={idx} project={project} isDark={isDark} />
                 ))}
               </div>
             </div>
 
             {/* Hackathons Column - Vertical Timeline */}
-            <div id="hackathons">
+            <div id="hackathons" className="scroll-fade-in-right">
               <div className="mb-5">
-                <h2 className="text-2xl sm:text-3xl font-bold font-serif text-primary mb-2">
+                <h2 className={`text-2xl sm:text-3xl font-bold font-serif mb-2 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
                   Hackathons
                 </h2>
                 <div className="w-12 h-1 bg-accent rounded-full"></div>
@@ -176,10 +180,10 @@ const ProjectsHackathons = () => {
                   {hackathons.map((hack, idx) => (
                     <div key={idx} className="relative group">
                       {/* Timeline Node */}
-                      <div className="absolute -left-[1.05rem] top-3 w-3 h-3 rounded-full bg-white border-2 border-accent z-10 transition-all duration-300 group-hover:scale-150 group-hover:bg-accent group-hover:shadow-[0_0_12px_rgba(201,169,96,0.6)]"></div>
+                      <div className={`absolute -left-[1.05rem] top-3 w-3 h-3 rounded-full border-2 border-accent z-10 transition-all duration-300 group-hover:scale-150 group-hover:bg-accent group-hover:shadow-[0_0_12px_rgba(201,169,96,0.6)] ${isDark ? 'bg-white' : 'bg-luxury-cream'}`}></div>
                       
                       {/* Card */}
-                      <div className="bg-secondary rounded-xl p-4 border border-accent/20 hover:border-accent/50 transition-all duration-300 hover:shadow-lg">
+                      <div className={`rounded-xl p-4 border transition-all duration-300 hover:shadow-lg ${isDark ? 'bg-secondary border-accent/20 hover:border-accent/50' : 'bg-white border-neutral-200 hover:border-accent/50'}`}>
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center gap-2">
                             <span className="text-xl">{hack.award}</span>
@@ -187,15 +191,15 @@ const ProjectsHackathons = () => {
                               {hack.position}
                             </span>
                           </div>
-                          <span className="text-xs text-neutral-400 font-medium">
+                          <span className={`text-xs font-medium ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}>
                             {hack.date}
                           </span>
                         </div>
-                        <h4 className="text-base font-bold text-luxury-cream mb-1 group-hover:text-accent transition-colors">
+                        <h4 className={`text-base font-bold mb-1 group-hover:text-accent transition-colors ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
                           {hack.title}
                         </h4>
                         <p className="text-accent text-sm font-semibold mb-1">{hack.project}</p>
-                        <p className="text-neutral-400 text-sm leading-relaxed">
+                        <p className={`text-sm leading-relaxed ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
                           {hack.description}
                         </p>
                       </div>
