@@ -10,6 +10,8 @@ const Projects = () => {
       github: 'https://github.com/ZulfaqarHafez/GuideMeSG',
       live: 'https://guide-me-sg-r22y.vercel.app/',
       image: '/images/guideme.png',
+      role: 'Lead Developer',
+      teamSize: 'Team of 4',
     },
     {
       title: 'PPE compliance Dashboard',
@@ -19,6 +21,8 @@ const Projects = () => {
       github: 'https://github.com/ZulfaqarHafez/AAI3001_Deep_Learning',
       live: 'https://youtu.be/0caldjkLU7g',
       image: '/images/ppecompliance.png',
+      role: 'ML Engineer',
+      teamSize: 'Team of 3',
     },
     {
       title: 'EduQuery SG',
@@ -28,6 +32,8 @@ const Projects = () => {
       github: 'https://github.com/ZulfaqarHafez/INF2003_EduQuery',
       live: 'https://youtu.be/Wo4YhykGx-8',
       image: '/images/eduquery.png',
+      role: 'Full Stack Developer',
+      teamSize: 'Team of 5',
     },
     {
       title: 'Fairwork Contract',
@@ -37,6 +43,8 @@ const Projects = () => {
       github: 'https://github.com/KevanSoon/FairWork-Contract',
       live: 'https://fair-work-contract.vercel.app/',
       image: '/images/fairwork.png',
+      role: 'Backend Developer',
+      teamSize: 'Team of 4',
     },
   ];
 
@@ -126,6 +134,15 @@ const Projects = () => {
 
           {/* Text Content */}
           <div className="p-3 flex flex-col flex-grow">
+            {/* Role Tags */}
+            <div className="flex gap-2 mb-2">
+              <span className="px-2 py-0.5 bg-accent/20 text-accent text-[10px] font-semibold rounded-full border border-accent/30">
+                {project.role}
+              </span>
+              <span className="px-2 py-0.5 bg-luxury-charcoal text-neutral-300 text-[10px] font-medium rounded-full border border-accent/10">
+                {project.teamSize}
+              </span>
+            </div>
             <h3 className="text-base md:text-lg font-bold font-serif text-luxury-cream mb-1.5 group-hover:text-accent transition-colors duration-300">
               {project.title}
             </h3>

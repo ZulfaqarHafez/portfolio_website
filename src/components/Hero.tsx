@@ -106,14 +106,15 @@ const Hero = () => {
               </span>
             </a>
             <a
-              href="#about"
+              href="/Zulf_Resume.pdf"
+              download
               className="group px-6 py-3 bg-transparent text-white border-2 border-accent rounded-lg font-bold text-sm md:text-base hover:bg-accent hover:text-primary transition-all duration-300 shadow-luxury hover:shadow-luxury-lg transform hover:-translate-y-1 hover:scale-105"
             >
               <span className="flex items-center justify-center gap-2">
-                Learn More
-                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
+                Download Resume
               </span>
             </a>
           </div>

@@ -66,15 +66,15 @@ const Hackathons = () => {
             {/* Timeline Items */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5">
               {hackathons.map((hack, idx) => (
-                <div key={idx} className="relative card-entrance">
+                <div key={idx} className="relative card-entrance group">
                   {/* Timeline Node */}
-                  <div className="hidden lg:flex absolute top-4 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-luxury-cream border-[3px] border-accent z-20 shadow-[0_0_15px_rgba(201,169,96,0.4)] group-hover:scale-125 transition-all duration-300"></div>
+                  <div className="hidden lg:flex absolute top-4 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-luxury-cream border-[3px] border-accent z-20 shadow-[0_0_15px_rgba(201,169,96,0.4)] transition-all duration-300 group-hover:scale-125 group-hover:bg-accent group-hover:shadow-[0_0_20px_rgba(201,169,96,0.8)]"></div>
 
                   {/* Vertical Connector */}
                   <div className="hidden lg:block absolute top-8 left-1/2 -translate-x-1/2 w-0.5 h-3 bg-gradient-to-b from-accent to-transparent"></div>
 
                   {/* Card */}
-                  <div className="mt-0 lg:mt-[2.75rem] bg-secondary rounded-2xl p-4 shadow-luxury hover:shadow-luxury-lg transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 border-2 border-accent/30 hover:border-accent/60 group cursor-pointer">
+                  <div className="mt-0 lg:mt-[2.75rem] bg-secondary rounded-2xl p-4 shadow-luxury hover:shadow-luxury-lg transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 border-2 border-accent/30 hover:border-accent/60 cursor-pointer">
                     {/* Award Badge */}
                     <div className="flex items-center justify-between mb-3">
                       <span className="inline-block px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase border rounded-full text-accent border-accent/20 bg-luxury-cream shadow-sm">

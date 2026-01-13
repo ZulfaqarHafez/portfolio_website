@@ -3,10 +3,28 @@ import { useState, useEffect } from 'react';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      
+      // Scroll spy logic
+      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'hackathons'];
+      const scrollPosition = window.scrollY + 100;
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -72,13 +90,19 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-luxury-cream hover:text-accent transition-all duration-300 font-medium text-sm tracking-wide relative group transform hover:scale-110"
+                className={`transition-all duration-300 font-medium text-sm tracking-wide relative group transform hover:scale-110 ${
+                  activeSection === link.href.slice(1)
+                    ? 'text-accent'
+                    : 'text-luxury-cream hover:text-accent'
+                }`}
                 style={{
                   animation: `fadeInDown 0.5s ease-out ${idx * 0.1}s both`
                 }}
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></span>
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-accent transition-all duration-300 ease-out ${
+                  activeSection === link.href.slice(1) ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}></span>
               </a>
             ))}
           </div>
@@ -150,23 +174,15 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block py-3 px-6 text-luxury-cream hover:bg-luxury-charcoal hover:text-accent transition-colors font-medium text-base touch-manipulation active:bg-luxury-charcoal border-b border-accent/10 last:border-b-0"
+                className={`block py-3 px-6 transition-colors font-medium text-base touch-manipulation border-b border-accent/10 last:border-b-0 ${
+                  activeSection === link.href.slice(1)
+                    ? 'text-accent bg-luxury-charcoal border-l-2 border-l-accent'
+                    : 'text-luxury-cream hover:bg-luxury-charcoal hover:text-accent'
+                }`}
               >
                 {link.name}
               </a>
             ))}
-            {/* Resume Button - Mobile */}
-            <a
-              href="/Zulf_Resume.pdf"
-              download
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="mx-4 mt-4 mb-2 px-6 py-3 bg-gold-gradient text-primary rounded-lg font-bold text-base hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 touch-manipulation"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Download Resume
-            </a>
 
             <div className="flex gap-3 justify-center px-4 pt-4 border-t border-accent/30 mt-4">
               {socialLinks.map((social, idx) => (
