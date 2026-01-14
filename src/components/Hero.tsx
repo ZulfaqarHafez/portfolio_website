@@ -39,7 +39,7 @@ const Hero = () => {
   }, [typedText, fullText]);
 
   return (
-    <section id="home" className={`min-h-screen flex items-center justify-center relative overflow-hidden pt-20 pb-12 ${isDark ? 'bg-luxury-gradient' : 'bg-gradient-to-br from-white via-neutral-50 to-neutral-100'}`}>
+    <section id="home" className={`h-screen flex items-center justify-center relative overflow-hidden pt-16 md:pt-20 pb-4 ${isDark ? 'bg-luxury-gradient' : 'bg-gradient-to-br from-white via-neutral-50 to-neutral-100'}`}>
       {/* Animated gradient mesh background - Reduced */}
       <div className="absolute inset-0 opacity-20">
         <div
@@ -62,8 +62,8 @@ const Hero = () => {
       <div className="container-custom text-center relative z-10 px-4">
         <div className="max-w-4xl mx-auto">
           {/* Profile Image - Smaller */}
-          <div className="mb-6 animate-scale-in animate-once">
-            <div className="w-32 h-32 md:w-40 md:h-40 mx-auto bg-gold-gradient rounded-full flex items-center justify-center shadow-luxury-lg border-4 border-accent hover:scale-110 transition-all duration-500 overflow-hidden">
+          <div className="mb-4 animate-scale-in animate-once">
+            <div className="w-28 h-28 md:w-32 md:h-32 mx-auto bg-gold-gradient rounded-full flex items-center justify-center shadow-luxury-lg border-4 border-accent hover:scale-110 transition-all duration-500 overflow-hidden">
               <img
                 src="/images/zul.jpg"
                 alt="Zulfaqar Hafez"
@@ -73,17 +73,17 @@ const Hero = () => {
           </div>
 
           {/* Greeting */}
-          <p className={`text-base md:text-lg mb-3 animate-fade-in-down animate-delay-200 animate-once font-light ${isDark ? 'text-neutral-300' : 'text-neutral-600'}`}>
+          <p className={`text-sm md:text-base mb-2 animate-fade-in-down animate-delay-200 animate-once font-light ${isDark ? 'text-neutral-300' : 'text-neutral-600'}`}>
             Hi there! I'm
           </p>
 
           {/* Name - Smaller */}
-          <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif mb-4 animate-fade-in-up animate-delay-300 animate-once tracking-tight ${isDark ? 'text-white' : 'text-primary'}`}>
+          <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-serif mb-2 animate-fade-in-up animate-delay-300 animate-once tracking-tight ${isDark ? 'text-white' : 'text-primary'}`}>
             Zulfaqar Hafez
           </h1>
 
           {/* Title/Role with Typing Effect - Smaller */}
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-accent mb-6 md:mb-8 animate-fade-in-up animate-delay-400 animate-once">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-accent mb-4 md:mb-5 animate-fade-in-up animate-delay-400 animate-once">
             <span className="inline-block">
               {typedText}
               <span className={`inline-block w-0.5 h-[0.8em] bg-accent ml-1 align-middle ${isTypingComplete ? 'animate-pulse' : 'animate-blink'}`}></span>
@@ -91,15 +91,15 @@ const Hero = () => {
           </h2>
 
           {/* Description - Compact */}
-          <p className={`text-sm sm:text-base md:text-lg mb-6 md:mb-8 max-w-2xl mx-auto animate-fade-in-up animate-delay-500 animate-once leading-relaxed font-light ${isDark ? 'text-neutral-200' : 'text-neutral-600'}`}>
+          <p className={`text-xs sm:text-sm md:text-base mb-4 md:mb-5 max-w-xl mx-auto animate-fade-in-up animate-delay-500 animate-once leading-relaxed font-light ${isDark ? 'text-neutral-200' : 'text-neutral-600'}`}>
             Leveraging AI and machine learning to solve real-world problems and transform community challenges into tech solutions.
           </p>
 
           {/* CTA Buttons - Smaller */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center animate-fade-in-up animate-delay-600 animate-once">
+          <div className="flex flex-col sm:flex-row gap-2 justify-center animate-fade-in-up animate-delay-600 animate-once">
             <a
               href="#projects"
-              className="group px-6 py-3 bg-gold-gradient text-primary rounded-lg font-bold text-sm md:text-base hover:shadow-luxury-lg transition-all duration-300 shadow-luxury transform hover:-translate-y-1 hover:scale-105 relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700"
+              className="group px-5 py-2.5 bg-gold-gradient text-primary rounded-lg font-bold text-xs md:text-sm hover:shadow-luxury-lg transition-all duration-300 shadow-luxury transform hover:-translate-y-1 hover:scale-105 relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 View My Work
@@ -111,7 +111,7 @@ const Hero = () => {
             <a
               href="/Zulf_Resume.pdf"
               download
-              className={`group px-6 py-3 bg-transparent border-2 border-accent rounded-lg font-bold text-sm md:text-base hover:bg-accent hover:text-primary transition-all duration-300 shadow-luxury hover:shadow-luxury-lg transform hover:-translate-y-1 hover:scale-105 ${isDark ? 'text-white' : 'text-primary'}`}
+              className={`group px-5 py-2.5 bg-transparent border-2 border-accent rounded-lg font-bold text-xs md:text-sm hover:bg-accent hover:text-primary transition-all duration-300 shadow-luxury hover:shadow-luxury-lg transform hover:-translate-y-1 hover:scale-105 ${isDark ? 'text-white' : 'text-primary'}`}
             >
               <span className="flex items-center justify-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,10 +123,10 @@ const Hero = () => {
           </div>
 
           {/* Scroll Indicator - Removed or smaller */}
-          <div className="mt-8 animate-bounce hidden md:block">
+          <div className="mt-4 animate-bounce hidden md:block">
             <a href="#about" className="inline-block">
               <svg
-                className="w-6 h-6 text-accent"
+                className="w-5 h-5 text-accent"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
