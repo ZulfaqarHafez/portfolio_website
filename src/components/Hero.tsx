@@ -109,7 +109,7 @@ const Hero = () => {
               </span>
             </a>
             <a
-              href="/Zulf_Resume.pdf"
+              href="/Zulfaqar_Hafez_Resume.pdf"
               download
               className={`group px-5 py-2.5 bg-transparent border-2 border-accent rounded-lg font-bold text-xs md:text-sm hover:bg-accent hover:text-primary transition-all duration-300 shadow-luxury hover:shadow-luxury-lg transform hover:-translate-y-1 hover:scale-105 ${isDark ? 'text-white' : 'text-primary'}`}
             >

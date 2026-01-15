@@ -128,7 +128,7 @@ const Navbar = () => {
 
             {/* Resume Download Button */}
             <a
-              href="/Zulf_Resume.pdf"
+              href="/Zulfaqar_Hafez_Resume.pdf"
               download
               className="px-4 py-2 bg-gold-gradient text-primary rounded-lg font-bold text-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 transform"
             >
