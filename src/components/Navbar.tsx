@@ -1,42 +1,65 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
       
-      // Scroll spy logic
-      const sections = ['home', 'about', 'experience', 'projects'];
-      const scrollPosition = window.scrollY + 100;
-      
+      // Scroll spy logic based on current anchors in page order.
+      const sections = ['home', 'about', 'skills', 'projects', 'hackathons', 'experience', 'contact'];
+      const scrollPosition = window.scrollY + 140;
+      let currentSection = 'home';
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-          
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
+          if (scrollPosition >= offsetTop) {
+            currentSection = section;
           }
         }
       }
+
+      setActiveSection(currentSection);
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+        mobileMenuButtonRef.current?.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   const navLinks = [
     { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
+    { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Hackathons', href: '#hackathons' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   const socialLinks = [
@@ -64,8 +87,12 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         isScrolled
-          ? 'bg-primary/95 backdrop-blur-lg shadow-2xl border-b border-accent/40 py-0'
-          : 'bg-primary/90 backdrop-blur-md py-1'
+          ? isDark
+            ? 'bg-primary/95 backdrop-blur-lg shadow-2xl border-b border-accent/40 py-0'
+            : 'bg-luxury-cream/95 backdrop-blur-lg shadow-lg border-b border-neutral-200 py-0'
+          : isDark
+            ? 'bg-primary/90 backdrop-blur-md py-1'
+            : 'bg-luxury-cream/90 backdrop-blur-md border-b border-neutral-200/80 py-1'
       }`}
     >
       <div className="container-custom px-4 sm:px-6">
@@ -80,21 +107,22 @@ const Navbar = () => {
             </div>
             <div className="hidden sm:block">
               <div className="text-base sm:text-lg font-bold font-serif text-accent">Zulfaqar Hafez</div>
-              <div className="text-[10px] sm:text-xs text-luxury-platinum">AI Engineer & Community Innovator</div>
+              <div className={`section-kicker ${isDark ? 'text-luxury-platinum' : 'text-neutral-600'}`}>AI Engineer & Community Innovator</div>
             </div>
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link, idx) => (
               <a
                 key={link.name}
                 href={link.href}
-                className={`transition-all duration-300 font-medium text-sm tracking-wide relative group transform hover:scale-110 ${
+                className={`transition-all duration-300 font-tech-mono text-[11px] uppercase tracking-[0.14em] relative group transform hover:scale-110 ${
                   activeSection === link.href.slice(1)
-                    ? 'text-accent'
-                    : 'text-luxury-cream hover:text-accent'
+                    ? 'accent-readable'
+                    : `${isDark ? 'text-luxury-cream' : 'text-primary'} accent-readable-hover`
                 }`}
+                aria-current={activeSection === link.href.slice(1) ? 'page' : undefined}
                 style={{
                   animation: `fadeInDown 0.5s ease-out ${idx * 0.1}s both`
                 }}
@@ -112,7 +140,11 @@ const Navbar = () => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="w-9 h-9 bg-secondary hover:bg-accent/20 text-luxury-cream rounded-lg flex items-center justify-center transition-all duration-300 border border-accent/20 transform hover:scale-110"
+              className={`w-11 h-11 rounded-lg flex items-center justify-center transition-all duration-300 border transform hover:scale-110 ${
+                isDark
+                  ? 'bg-secondary hover:bg-accent/20 text-luxury-cream border-accent/20'
+                  : 'bg-white hover:bg-accent/15 text-primary border-neutral-300'
+              }`}
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -130,7 +162,7 @@ const Navbar = () => {
             <a
               href="/Zulfaqar_Hafez_Resume.pdf"
               download
-              className="px-4 py-2 bg-gold-gradient text-primary rounded-lg font-bold text-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 transform"
+              className="group px-4 py-2 bg-gold-gradient text-primary rounded-lg font-semibold font-tech-mono text-xs hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 transform"
             >
               <svg className="w-4 h-4 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -144,7 +176,11 @@ const Navbar = () => {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 bg-secondary hover:bg-gold-gradient text-luxury-cream hover:text-primary rounded-lg flex items-center justify-center transition-all duration-300 border border-accent/20 transform hover:scale-110 hover:rotate-6"
+                className={`w-11 h-11 rounded-lg flex items-center justify-center transition-all duration-300 border transform hover:scale-110 hover:rotate-6 ${
+                  isDark
+                    ? 'bg-secondary hover:bg-gold-gradient text-luxury-cream hover:text-primary border-accent/20'
+                    : 'bg-white hover:bg-gold-gradient text-primary border-neutral-300'
+                }`}
                 aria-label={social.name}
               >
                 {social.icon}
@@ -154,9 +190,17 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
+            ref={mobileMenuButtonRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-secondary text-luxury-cream hover:text-accent transition-colors touch-manipulation"
-            aria-label="Toggle menu"
+            className={`md:hidden p-2 rounded-lg transition-colors touch-manipulation ${
+              isDark
+                ? 'hover:bg-secondary text-luxury-cream hover:text-accent'
+                : 'hover:bg-neutral-100 text-primary hover:text-luxury-gold-dark'
+            }`}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="primary-navigation-mobile"
+            aria-haspopup="true"
           >
             <svg
               className="w-7 h-7"
@@ -185,27 +229,36 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 pb-6 bg-secondary shadow-lg border-t border-accent/30 animate-fade-in max-h-[calc(100vh-4rem)] overflow-y-auto">
+          <div id="primary-navigation-mobile" className={`md:hidden py-4 pb-6 shadow-lg border-t animate-fade-in max-h-[calc(100vh-4rem)] overflow-y-auto ${isDark ? 'bg-secondary border-accent/30' : 'bg-white border-neutral-200'}`}>
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block py-3 px-6 transition-colors font-medium text-base touch-manipulation border-b border-accent/10 last:border-b-0 ${
+                aria-current={activeSection === link.href.slice(1) ? 'page' : undefined}
+                className={`block py-3 px-6 transition-colors font-tech-mono text-xs uppercase tracking-[0.14em] touch-manipulation border-b border-accent/10 last:border-b-0 ${
                   activeSection === link.href.slice(1)
-                    ? 'text-accent bg-luxury-charcoal border-l-2 border-l-accent'
-                    : 'text-luxury-cream hover:bg-luxury-charcoal hover:text-accent'
+                    ? isDark
+                      ? 'text-accent bg-luxury-charcoal border-l-2 border-l-accent'
+                      : 'accent-readable bg-accent/10 border-l-2 border-l-accent'
+                    : isDark
+                      ? 'text-luxury-cream hover:bg-luxury-charcoal hover:text-accent'
+                      : 'text-neutral-700 hover:bg-neutral-100 hover:text-luxury-gold-dark'
                 }`}
               >
                 {link.name}
               </a>
             ))}
 
-            <div className="flex gap-3 justify-center px-4 pt-4 border-t border-accent/30 mt-4">
+            <div className={`flex gap-3 justify-center px-4 pt-4 mt-4 border-t ${isDark ? 'border-accent/30' : 'border-neutral-200'}`}>
               {/* Mobile Theme Toggle */}
               <button
                 onClick={toggleTheme}
-                className="w-12 h-12 bg-luxury-charcoal hover:bg-accent/20 text-luxury-cream rounded-lg flex items-center justify-center transition-all duration-300 border border-accent/20 touch-manipulation"
+                className={`w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-300 border touch-manipulation ${
+                  isDark
+                    ? 'bg-luxury-charcoal hover:bg-accent/20 text-luxury-cream border-accent/20'
+                    : 'bg-white hover:bg-accent/15 text-primary border-neutral-300'
+                }`}
                 aria-label="Toggle theme"
               >
                 {theme === 'dark' ? (
@@ -224,7 +277,11 @@ const Navbar = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-luxury-charcoal hover:bg-gold-gradient text-luxury-cream hover:text-primary rounded-lg flex items-center justify-center transition-all duration-300 border border-accent/20 touch-manipulation"
+                  className={`w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-300 border touch-manipulation ${
+                    isDark
+                      ? 'bg-luxury-charcoal hover:bg-gold-gradient text-luxury-cream hover:text-primary border-accent/20'
+                      : 'bg-white hover:bg-gold-gradient text-primary border-neutral-300'
+                  }`}
                   aria-label={social.name}
                 >
                   {social.icon}

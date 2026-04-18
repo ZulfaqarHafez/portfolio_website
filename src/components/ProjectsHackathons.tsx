@@ -1,4 +1,3 @@
-import { useRef, useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 
 const ProjectsHackathons = () => {
@@ -83,132 +82,167 @@ const ProjectsHackathons = () => {
     },
   ];
 
-  // Compact Project Card
-  const ProjectCard = ({ project, isDark }: { project: typeof projects[0]; isDark: boolean }) => {
-    const divRef = useRef<HTMLDivElement>(null);
-    const [isHovering, setIsHovering] = useState(false);
+  const [featuredProject, ...otherProjects] = projects;
 
+  const ProjectCard = ({
+    project,
+    isFeatured = false,
+  }: {
+    project: typeof projects[0];
+    isFeatured?: boolean;
+  }) => {
     return (
-      <div
-        ref={divRef}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-        className={`group relative rounded-xl border overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 ${isHovering ? 'scale-[1.02] -translate-y-1' : ''} ${isDark ? 'bg-secondary border-accent/20' : 'bg-white border-neutral-200'}`}
+      <article
+        className={`group relative tech-card tech-card-hover ${isFeatured ? '' : 'h-full'} overflow-hidden transition-all duration-300 hover:-translate-y-1 tech-luxury-outline`}
       >
-        {/* Image */}
-        <div className="relative h-36 overflow-hidden">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-          <div className={`absolute inset-0 bg-gradient-to-t ${isDark ? 'from-secondary' : 'from-white'} to-transparent`}></div>
-          <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-accent/90 text-primary text-xs font-bold rounded">
-            {project.role}
-          </span>
-        </div>
-
-        {/* Content */}
-        <div className="p-4">
-          <h4 className={`text-base font-bold mb-1 group-hover:text-accent transition-colors line-clamp-1 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
-            {project.title}
-          </h4>
-          <p className={`text-sm leading-relaxed mb-2 line-clamp-2 ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
-            {project.description}
-          </p>
-          
-          {/* Tech Tags */}
-          <div className="flex flex-wrap gap-1.5 mb-3">
-            {project.technologies.map((tech, idx) => (
-              <span key={idx} className={`px-2 py-0.5 text-xs rounded ${isDark ? 'bg-luxury-charcoal text-neutral-400' : 'bg-neutral-100 text-neutral-600'}`}>
-                {tech}
-              </span>
-            ))}
+        <div className={`grid ${isFeatured ? 'md:grid-cols-[1.05fr_0.95fr]' : 'grid-cols-1'}`}>
+          <div className={`relative overflow-hidden ${isFeatured ? 'project-media-featured' : 'project-media-standard'}`}>
+            <img
+              src={project.image}
+              alt={project.title}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className={`absolute inset-0 ${isDark ? 'bg-linear-to-t from-primary/70 via-primary/10 to-transparent' : 'bg-linear-to-t from-primary/30 via-primary/0 to-transparent'}`}></div>
+            <span className="absolute top-3 left-3 px-2.5 py-1 bg-accent text-primary text-[11px] font-semibold rounded-full font-tech-mono card-chip-readable">
+              {project.role}
+            </span>
           </div>
 
-          {/* Links */}
-          <div className={`flex gap-4 pt-2 border-t ${isDark ? 'border-accent/10' : 'border-neutral-200'}`}>
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className={`hover:text-accent text-sm font-medium ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
-              Code →
-            </a>
-            <a href={project.live} target="_blank" rel="noopener noreferrer" className={`hover:text-accent text-sm font-medium ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
-              Demo →
-            </a>
+          <div className={`p-4 md:p-5 ${isFeatured ? '' : 'flex h-full flex-col'}`}>
+            <h3 className={`card-title-readable font-bold mb-2 leading-tight ${isFeatured ? 'text-xl md:text-2xl' : 'text-lg'} ${isDark ? 'text-luxury-cream group-hover:text-accent' : 'text-primary group-hover:text-luxury-gold-dark'} transition-colors`}>
+              {project.title}
+            </h3>
+
+            <p className={`text-sm mb-3 card-text-readable card-muted-readable ${isFeatured ? '' : 'line-clamp-3'}`}>
+              {project.description}
+            </p>
+
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.technologies.map((tech, idx) => (
+                <span
+                  key={idx}
+                  className={`px-2.5 py-1 text-xs rounded-full border card-chip-readable ${
+                    isDark ? 'bg-primary/70 card-subtle-readable border-accent/20' : 'bg-neutral-50 card-subtle-readable border-neutral-200'
+                  }`}
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <div className={`flex items-center gap-5 pt-3 border-t ${isDark ? 'border-accent/20' : 'border-neutral-200'} ${isFeatured ? '' : 'mt-auto'}`}>
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-sm font-semibold transition-colors font-tech-mono card-subtle-readable ${isDark ? 'hover:text-accent' : 'hover:text-luxury-gold-dark'}`}
+              >
+                Code
+              </a>
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-sm font-semibold transition-colors font-tech-mono card-subtle-readable ${isDark ? 'hover:text-accent' : 'hover:text-luxury-gold-dark'}`}
+              >
+                Live Demo
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+        <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true">
+          <div className="absolute inset-0 scan-sheen"></div>
+        </div>
+      </article>
     );
   };
 
   return (
-    <section id="projects" className={`py-12 md:py-16 transition-colors duration-300 ${isDark ? 'bg-primary' : 'bg-luxury-cream'}`}>
-      <div className="container-custom px-4">
+    <section id="projects" className={`relative py-14 md:py-20 transition-colors duration-300 ${isDark ? 'section-tone-dark-projects' : 'section-tone-light-projects'}`}>
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className={`absolute top-16 right-8 w-56 h-56 rounded-full blur-3xl ${isDark ? 'bg-accent/8' : 'bg-accent/12'}`}></div>
+        <div className={`absolute bottom-10 left-6 w-72 h-72 rounded-full blur-3xl ${isDark ? 'bg-secondary/22' : 'bg-secondary/12'}`}></div>
+        <div className={`absolute inset-0 tech-grid-soft ${isDark ? 'opacity-[0.05]' : 'opacity-[0.04]'}`}></div>
+      </div>
+
+      <div className="container-custom px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
-          {/* Two Column Layout */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-start">
-            
-            {/* Projects Column */}
-            <div className="scroll-fade-in-left">
-              <div className="mb-5">
-                <h2 className={`text-2xl sm:text-3xl font-bold font-serif mb-2 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
+          <div className="mb-8 md:mb-10 text-center scroll-fade-in">
+            <p className={`section-kicker mb-2 ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
+              Work and Competitions
+            </p>
+            <h2 className={`section-title mb-3 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
+              Projects and Hackathons
+            </h2>
+            <div className="section-divider mx-auto"></div>
+          </div>
+
+          <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-7 lg:gap-8 items-start">
+            <div id="projects-list" className="scroll-fade-in-left">
+              <div className="mb-4">
+                <h3 className={`text-2xl sm:text-3xl font-bold ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
                   Projects
-                </h2>
-                <div className="w-12 h-1 bg-accent rounded-full"></div>
+                </h3>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 stagger-children">
-                {projects.map((project, idx) => (
-                  <ProjectCard key={idx} project={project} isDark={isDark} />
+
+              <ProjectCard project={featuredProject} isFeatured />
+
+              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-4 stagger-children">
+                {otherProjects.map((project, idx) => (
+                  <ProjectCard key={idx} project={project} />
                 ))}
               </div>
             </div>
 
-            {/* Hackathons Column - Vertical Timeline */}
-            <div id="hackathons" className="scroll-fade-in-right">
-              <div className="mb-5">
-                <h2 className={`text-2xl sm:text-3xl font-bold font-serif mb-2 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
+            <aside id="hackathons" className="scroll-fade-in-right">
+              <div className="mb-4">
+                <h3 className={`text-2xl sm:text-3xl font-bold ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
                   Hackathons
-                </h2>
-                <div className="w-12 h-1 bg-accent rounded-full"></div>
+                </h3>
               </div>
-              
-              {/* Vertical Timeline */}
-              <div className="relative pl-6">
-                {/* Timeline Line */}
-                <div className="absolute left-[0.45rem] top-2 bottom-2 w-px bg-gradient-to-b from-accent via-accent/40 to-transparent"></div>
-                
-                <div className="space-y-3">
+
+              <div className="relative tech-card tech-card-pad tech-luxury-outline">
+                <div className="absolute left-6 top-6 bottom-6 w-px bg-linear-to-b from-accent via-accent/35 to-transparent" aria-hidden="true"></div>
+
+                <div className="space-y-4">
                   {hackathons.map((hack, idx) => (
-                    <div key={idx} className="relative group">
-                      {/* Timeline Node */}
-                      <div className={`absolute -left-[1.05rem] top-3 w-3 h-3 rounded-full border-2 border-accent z-10 transition-all duration-300 group-hover:scale-150 group-hover:bg-accent group-hover:shadow-[0_0_12px_rgba(201,169,96,0.6)] ${isDark ? 'bg-white' : 'bg-luxury-cream'}`}></div>
-                      
-                      {/* Card */}
-                      <div className={`rounded-xl p-4 border transition-all duration-300 hover:shadow-lg ${isDark ? 'bg-secondary border-accent/20 hover:border-accent/50' : 'bg-white border-neutral-200 hover:border-accent/50'}`}>
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center gap-2">
-                            <span className="text-xl">{hack.award}</span>
-                            <span className="px-2.5 py-0.5 text-xs font-bold text-accent bg-accent/10 rounded-full border border-accent/20">
-                              {hack.position}
-                            </span>
+                    <article key={idx} className="relative pl-8 group">
+                      <div className={`absolute left-[0.35rem] top-4 w-3 h-3 rounded-full border-2 border-accent ${isDark ? 'bg-secondary' : 'bg-white'} group-hover:bg-accent transition-colors`}></div>
+                      <div className="relative tech-card-panel transition-all duration-300 group-hover:-translate-y-0.5 tech-luxury-outline">
+                        <div className="relative z-10">
+                          <div className="flex items-center justify-between gap-2 mb-1.5">
+                            <span className="text-xl leading-none" aria-hidden="true">{hack.award}</span>
+                            <span className="text-xs font-tech-mono card-subtle-readable">{hack.date}</span>
                           </div>
-                          <span className={`text-xs font-medium ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}>
-                            {hack.date}
+                          <h4 className={`card-title-readable text-sm sm:text-base font-bold leading-tight mb-1 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
+                            {hack.title}
+                          </h4>
+                          <p className="accent-readable card-title-readable text-xs sm:text-sm font-semibold mb-1">{hack.project}</p>
+                          <p className="text-xs sm:text-sm card-text-readable card-muted-readable mb-2">
+                            {hack.description}
+                          </p>
+                          <span className="inline-flex px-2.5 py-1 rounded-full text-xs font-semibold border border-accent/25 bg-accent/10 accent-readable font-tech-mono card-chip-readable">
+                            {hack.position}
                           </span>
                         </div>
-                        <h4 className={`text-base font-bold mb-1 group-hover:text-accent transition-colors ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
-                          {hack.title}
-                        </h4>
-                        <p className="text-accent text-sm font-semibold mb-1">{hack.project}</p>
-                        <p className={`text-sm leading-relaxed ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
-                          {hack.description}
-                        </p>
                       </div>
-                    </div>
+                    </article>
                   ))}
                 </div>
               </div>
-            </div>
 
+              <a
+                href="#contact"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold accent-readable hover:opacity-80 transition-opacity"
+              >
+                Open to collaboration
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>
+            </aside>
           </div>
         </div>
       </div>

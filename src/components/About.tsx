@@ -57,7 +57,7 @@ const About = () => {
                 </div>
                 <div className="p-3 bg-white rounded-lg border border-neutral-300 hover:border-accent transition-all duration-300">
                   <p className="text-xs text-neutral-600 mb-1 font-medium">✉️ Email</p>
-                  <p className="font-semibold text-primary text-xs sm:text-sm break-words">zulfaqarhafez@gmail.com</p>
+                  <p className="font-semibold text-primary text-xs sm:text-sm wrap-break-word card-url-readable">zulfaqarhafez@gmail.com</p>
                 </div>
               </div>
             </div>

@@ -41,14 +41,14 @@ const Skills = () => {
                 key={group.category}
                 className="group bg-white p-4 md:p-5 rounded-lg border border-neutral-200 hover:border-accent/50 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
               >
-                <h3 className="text-sm md:text-base font-bold text-primary mb-3 pb-2 border-b border-neutral-200 group-hover:text-accent group-hover:border-accent/30 transition-colors duration-300">
+                <h3 className="card-title-readable text-sm md:text-base font-bold text-primary mb-3 pb-2 border-b border-neutral-200 group-hover:text-accent group-hover:border-accent/30 transition-colors duration-300">
                   {group.category}
                 </h3>
                 <div className="flex flex-wrap gap-1.5">
                   {group.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2 py-1 bg-neutral-50 text-neutral-700 text-[11px] md:text-xs font-medium rounded-full border border-neutral-200 hover:border-accent hover:bg-accent/10 hover:text-primary transition-all duration-200 cursor-default"
+                      className="px-2 py-1 bg-neutral-50 text-neutral-700 text-[11px] md:text-xs font-medium rounded-full border border-neutral-200 hover:border-accent hover:bg-accent/10 hover:text-primary transition-all duration-200 cursor-default card-chip-readable"
                     >
                       {skill}
                     </span>

@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const ScrollToTop = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const [isVisible, setIsVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -33,7 +36,7 @@ const ScrollToTop = () => {
   return (
     <>
       {/* Scroll Progress Bar */}
-      <div className="fixed top-0 left-0 right-0 h-1 bg-secondary/30 z-50">
+      <div className={`fixed top-0 left-0 right-0 h-1 z-50 ${isDark ? 'bg-secondary/30' : 'bg-neutral-300/70'}`}>
         <div
           className="h-full bg-gold-gradient transition-all duration-300"
           style={{ width: `${scrollProgress}%` }}
@@ -44,7 +47,7 @@ const ScrollToTop = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 p-4 bg-gold-gradient text-primary rounded-full shadow-luxury-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 animate-fade-in group"
+          className="fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-40 p-3 sm:p-4 bg-gold-gradient text-primary rounded-full shadow-luxury-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 animate-fade-in group"
           aria-label="Scroll to top"
         >
           <svg

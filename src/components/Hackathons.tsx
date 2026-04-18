@@ -77,7 +77,7 @@ const Hackathons = () => {
                   <div className="mt-0 lg:mt-[2.75rem] bg-secondary rounded-2xl p-4 shadow-luxury hover:shadow-luxury-lg transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 border-2 border-accent/30 hover:border-accent/60 cursor-pointer">
                     {/* Award Badge */}
                     <div className="flex items-center justify-between mb-3">
-                      <span className="inline-block px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase border rounded-full text-accent border-accent/20 bg-luxury-cream shadow-sm">
+                      <span className="inline-block px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase border rounded-full text-accent border-accent/20 bg-luxury-cream shadow-sm card-chip-readable">
                         {hack.date}
                       </span>
                       <div className="flex items-center justify-center w-10 h-10 text-2xl bg-luxury-cream rounded-full border border-accent/20 shadow-sm transition-all duration-500 group-hover:scale-125 group-hover:shadow-lg group-hover:rotate-12 animate-float">
@@ -86,24 +86,24 @@ const Hackathons = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-base md:text-lg font-bold font-serif text-luxury-cream mb-1.5 leading-tight group-hover:text-accent transition-colors duration-300">
+                    <h3 className="card-title-readable text-base md:text-lg font-bold font-serif text-luxury-cream mb-1.5 leading-tight group-hover:text-accent transition-colors duration-300">
                       {hack.title}
                     </h3>
 
                     {/* Project Name */}
-                    <h4 className="text-sm md:text-base font-semibold text-accent mb-2 flex items-center gap-2">
+                    <h4 className="card-title-readable text-sm md:text-base font-semibold text-accent mb-2 flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
                       {hack.project}
                     </h4>
 
                     {/* Description */}
-                    <p className="text-neutral-200 leading-relaxed text-xs sm:text-sm mb-3 group-hover:text-white transition-colors">
+                    <p className="text-neutral-200 card-text-readable text-xs sm:text-sm mb-3 group-hover:text-white transition-colors">
                       {hack.description}
                     </p>
 
                     {/* Position Badge */}
                     <div className="pt-3 border-t-2 border-accent/30">
-                      <span className="text-xs font-bold text-luxury-cream inline-flex items-center gap-1.5 bg-accent/10 px-2.5 py-1 rounded-lg border border-accent/20">
+                      <span className="text-xs font-bold text-luxury-cream inline-flex items-center gap-1.5 bg-accent/10 px-2.5 py-1 rounded-lg border border-accent/20 card-chip-readable">
                         <span className="text-accent">🏅</span> {hack.position}
                       </span>
                     </div>
