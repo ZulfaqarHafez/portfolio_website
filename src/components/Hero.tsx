@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
+import { useMagnetic } from '../hooks/useMagnetic';
+import HeroSignalField from './HeroSignalField';
+import CountUp from './CountUp';
 
 const Hero = () => {
   const { theme } = useTheme();
@@ -7,6 +10,9 @@ const Hero = () => {
   const [typedText, setTypedText] = useState('');
   const fullText = 'AI Engineer & Community Innovator';
   const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+  const primaryRef = useMagnetic<HTMLAnchorElement>(0.3);
+  const secondaryRef = useMagnetic<HTMLAnchorElement>(0.3);
 
   useEffect(() => {
     if (typedText.length < fullText.length) {
@@ -19,6 +25,13 @@ const Hero = () => {
     }
   }, [typedText, fullText]);
 
+  const stats = [
+    { end: 4, suffix: '+', label: 'Live Projects' },
+    { end: 4, suffix: '', label: 'Hackathons' },
+    { end: 300, suffix: '+', label: 'Lives Reached' },
+    { end: 2, suffix: '', label: 'Published Models' },
+  ];
+
   return (
     <section
       id="home"
@@ -28,14 +41,23 @@ const Hero = () => {
     >
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className={`absolute inset-0 ${isDark ? 'bg-luxury-gradient opacity-50' : 'bg-linear-to-br from-white via-neutral-50 to-neutral-100 opacity-90'}`}></div>
+        <HeroSignalField />
         <div className={`absolute -top-24 -left-24 w-72 h-72 rounded-full blur-3xl ${isDark ? 'bg-accent/12' : 'bg-accent/16'}`}></div>
         <div className={`absolute -bottom-24 -right-24 w-80 h-80 rounded-full blur-3xl ${isDark ? 'bg-secondary/24' : 'bg-secondary/16'}`}></div>
-        <div className={`absolute inset-0 ${isDark ? 'opacity-[0.04]' : 'opacity-[0.03]'} hero-grid`}></div>
       </div>
 
       <div className="container-custom relative z-10 px-4">
         <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-7 lg:gap-10 items-center">
           <div className="scroll-fade-in-left">
+            <div
+              className={`inline-flex items-center gap-2.5 mb-5 pl-2.5 pr-3.5 py-1.5 rounded-full border text-xs font-tech-mono uppercase tracking-[0.16em] ${
+                isDark ? 'border-emerald-400/30 bg-emerald-400/5 text-emerald-300' : 'border-emerald-600/25 bg-emerald-600/5 text-emerald-700'
+              }`}
+            >
+              <span className="status-pulse w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
+              Available for 2026 internships
+            </div>
+
             <p className={`section-kicker mb-3 ${isDark ? 'text-neutral-300' : 'text-neutral-600'}`}>
               Hi there! I'm
             </p>
@@ -52,13 +74,16 @@ const Hero = () => {
             </h2>
 
             <p className={`text-sm sm:text-base max-w-2xl leading-relaxed mb-6 ${isDark ? 'text-neutral-200' : 'text-neutral-700'}`}>
-              Leveraging AI and machine learning to solve real-world problems and transform community challenges into tech solutions.
+              I build machine learning systems that ship. From computer vision and language models to full
+              stack apps, I point every one of them at a real community problem and carry it from idea to
+              something people actually use.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 mb-7">
+            <div className="flex flex-col sm:flex-row gap-3 mb-8">
               <a
+                ref={primaryRef}
                 href="#projects"
-                className="group px-6 py-3 bg-gold-gradient text-primary rounded-lg font-bold text-sm sm:text-base hover:shadow-luxury-lg transition-all duration-300 shadow-luxury transform hover:-translate-y-1 relative overflow-hidden"
+                className="group px-6 py-3 bg-gold-gradient text-primary rounded-lg font-bold text-sm sm:text-base hover:shadow-luxury-lg transition-all duration-300 shadow-luxury relative overflow-hidden will-change-transform"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   View My Work
@@ -68,9 +93,10 @@ const Hero = () => {
                 </span>
               </a>
               <a
+                ref={secondaryRef}
                 href="/Zulfaqar_Hafez_Resume.pdf"
                 download
-                className={`group px-6 py-3 border-2 border-accent rounded-lg font-bold text-sm sm:text-base transition-all duration-300 shadow-luxury hover:shadow-luxury-lg transform hover:-translate-y-1 ${
+                className={`group px-6 py-3 border-2 border-accent rounded-lg font-bold text-sm sm:text-base transition-all duration-300 shadow-luxury hover:shadow-luxury-lg will-change-transform ${
                   isDark ? 'text-white hover:bg-accent hover:text-primary' : 'text-primary hover:bg-accent hover:text-primary'
                 }`}
               >
@@ -82,6 +108,24 @@ const Hero = () => {
                 </span>
               </a>
             </div>
+
+            <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <dt className="sr-only">{stat.label}</dt>
+                  <dd>
+                    <CountUp
+                      end={stat.end}
+                      suffix={stat.suffix}
+                      className={`block text-2xl sm:text-3xl font-bold leading-none ${isDark ? 'text-white' : 'text-primary'}`}
+                    />
+                    <span className={`mt-1 block section-kicker ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
+                      {stat.label}
+                    </span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
           <div className="scroll-fade-in-right">

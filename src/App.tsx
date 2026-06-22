@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import TechMarquee from './components/TechMarquee'
 import AboutSkills from './components/AboutSkills'
 import ExperienceEducation from './components/ExperienceEducation'
 import ProjectsHackathons from './components/ProjectsHackathons'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import CursorGlow from './components/CursorGlow'
 import { initGA, trackPageView } from './utils/analytics'
 import { useTheme } from './contexts/ThemeContext'
 
@@ -97,9 +99,11 @@ function App() {
         Skip to main content
       </a>
       <ScrollToTop />
+      <CursorGlow />
       <Navbar />
       <main id="main-content">
         <Hero />
+        <TechMarquee />
         <AboutSkills />
         <ProjectsHackathons />
         <ExperienceEducation />

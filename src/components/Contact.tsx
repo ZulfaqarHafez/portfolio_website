@@ -60,19 +60,19 @@ const Contact = () => {
               <span className="w-3 h-3 rounded-full bg-yellow-400/80 shrink-0"></span>
               <span className="w-3 h-3 rounded-full bg-emerald-400/80 shrink-0"></span>
               <span className="flex-1 text-center text-[10px] font-mono text-neutral-600 tracking-widest uppercase">
-                zulfaqar@portfolio — ~/contact
+                zulfaqar@portfolio:~/contact
               </span>
             </div>
 
-            {/* Terminal body — always dark for authenticity */}
+            {/* Terminal body, always dark for authenticity */}
             <div className="bg-[#011f1a] px-5 py-6 md:px-8 md:py-7 font-mono text-sm leading-relaxed overflow-x-auto">
 
               {/* Header comment block */}
               <div className="text-neutral-600 text-xs mb-5 select-none space-y-0.5">
-                <p># ─────────────────────────────────────────────────</p>
-                <p>#  Let's Build Something Impactful Together</p>
+                <p>#=================================================</p>
+                <p>#  Let's build something impactful together</p>
                 <p>#  Open to internships, collaborations & AI projects</p>
-                <p># ─────────────────────────────────────────────────</p>
+                <p>#=================================================</p>
               </div>
 
               {/* whoami */}
@@ -83,7 +83,7 @@ const Contact = () => {
                   <span className="text-neutral-200">whoami</span>
                 </div>
                 <p className="mt-1.5 pl-1 text-neutral-400">
-                  Zulfaqar Hafez — AI Engineer &amp; Community Innovator
+                  Zulfaqar Hafez // AI Engineer &amp; Community Innovator
                 </p>
               </div>
 
@@ -97,7 +97,7 @@ const Contact = () => {
                 <div className="mt-1.5 pl-1 flex items-center gap-2.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
                   <span className="text-emerald-400 text-xs sm:text-sm">
-                    AVAILABLE — open to internships &amp; collaborations
+                    ACTIVE // open to internships &amp; collaborations
                   </span>
                 </div>
               </div>

@@ -13,15 +13,13 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 
 ## Sections
 
-1. **Navbar** - Sticky navigation with mobile menu support
-2. **Hero** - Eye-catching hero section with call-to-action buttons
-3. **About** - Introduction and background information
-4. **Skills** - Technical skills with proficiency levels
-5. **Experience** - Professional experience timeline
-6. **Projects** - Portfolio of completed projects
-7. **Certifications** - Professional certifications and achievements
-8. **Contact** - Contact form and social media links
-9. **Footer** - Quick links and additional information
+1. **Navbar** - Sticky navigation with scroll spy, theme toggle, and mobile menu
+2. **Hero** - Interactive signal-field canvas, live availability status, and animated stat counters
+3. **About and Skills** - Background, quick stats, and a grouped technical skill atlas
+4. **Projects and Hackathons** - Featured work, a hackathon timeline, and published models on Hugging Face
+5. **Experience and Education** - Professional journey and academic foundation
+6. **Contact** - Terminal-style contact panel with direct channels
+7. **Footer** - Quick links and social connections
 
 ## Getting Started
 
@@ -69,13 +67,12 @@ npm run preview
 To customize this portfolio for your own use:
 
 1. Update the personal information in the components:
-   - [Hero.tsx](src/components/Hero.tsx) - Name and title
-   - [About.tsx](src/components/About.tsx) - About information and details
-   - [Skills.tsx](src/components/Skills.tsx) - Your skills and proficiency levels
+   - [Hero.tsx](src/components/Hero.tsx) - Name, headline, and stats
+   - [AboutSkills.tsx](src/components/AboutSkills.tsx) - About copy and skill groups
    - [Experience.tsx](src/components/Experience.tsx) - Work experience
-   - [Projects.tsx](src/components/Projects.tsx) - Your projects
-   - [Certifications.tsx](src/components/Certifications.tsx) - Your certifications
-   - [Contact.tsx](src/components/Contact.tsx) - Contact information and links
+   - [Education.tsx](src/components/Education.tsx) - Education history
+   - [ProjectsHackathons.tsx](src/components/ProjectsHackathons.tsx) - Projects, hackathons, and published models
+   - [Contact.tsx](src/components/Contact.tsx) - Contact channels
    - [Footer.tsx](src/components/Footer.tsx) - Footer content
 
 2. Update colors in [tailwind.config.js](tailwind.config.js) to match your brand

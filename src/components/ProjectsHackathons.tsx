@@ -244,6 +244,49 @@ const ProjectsHackathons = () => {
               </a>
             </aside>
           </div>
+
+          <div className="mt-7 md:mt-8 scroll-fade-in">
+            <div className="tech-card tech-card-pad tech-luxury-outline flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-4">
+                <div className="w-11 h-11 shrink-0 rounded-xl bg-gold-gradient text-primary flex items-center justify-center font-tech-mono font-bold text-sm">
+                  HF
+                </div>
+                <div>
+                  <p className="section-kicker accent-readable mb-1">Published on Hugging Face</p>
+                  <h4 className={`card-title-readable text-base sm:text-lg font-bold ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
+                    ClaimLens, a DeBERTa-v3 inference model
+                  </h4>
+                  <p className="text-sm mt-1 card-text-readable card-muted-readable max-w-2xl">
+                    A fine-tuned natural language inference model that scores whether evidence supports,
+                    refutes, or stays neutral toward a claim. Open weights, live on the Hub.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {['PyTorch', 'Transformers', 'DeBERTa-v3'].map((tech) => (
+                      <span
+                        key={tech}
+                        className={`px-2.5 py-1 text-xs rounded-full border card-chip-readable font-tech-mono ${
+                          isDark ? 'bg-primary/70 card-subtle-readable border-accent/20' : 'bg-neutral-50 card-subtle-readable border-neutral-200'
+                        }`}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <a
+                href="https://huggingface.co/Zulfhagez"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border-2 border-accent font-semibold text-sm font-tech-mono accent-readable hover:bg-accent hover:text-primary transition-all duration-300 shrink-0"
+              >
+                View on Hugging Face
+                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
