@@ -1,4 +1,5 @@
 import { useTheme } from '../contexts/ThemeContext';
+import CountUp from './CountUp';
 
 const AboutSkills = () => {
   const { theme } = useTheme();
@@ -48,11 +49,11 @@ const AboutSkills = () => {
                   <p className={`text-xs mt-0.5 ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}>BSc (Hons) Applied Artificial Intelligence</p>
                 </div>
                 <div className={`tech-card tech-card-pad ${isDark ? 'text-neutral-200' : 'text-neutral-700'}`}>
-                  <p className="text-3xl font-bold accent-readable">4+</p>
+                  <CountUp end={4} suffix="+" className="text-3xl font-bold accent-readable" />
                   <p className={`text-xs mt-0.5 ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}>Live Projects</p>
                 </div>
                 <div className={`tech-card tech-card-pad ${isDark ? 'text-neutral-200' : 'text-neutral-700'}`}>
-                  <p className="text-3xl font-bold accent-readable">4</p>
+                  <CountUp end={4} className="text-3xl font-bold accent-readable" />
                   <p className={`text-xs mt-0.5 ${isDark ? 'text-neutral-400' : 'text-neutral-500'}`}>Hackathons</p>
                 </div>
                 <div className={`tech-card tech-card-pad ${isDark ? 'text-neutral-200' : 'text-neutral-700'}`}>
