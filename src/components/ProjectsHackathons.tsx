@@ -1,292 +1,238 @@
-import { useTheme } from '../contexts/ThemeContext';
+const projects = [
+  {
+    exhibit: 'A',
+    title: 'GuideMeSG',
+    description:
+      'Mobile app empowering persons with intellectual disabilities to navigate Singapore’s public transport independently. SIT HackRift finalist, still in active development.',
+    technologies: ['Next.js', 'TypeScript', 'Supabase'],
+    github: 'https://github.com/ZulfaqarHafez/GuideMeSG',
+    live: 'https://guide-me-sg-r22y.vercel.app/',
+    image: '/images/guideme.png',
+    role: 'Lead Developer',
+  },
+  {
+    exhibit: 'B',
+    title: 'PPE Compliance Dashboard',
+    description:
+      'Real-time PPE compliance monitoring with pose-aware validation — YOLOv8 detection cross-checked against Mediapipe skeletons, tracked in the cloud.',
+    technologies: ['YOLOv8', 'Mediapipe', 'FastAPI'],
+    github: 'https://github.com/ZulfaqarHafez/AAI3001_Deep_Learning',
+    live: 'https://youtu.be/0caldjkLU7g',
+    image: '/images/ppecompliance.png',
+    role: 'ML Engineer',
+  },
+  {
+    exhibit: 'C',
+    title: 'HelpLah.AI',
+    description:
+      'AI-powered virtual assistant that triages and routes help requests so the right people see them faster. Flask backend, ML-driven classification.',
+    technologies: ['Flask', 'Machine Learning', 'NLP'],
+    github: 'https://github.com/ZulfaqarHafez/HelpLah.AI',
+    live: null,
+    image: null,
+    role: 'Creator',
+  },
+  {
+    exhibit: 'D',
+    title: 'EduQuery SG',
+    description:
+      'Centralized platform for Singapore’s educational landscape — search and analytics across schools and courses, backed by dual databases.',
+    technologies: ['Node.js', 'MongoDB', 'PostgreSQL'],
+    github: 'https://github.com/ZulfaqarHafez/INF2003_EduQuery',
+    live: 'https://youtu.be/Wo4YhykGx-8',
+    image: '/images/eduquery.png',
+    role: 'Full Stack Developer',
+  },
+  {
+    exhibit: 'E',
+    title: 'FairWork Contract',
+    description:
+      'Translates English payslips into native languages for foreign workers in Singapore, so nobody signs what they can’t read.',
+    technologies: ['Next.js', 'Gemini', 'FastAPI'],
+    github: 'https://github.com/KevanSoon/FairWork-Contract',
+    live: 'https://fair-work-contract.vercel.app/',
+    image: '/images/fairwork.png',
+    role: 'Backend Developer',
+  },
+];
 
-const ProjectsHackathons = () => {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
+const trials = [
+  { year: '2026', event: 'SMU Hack For Cities', project: 'Urban systems', result: 'Finalist', top: true },
+  { year: '2025', event: 'SIT HackRift', project: 'GuideMeSG', result: 'Finalist', top: true },
+  { year: '2025', event: 'OGP Community Hackathon', project: 'Churp — allotment garden booking for Tengah', result: 'CIT funded · $20k', top: true },
+  { year: '2025', event: 'Pan-SEA AI Developer Challenge', project: 'Regional AI challenge', result: 'Top 100', top: false },
+  { year: '2025', event: 'SMU Hack For Cities', project: 'GreenMerlion — CV waste classification', result: 'Finalist', top: true },
+  { year: '2022', event: 'Google Cloud Hackathon SG', project: 'CareFall Vision — fall detection for seniors', result: 'Top 20', top: false },
+];
 
-  const projects = [
-    {
-      title: 'GuideMeSG Mobile App',
-      description:
-        'Empowering Persons with Intellectual Disabilities to navigate Singapore\'s public transport independently.',
-      technologies: ['Next.js', 'TypeScript', 'Supabase'],
-      github: 'https://github.com/ZulfaqarHafez/GuideMeSG',
-      live: 'https://guide-me-sg-r22y.vercel.app/',
-      image: '/images/guideme.png',
-      role: 'Lead Developer',
-    },
-    {
-      title: 'PPE Compliance Dashboard',
-      description:
-        'Real-time PPE compliance monitoring with pose-aware validation and cloud-based tracking.',
-      technologies: ['FastAPI', 'YOLOv8', 'Mediapipe'],
-      github: 'https://github.com/ZulfaqarHafez/AAI3001_Deep_Learning',
-      live: 'https://youtu.be/0caldjkLU7g',
-      image: '/images/ppecompliance.png',
-      role: 'ML Engineer',
-    },
-    {
-      title: 'EduQuery SG',
-      description:
-        'Centralized platform for Singapore\'s educational landscape with search and analytics.',
-      technologies: ['Node.js', 'MongoDB', 'PostgreSQL'],
-      github: 'https://github.com/ZulfaqarHafez/INF2003_EduQuery',
-      live: 'https://youtu.be/Wo4YhykGx-8',
-      image: '/images/eduquery.png',
-      role: 'Full Stack Developer',
-    },
-    {
-      title: 'Fairwork Contract',
-      description:
-        'Translate English payslips to native languages for foreign workers in Singapore.',
-      technologies: ['Next.js', 'Gemini', 'FastAPI'],
-      github: 'https://github.com/KevanSoon/FairWork-Contract',
-      live: 'https://fair-work-contract.vercel.app/',
-      image: '/images/fairwork.png',
-      role: 'Backend Developer',
-    },
-  ];
-
-  const hackathons = [
-    {
-      title: 'Google Cloud Hackathon 2022',
-      date: 'May 2022',
-      position: 'Top 20',
-      project: 'CareFall Vision',
-      description: 'CV & Pose Estimation to detect seniors who fell at home.',
-      award: '⭐',
-    },
-    {
-      title: 'SMU Hack For Cities 2025',
-      date: 'Feb 2025',
-      position: 'Finalist',
-      project: 'GreenMerlion',
-      description: 'Recycling app with CV waste classification & gamification.',
-      award: '⭐',
-    },
-    {
-      title: 'OGP Hackathon 2025',
-      date: 'Jul 2025',
-      position: '20k Funded',
-      project: 'Churp',
-      description: 'Allotment garden booking system for Tengah community.',
-      award: '🏆',
-    },
-    {
-      title: 'SIT HackRift 2025',
-      date: 'Dec 2025',
-      position: 'Finalist',
-      project: 'GuideMeSG',
-      description: 'AR navigation for persons with intellectual disabilities.',
-      award: '⭐',
-    },
-  ];
-
-  const [featuredProject, ...otherProjects] = projects;
-
-  const ProjectCard = ({
-    project,
-    isFeatured = false,
-  }: {
-    project: typeof projects[0];
-    isFeatured?: boolean;
-  }) => {
-    return (
-      <article
-        className={`group relative tech-card tech-card-hover ${isFeatured ? '' : 'h-full'} overflow-hidden transition-all duration-300 hover:-translate-y-1 tech-luxury-outline`}
-      >
-        <div className={`grid ${isFeatured ? 'md:grid-cols-[1.05fr_0.95fr]' : 'grid-cols-1'}`}>
-          <div className={`relative overflow-hidden ${isFeatured ? 'project-media-featured' : 'project-media-standard'}`}>
-            <img
-              src={project.image}
-              alt={project.title}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className={`absolute inset-0 ${isDark ? 'bg-linear-to-t from-primary/70 via-primary/10 to-transparent' : 'bg-linear-to-t from-primary/30 via-primary/0 to-transparent'}`}></div>
-            <span className="absolute top-3 left-3 px-2.5 py-1 bg-accent text-primary text-[11px] font-semibold rounded-full font-tech-mono card-chip-readable">
-              {project.role}
-            </span>
-          </div>
-
-          <div className={`p-4 md:p-5 ${isFeatured ? '' : 'flex h-full flex-col'}`}>
-            <h3 className={`card-title-readable font-bold mb-2 leading-tight ${isFeatured ? 'text-xl md:text-2xl' : 'text-lg'} ${isDark ? 'text-luxury-cream group-hover:text-accent' : 'text-primary group-hover:text-luxury-gold-dark'} transition-colors`}>
-              {project.title}
-            </h3>
-
-            <p className={`text-sm mb-3 card-text-readable card-muted-readable ${isFeatured ? '' : 'line-clamp-3'}`}>
-              {project.description}
-            </p>
-
-            <div className="flex flex-wrap gap-2 mb-4">
-              {project.technologies.map((tech, idx) => (
-                <span
-                  key={idx}
-                  className={`px-2.5 py-1 text-xs rounded-full border card-chip-readable ${
-                    isDark ? 'bg-primary/70 card-subtle-readable border-accent/20' : 'bg-neutral-50 card-subtle-readable border-neutral-200'
-                  }`}
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <div className={`flex items-center gap-5 pt-3 border-t ${isDark ? 'border-accent/20' : 'border-neutral-200'} ${isFeatured ? '' : 'mt-auto'}`}>
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`text-sm font-semibold transition-colors font-tech-mono card-subtle-readable ${isDark ? 'hover:text-accent' : 'hover:text-luxury-gold-dark'}`}
-              >
-                Code
-              </a>
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`text-sm font-semibold transition-colors font-tech-mono card-subtle-readable ${isDark ? 'hover:text-accent' : 'hover:text-luxury-gold-dark'}`}
-              >
-                Live Demo
-              </a>
-            </div>
-          </div>
+const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => (
+  <article className="panel panel-hover ticks group flex flex-col">
+    <span className="tick-b"></span>
+    <div className="relative overflow-hidden m-3 mb-0 border b-line">
+      {project.image ? (
+        <img
+          src={project.image}
+          alt={project.title}
+          loading="lazy"
+          decoding="async"
+          className="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          style={{ filter: 'saturate(0.92)' }}
+        />
+      ) : (
+        <div className="w-full aspect-[16/10] crosshatch flex items-center justify-center relative">
+          <svg viewBox="0 0 220 100" className="w-3/5" fill="none" stroke="var(--line-strong)" strokeWidth="1" aria-hidden="true">
+            <rect x="10" y="30" width="55" height="40" />
+            <rect x="155" y="30" width="55" height="40" />
+            <circle cx="110" cy="50" r="22" />
+            <line x1="65" y1="50" x2="88" y2="50" />
+            <line x1="132" y1="50" x2="155" y2="50" />
+            <path d="M84 46 L 90 50 L 84 54" />
+            <path d="M151 46 L 157 50 L 151 54" />
+          </svg>
+          <span className="absolute bottom-2 right-3 annot t-faint">Figure withheld</span>
         </div>
-        <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true">
-          <div className="absolute inset-0 scan-sheen"></div>
-        </div>
-      </article>
-    );
-  };
+      )}
+      <span className="absolute top-2.5 left-2.5 annot bg-raised t-ink border b-strong px-2 py-1">
+        Exhibit {project.exhibit}
+      </span>
+    </div>
 
-  return (
-    <section id="projects" className={`relative py-14 md:py-20 transition-colors duration-300 ${isDark ? 'section-tone-dark-projects' : 'section-tone-light-projects'}`}>
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className={`absolute top-16 right-8 w-56 h-56 rounded-full blur-3xl ${isDark ? 'bg-accent/8' : 'bg-accent/12'}`}></div>
-        <div className={`absolute bottom-10 left-6 w-72 h-72 rounded-full blur-3xl ${isDark ? 'bg-secondary/22' : 'bg-secondary/12'}`}></div>
-        <div className={`absolute inset-0 tech-grid-soft ${isDark ? 'opacity-[0.05]' : 'opacity-[0.04]'}`}></div>
+    <div className="p-4 sm:p-5 flex flex-col flex-1">
+      <div className="flex items-baseline justify-between gap-2 mb-2">
+        <h3 className="font-display text-2xl t-ink group-hover:t-accent transition-colors">{project.title}</h3>
+        <span className="annot t-faint shrink-0">{project.role}</span>
+      </div>
+      <p className="t-soft text-sm leading-relaxed mb-4">{project.description}</p>
+
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {project.technologies.map((tech) => (
+          <span key={tech} className="chip">
+            {tech}
+          </span>
+        ))}
       </div>
 
-      <div className="container-custom px-4 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-8 md:mb-10 text-center scroll-fade-in">
-            <p className={`section-kicker mb-2 ${isDark ? 'text-neutral-400' : 'text-neutral-600'}`}>
-              Work and Competitions
-            </p>
-            <h2 className={`section-title mb-3 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
-              Projects and Hackathons
-            </h2>
-            <div className="section-divider mx-auto"></div>
+      <div className="flex items-center gap-5 pt-3 mt-auto border-t b-line">
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="annot-md t-soft hover:t-accent transition-colors"
+        >
+          Source ↗
+        </a>
+        {project.live && (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="annot-md t-soft hover:t-accent transition-colors"
+          >
+            Live demo ↗
+          </a>
+        )}
+      </div>
+    </div>
+  </article>
+);
+
+const ProjectsHackathons = () => {
+  return (
+    <section id="projects" className="relative py-16 md:py-24 bg-paper-deep border-t b-line">
+      <div className="container-custom px-4 sm:px-6">
+        {/* Exhibits */}
+        <div className="scroll-fade-in flex items-end justify-between gap-4 mb-10 md:mb-12">
+          <div>
+            <p className="annot t-accent mb-2">Fig. 4 · Evidence of practice</p>
+            <h2 className="font-display t-ink text-4xl sm:text-5xl">The Exhibits</h2>
           </div>
+          <div className="dim-rule flex-1 max-w-40 hidden sm:block mb-3"></div>
+        </div>
 
-          <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-7 lg:gap-8 items-start">
-            <div id="projects-list" className="scroll-fade-in-left">
-              <div className="mb-4">
-                <h3 className={`text-2xl sm:text-3xl font-bold ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
-                  Projects
-                </h3>
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 stagger-children mb-16 md:mb-20">
+          {projects.map((project) => (
+            <ProjectCard key={project.exhibit} project={project} />
+          ))}
+
+          {/* Hugging Face card completes the grid */}
+          <article className="panel panel-hover ticks group flex flex-col justify-between p-5 bg-accent-wash">
+            <span className="tick-b"></span>
+            <div>
+              <div className="flex items-baseline justify-between gap-2 mb-2">
+                <span className="annot t-accent">Published weights</span>
+                <span className="annot t-faint">🤗 Hub</span>
               </div>
-
-              <ProjectCard project={featuredProject} isFeatured />
-
-              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-4 stagger-children">
-                {otherProjects.map((project, idx) => (
-                  <ProjectCard key={idx} project={project} />
+              <h3 className="font-display text-2xl t-ink mb-2">ClaimLens</h3>
+              <p className="t-soft text-sm leading-relaxed mb-4">
+                A fine-tuned DeBERTa-v3 natural language inference model that scores whether evidence
+                supports, refutes, or stays neutral toward a claim. Open weights, live on the Hub —
+                verification, as promised in Fig. 1.
+              </p>
+              <div className="flex flex-wrap gap-1.5 mb-5">
+                {['PyTorch', 'Transformers', 'DeBERTa-v3'].map((tech) => (
+                  <span key={tech} className="chip">
+                    {tech}
+                  </span>
                 ))}
               </div>
             </div>
+            <a
+              href="https://huggingface.co/Zulfhagez"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost self-start"
+            >
+              View on Hugging Face ↗
+            </a>
+          </article>
+        </div>
 
-            <aside id="hackathons" className="scroll-fade-in-right">
-              <div className="mb-4">
-                <h3 className={`text-2xl sm:text-3xl font-bold ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
-                  Hackathons
-                </h3>
-              </div>
-
-              <div className="relative tech-card tech-card-pad tech-luxury-outline">
-                <div className="absolute left-6 top-6 bottom-6 w-px bg-linear-to-b from-accent via-accent/35 to-transparent" aria-hidden="true"></div>
-
-                <div className="space-y-4">
-                  {hackathons.map((hack, idx) => (
-                    <article key={idx} className="relative pl-8 group">
-                      <div className={`absolute left-[0.35rem] top-4 w-3 h-3 rounded-full border-2 border-accent ${isDark ? 'bg-secondary' : 'bg-white'} group-hover:bg-accent transition-colors`}></div>
-                      <div className="relative tech-card-panel transition-all duration-300 group-hover:-translate-y-0.5 tech-luxury-outline">
-                        <div className="relative z-10">
-                          <div className="flex items-center justify-between gap-2 mb-1.5">
-                            <span className="text-xl leading-none" aria-hidden="true">{hack.award}</span>
-                            <span className="text-xs font-tech-mono card-subtle-readable">{hack.date}</span>
-                          </div>
-                          <h4 className={`card-title-readable text-sm sm:text-base font-bold leading-tight mb-1 ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
-                            {hack.title}
-                          </h4>
-                          <p className="accent-readable card-title-readable text-xs sm:text-sm font-semibold mb-1">{hack.project}</p>
-                          <p className="text-xs sm:text-sm card-text-readable card-muted-readable mb-2">
-                            {hack.description}
-                          </p>
-                          <span className="inline-flex px-2.5 py-1 rounded-full text-xs font-semibold border border-accent/25 bg-accent/10 accent-readable font-tech-mono card-chip-readable">
-                            {hack.position}
-                          </span>
-                        </div>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </div>
-
-              <a
-                href="#contact"
-                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold accent-readable hover:opacity-80 transition-opacity"
-              >
-                Open to collaboration
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-            </aside>
+        {/* Field trials ledger */}
+        <div id="hackathons" className="scroll-fade-in">
+          <div className="flex items-end justify-between gap-4 mb-7">
+            <div>
+              <p className="annot t-accent mb-2">Fig. 5 · Stress testing, self-inflicted</p>
+              <h2 className="font-display t-ink text-3xl sm:text-4xl">Field Trials</h2>
+            </div>
+            <div className="dim-rule flex-1 max-w-40 hidden sm:block mb-2.5"></div>
           </div>
 
-          <div className="mt-7 md:mt-8 scroll-fade-in">
-            <div className="tech-card tech-card-pad tech-luxury-outline flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-start gap-4">
-                <div className="w-11 h-11 shrink-0 rounded-xl bg-gold-gradient text-primary flex items-center justify-center font-tech-mono font-bold text-sm">
-                  HF
-                </div>
-                <div>
-                  <p className="section-kicker accent-readable mb-1">Published on Hugging Face</p>
-                  <h4 className={`card-title-readable text-base sm:text-lg font-bold ${isDark ? 'text-luxury-cream' : 'text-primary'}`}>
-                    ClaimLens, a DeBERTa-v3 inference model
-                  </h4>
-                  <p className="text-sm mt-1 card-text-readable card-muted-readable max-w-2xl">
-                    A fine-tuned natural language inference model that scores whether evidence supports,
-                    refutes, or stays neutral toward a claim. Open weights, live on the Hub.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    {['PyTorch', 'Transformers', 'DeBERTa-v3'].map((tech) => (
+          <div className="border b-strong bg-raised overflow-x-auto">
+            <table className="w-full min-w-[620px] text-left">
+              <thead>
+                <tr className="border-b b-strong">
+                  <th className="annot t-faint font-medium px-5 py-3 w-20">Year</th>
+                  <th className="annot t-faint font-medium px-5 py-3">Trial</th>
+                  <th className="annot t-faint font-medium px-5 py-3">Apparatus under test</th>
+                  <th className="annot t-faint font-medium px-5 py-3 text-right">Outcome</th>
+                </tr>
+              </thead>
+              <tbody>
+                {trials.map((trial, idx) => (
+                  <tr
+                    key={idx}
+                    className={`transition-colors hover:bg-accent-wash ${idx > 0 ? 'border-t b-line' : ''}`}
+                  >
+                    <td className="font-annot text-xs t-faint px-5 py-3.5 align-top">{trial.year}</td>
+                    <td className="t-ink text-sm font-medium px-5 py-3.5 align-top">{trial.event}</td>
+                    <td className="t-soft text-sm px-5 py-3.5 align-top">{trial.project}</td>
+                    <td className="px-5 py-3.5 align-top text-right">
                       <span
-                        key={tech}
-                        className={`px-2.5 py-1 text-xs rounded-full border card-chip-readable font-tech-mono ${
-                          isDark ? 'bg-primary/70 card-subtle-readable border-accent/20' : 'bg-neutral-50 card-subtle-readable border-neutral-200'
+                        className={`annot inline-block border px-2 py-1 whitespace-nowrap ${
+                          trial.top ? 't-accent b-accent bg-accent-wash' : 't-soft b-line'
                         }`}
                       >
-                        {tech}
+                        {trial.result}
                       </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <a
-                href="https://huggingface.co/Zulfhagez"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg border-2 border-accent font-semibold text-sm font-tech-mono accent-readable hover:bg-accent hover:text-primary transition-all duration-300 shrink-0"
-              >
-                View on Hugging Face
-                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-            </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+          <p className="annot t-faint mt-3 normal-case tracking-normal text-[0.7rem]">
+            Six trials, zero regressions in enthusiasm.
+          </p>
         </div>
       </div>
     </section>

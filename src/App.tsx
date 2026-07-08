@@ -3,35 +3,30 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import TechMarquee from './components/TechMarquee'
 import AboutSkills from './components/AboutSkills'
-import ExperienceEducation from './components/ExperienceEducation'
 import ProjectsHackathons from './components/ProjectsHackathons'
+import ExperienceEducation from './components/ExperienceEducation'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
-import CursorGlow from './components/CursorGlow'
+import DraftingCursor from './components/DraftingCursor'
 import { initGA, trackPageView } from './utils/analytics'
-import { useTheme } from './contexts/ThemeContext'
 
 function App() {
-  const { theme } = useTheme();
   const [showIntro, setShowIntro] = useState(true);
   const [isIntroLeaving, setIsIntroLeaving] = useState(false);
 
   useEffect(() => {
-    // Initialize Google Analytics
     const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
     initGA(measurementId);
-
-    // Track initial page view
     trackPageView(window.location.pathname);
   }, []);
 
   // Scroll animation observer
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const selector = '.scroll-fade-in, .scroll-fade-in-left, .scroll-fade-in-right, .scroll-scale-in, .stagger-children';
     if (prefersReducedMotion) {
-      const animatedElements = document.querySelectorAll('.scroll-fade-in, .scroll-fade-in-left, .scroll-fade-in-right, .scroll-scale-in, .stagger-children');
-      animatedElements.forEach((el) => el.classList.add('visible'));
+      document.querySelectorAll(selector).forEach((el) => el.classList.add('visible'));
       return;
     }
 
@@ -47,25 +42,17 @@ function App() {
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
-    // Observe all scroll-animated elements
-    const animatedElements = document.querySelectorAll('.scroll-fade-in, .scroll-fade-in-left, .scroll-fade-in-right, .scroll-scale-in, .stagger-children');
-    animatedElements.forEach((el) => observer.observe(el));
-
+    document.querySelectorAll(selector).forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const revealDelay = prefersReducedMotion ? 120 : 820;
+    const revealDelay = prefersReducedMotion ? 120 : 1150;
     const fadeDuration = prefersReducedMotion ? 80 : 420;
 
-    const leaveTimer = window.setTimeout(() => {
-      setIsIntroLeaving(true);
-    }, revealDelay);
-
-    const hideTimer = window.setTimeout(() => {
-      setShowIntro(false);
-    }, revealDelay + fadeDuration);
+    const leaveTimer = window.setTimeout(() => setIsIntroLeaving(true), revealDelay);
+    const hideTimer = window.setTimeout(() => setShowIntro(false), revealDelay + fadeDuration);
 
     return () => {
       window.clearTimeout(leaveTimer);
@@ -74,32 +61,32 @@ function App() {
   }, []);
 
   return (
-    <div className={`App transition-colors duration-300 ${theme === 'light' ? 'bg-luxury-cream' : 'bg-primary'}`}>
+    <div className="App bg-paper">
       {showIntro && (
         <div
-          className={`intro-overlay ${theme === 'dark' ? 'intro-overlay-dark' : 'intro-overlay-light'} ${isIntroLeaving ? 'intro-overlay-leave' : ''}`}
+          className={`intro-overlay drafting-grid ${isIntroLeaving ? 'intro-overlay-leave' : ''}`}
           role="status"
           aria-live="polite"
           aria-label="Loading portfolio"
         >
           <div className="intro-core">
-            <div className="intro-mark">ZH</div>
-            <p className={`intro-title ${theme === 'dark' ? 'text-luxury-cream' : 'text-primary'}`}>Zulfaqar Hafez</p>
-            <p className={`intro-subtitle ${theme === 'dark' ? 'text-neutral-300' : 'text-neutral-600'}`}>AI Engineer and Community Innovator</p>
-            <div className="intro-track" aria-hidden="true">
-              <div className="intro-track-fill"></div>
+            <p className="intro-doc">Application No. ZH-2026 · Sheet 1 of 1</p>
+            <h1 className="intro-title">Zulfaqar Hafez</h1>
+            <p className="intro-doc mt-2">Apparatus &amp; Method for Applied Intelligence</p>
+            <div className="intro-stamp">
+              <span className="stamp">Filed &amp; Approved</span>
             </div>
           </div>
         </div>
       )}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-60 focus:px-4 focus:py-2 focus:bg-gold-gradient focus:text-primary focus:rounded-lg focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-60 focus:px-4 focus:py-2 focus:bg-accent-solid focus:text-white focus:font-annot focus:text-xs"
       >
         Skip to main content
       </a>
       <ScrollToTop />
-      <CursorGlow />
+      <DraftingCursor />
       <Navbar />
       <main id="main-content">
         <Hero />

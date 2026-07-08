@@ -1,67 +1,42 @@
 import { useState, useEffect } from 'react';
-import { useTheme } from '../contexts/ThemeContext';
 
 const ScrollToTop = () => {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
   const [isVisible, setIsVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const toggleVisibility = () => {
-      // Show button when page is scrolled down 300px
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-
-      // Calculate scroll progress
+      setIsVisible(window.pageYOffset > 300);
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (window.pageYOffset / windowHeight) * 100;
-      setScrollProgress(scrolled);
+      setScrollProgress((window.pageYOffset / windowHeight) * 100);
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <>
-      {/* Scroll Progress Bar */}
-      <div className={`fixed top-0 left-0 right-0 h-1 z-50 ${isDark ? 'bg-secondary/30' : 'bg-neutral-300/70'}`}>
+      {/* Scroll progress hairline */}
+      <div className="fixed top-0 left-0 right-0 h-0.5 z-[60]" aria-hidden="true">
         <div
-          className="h-full bg-gold-gradient transition-all duration-300"
-          style={{ width: `${scrollProgress}%` }}
+          className="h-full transition-all duration-200"
+          style={{ width: `${scrollProgress}%`, backgroundColor: 'var(--accent)' }}
         />
       </div>
 
-      {/* Back to Top Button */}
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-40 p-3 sm:p-4 bg-gold-gradient text-primary rounded-full shadow-luxury-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 animate-fade-in group"
+          className="fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-40 w-11 h-11 bg-raised border b-strong t-ink flex items-center justify-center shadow-md hover:t-accent hover:b-accent hover:-translate-y-1 transition-all duration-300"
           aria-label="Scroll to top"
         >
-          <svg
-            className="w-6 h-6 transition-transform duration-300 group-hover:-translate-y-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={3}
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            />
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
           </svg>
         </button>
       )}

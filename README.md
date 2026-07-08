@@ -1,96 +1,61 @@
-# Zulfaqar Hafez - Portfolio Website
+# Zulfaqar Hafez — Portfolio Website
 
-A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS.
+**"Apparatus & Method for Applied Intelligence"** — a personal portfolio designed as a patent
+drawing. Light mode is drafting paper; dark mode is a blueprint. Built with React, TypeScript,
+and Tailwind CSS 4.
 
-## Features
+## Design concept
 
-- **Responsive Design**: Fully responsive layout that works on all devices
-- **Modern UI/UX**: Clean and professional design with smooth animations
-- **Section Navigation**: Easy navigation between different sections
-- **Interactive Components**: Dynamic navbar, contact form, and project cards
-- **TypeScript**: Type-safe code for better development experience
-- **Tailwind CSS**: Utility-first CSS framework for rapid styling
+Every section is a numbered figure in a patent filing:
 
-## Sections
+1. **Fig. 1 — The Applicant**: hero with an annotated portrait (reference numerals included), a
+   specifications table, and a perception → reasoning → verification pipeline schematic
+2. **Materials & Components**: marquee strip of core tools
+3. **Fig. 2 — Abstract & Claims**: about section written as a patent abstract with numbered claims
+4. **Fig. 3 — Bill of Materials**: technical skills as a parts list
+5. **Fig. 4 — The Exhibits**: projects as lettered exhibits, plus published Hugging Face weights
+6. **Fig. 5 — Field Trials**: hackathon record as a ledger table
+7. **Fig. 6 — Record of Service**: experience timeline, education, and certifications ledger
+8. **Fig. 7 — Correspondence**: contact channels
+9. **Title block footer**: drawn by / checked by / scale / sheet 1 of 1
 
-1. **Navbar** - Sticky navigation with scroll spy, theme toggle, and mobile menu
-2. **Hero** - Interactive signal-field canvas, live availability status, and animated stat counters
-3. **About and Skills** - Background, quick stats, and a grouped technical skill atlas
-4. **Projects and Hackathons** - Featured work, a hackathon timeline, and published models on Hugging Face
-5. **Experience and Education** - Professional journey and academic foundation
-6. **Contact** - Terminal-style contact panel with direct channels
-7. **Footer** - Quick links and social connections
+Details: a CAD-style crosshair cursor with live coordinates (desktop only), rubber-stamp
+accents with distressed ink, corner registration ticks on panels, and scroll-drawn SVG schematics.
+All animation respects `prefers-reduced-motion`.
 
-## Getting Started
+## Getting started
 
-### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/ZulfaqarHafez/portfolio_website.git
-cd portfolio_website
-```
-
-2. Install dependencies:
 ```bash
 npm install
+npm run dev        # http://localhost:5173
 ```
 
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open your browser and navigate to `http://localhost:5173`
-
-## Build for Production
-
-To create a production build:
+## Build for production
 
 ```bash
 npm run build
-```
-
-To preview the production build:
-
-```bash
 npm run preview
 ```
 
 ## Customization
 
-To customize this portfolio for your own use:
+- Content lives in the components under [src/components](src/components):
+  [Hero.tsx](src/components/Hero.tsx), [AboutSkills.tsx](src/components/AboutSkills.tsx),
+  [ProjectsHackathons.tsx](src/components/ProjectsHackathons.tsx),
+  [ExperienceEducation.tsx](src/components/ExperienceEducation.tsx),
+  [Contact.tsx](src/components/Contact.tsx), [Footer.tsx](src/components/Footer.tsx)
+- Design tokens (paper/blueprint palettes, type, textures) live in
+  [src/index.css](src/index.css)
 
-1. Update the personal information in the components:
-   - [Hero.tsx](src/components/Hero.tsx) - Name, headline, and stats
-   - [AboutSkills.tsx](src/components/AboutSkills.tsx) - About copy and skill groups
-   - [Experience.tsx](src/components/Experience.tsx) - Work experience
-   - [Education.tsx](src/components/Education.tsx) - Education history
-   - [ProjectsHackathons.tsx](src/components/ProjectsHackathons.tsx) - Projects, hackathons, and published models
-   - [Contact.tsx](src/components/Contact.tsx) - Contact channels
-   - [Footer.tsx](src/components/Footer.tsx) - Footer content
+## Technologies
 
-2. Update colors in [tailwind.config.js](tailwind.config.js) to match your brand
-
-3. Replace placeholder links with your actual social media profiles
-
-## Technologies Used
-
-- **React 19** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **Tailwind CSS 4** - Styling
-- **PostCSS** - CSS processing
-
-## License
-
-ISC
+- **React 19** + **TypeScript**
+- **Vite 7**
+- **Tailwind CSS 4** (CSS-first config)
+- Fonts: Instrument Serif, IBM Plex Mono, Inter
 
 ## Author
 
-Zulfaqar Hafez
+Zulfaqar Hafez · [GitHub](https://github.com/ZulfaqarHafez) ·
+[LinkedIn](https://linkedin.com/in/zulfaqar-hafez) ·
+[Hugging Face](https://huggingface.co/Zulfhagez)
