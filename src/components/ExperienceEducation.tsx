@@ -117,7 +117,7 @@ const ExperienceEducation = () => {
 
       <div className="container-custom relative z-10 px-5 sm:px-8">
         <div className="scroll-fade-in mb-12 md:mb-16">
-          <p className="label t-accent mb-4">05 — Journey</p>
+          <p className="label t-accent mb-4">06 — Journey</p>
           <h2 className="display-hero t-ink text-4xl sm:text-5xl lg:text-6xl">
             Still growing<span className="t-accent">.</span>
           </h2>

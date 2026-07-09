@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import TechMarquee from './components/TechMarquee'
 import AboutSkills from './components/AboutSkills'
 import ProjectsHackathons from './components/ProjectsHackathons'
+import TheLab from './components/TheLab'
 import ExperienceEducation from './components/ExperienceEducation'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -60,6 +61,7 @@ function App() {
         <TechMarquee />
         <AboutSkills />
         <ProjectsHackathons />
+        <TheLab />
         <ExperienceEducation />
         <Contact />
       </main>

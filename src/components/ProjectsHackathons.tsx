@@ -66,7 +66,10 @@ const projects: Project[] = [
     title: 'ClaimLens',
     blurb: 'A fine-tuned DeBERTa-v3 model that scores whether evidence supports, refutes, or stays neutral toward a claim. Open weights.',
     tech: ['PyTorch', 'Transformers', 'DeBERTa-v3'],
-    links: [{ label: 'Model ↗', href: 'https://huggingface.co/Zulfhagez' }],
+    links: [
+      { label: 'Model ↗', href: 'https://huggingface.co/Zulfhagez' },
+      { label: 'Code', href: 'https://github.com/ZulfaqarHafez/AAI3008_ClaimLens' },
+    ],
     screenshot: null,
     art: ArtClaimlens,
     role: 'ML Engineer',

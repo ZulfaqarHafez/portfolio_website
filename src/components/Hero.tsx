@@ -6,7 +6,7 @@ import ArtTopo from './art/ArtTopo';
 const WORDS = ['sees.', 'learns.', 'ships.', 'grows.'];
 
 const stats = [
-  { end: 5, suffix: '+', label: 'Projects shipped' },
+  { end: 12, suffix: '+', label: 'Projects built' },
   { end: 6, suffix: '', label: 'Hackathon finishes' },
   { end: 300, suffix: '+', label: 'Lives reached' },
   { end: 2, suffix: '', label: 'Models published' },

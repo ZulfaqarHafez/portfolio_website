@@ -5,12 +5,13 @@ import Monogram from './art/Monogram';
 const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Work', href: '#projects' },
+  { name: 'Lab', href: '#lab' },
   { name: 'Wins', href: '#hackathons' },
   { name: 'Journey', href: '#experience' },
   { name: 'Contact', href: '#contact' },
 ];
 
-const sectionIds = ['home', 'about', 'skills', 'projects', 'hackathons', 'experience', 'contact'];
+const sectionIds = ['home', 'about', 'skills', 'projects', 'hackathons', 'lab', 'experience', 'contact'];
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
