@@ -1,92 +1,79 @@
-const channels = [
-  {
-    key: 'Email',
-    label: 'zulfaqarhafez@gmail.com',
-    href: 'mailto:zulfaqarhafez@gmail.com',
-    ext: false,
-  },
-  {
-    key: 'GitHub',
-    label: 'github.com/ZulfaqarHafez',
-    href: 'https://github.com/ZulfaqarHafez',
-    ext: true,
-  },
-  {
-    key: 'LinkedIn',
-    label: 'linkedin.com/in/zulfaqar-hafez',
-    href: 'https://linkedin.com/in/zulfaqar-hafez',
-    ext: true,
-  },
-  {
-    key: 'HF Hub',
-    label: 'huggingface.co/Zulfhagez',
-    href: 'https://huggingface.co/Zulfhagez',
-    ext: true,
-  },
+import { useEffect, useState } from 'react';
+import { useMagnetic } from '../hooks/useMagnetic';
+
+const socials = [
+  { name: 'GitHub', href: 'https://github.com/ZulfaqarHafez' },
+  { name: 'LinkedIn', href: 'https://linkedin.com/in/zulfaqar-hafez' },
+  { name: 'Hugging Face', href: 'https://huggingface.co/Zulfhagez' },
 ];
 
+const sgTime = () =>
+  new Intl.DateTimeFormat('en-SG', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+    timeZone: 'Asia/Singapore',
+  }).format(new Date());
+
 const Contact = () => {
+  const [time, setTime] = useState(sgTime);
+  const emailRef = useMagnetic<HTMLAnchorElement>(0.18);
+
+  useEffect(() => {
+    const id = window.setInterval(() => setTime(sgTime()), 30_000);
+    return () => window.clearInterval(id);
+  }, []);
+
   return (
-    <section id="contact" className="relative py-16 md:py-24 bg-paper-deep border-t b-line drafting-grid">
-      <div className="container-custom px-4 sm:px-6">
-        <div className="scroll-fade-in flex items-end justify-between gap-4 mb-10 md:mb-12">
-          <div>
-            <p className="annot t-accent mb-2">Fig. 7 · Official channels</p>
-            <h2 className="font-display t-ink text-4xl sm:text-5xl">Correspondence</h2>
+    <section id="contact" className="relative py-24 md:py-36 bg-deep border-t b-line overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="glow-blob breathe w-[36rem] h-[36rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: 'radial-gradient(circle, var(--glow-a), transparent 65%)' }}></div>
+      </div>
+
+      <div className="container-custom relative z-10 px-5 sm:px-8 text-center">
+        <p className="scroll-fade-in label t-accent mb-6">06 — Contact</p>
+
+        <h2 className="scroll-fade-in display-hero t-ink text-5xl sm:text-6xl lg:text-7xl xl:text-8xl mb-6 max-w-4xl mx-auto">
+          Let's grow something{' '}
+          <span className="display-italic t-accent">together.</span>
+        </h2>
+
+        <p className="scroll-fade-in t-soft text-base sm:text-lg max-w-xl mx-auto mb-12 leading-relaxed">
+          Open to internships, collaborations, and interesting problems. Recruiters, builders, and
+          community organizations welcome — replies usually land within the day.
+        </p>
+
+        <div className="scroll-fade-in flex flex-col items-center gap-6 mb-14">
+          <a
+            ref={emailRef}
+            href="mailto:zulfaqarhafez@gmail.com"
+            className="btn-gold !text-base sm:!text-lg !px-10 !py-5"
+          >
+            zulfaqarhafez@gmail.com
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M9 7h8v8" />
+            </svg>
+          </a>
+          <div className="flex items-center gap-2.5">
+            <span className="status-pulse w-2 h-2 rounded-full bg-accent-solid"></span>
+            <span className="label t-faint">
+              Singapore · {time} local — probably awake, possibly training a model
+            </span>
           </div>
-          <div className="dim-rule flex-1 max-w-40 hidden sm:block mb-3"></div>
         </div>
 
-        <div className="scroll-fade-in max-w-3xl mx-auto">
-          <div className="panel ticks relative p-7 sm:p-10">
-            <span className="tick-b"></span>
-
-            <div className="absolute -top-4 right-6 sm:right-10">
-              <span className="stamp stamp-ok bg-raised">Response guaranteed</span>
-            </div>
-
-            <p className="font-display text-2xl sm:text-3xl t-ink leading-snug mb-3 max-w-xl">
-              To whom it may concern: I'm open to internships, collaborations, and interesting problems.
-            </p>
-            <p className="t-soft text-sm sm:text-base leading-relaxed mb-8 max-w-xl">
-              Recruiters, builders, and community organizations welcome. Replies arrive faster than a
-              model trains — usually within the day.
-            </p>
-
-            <div className="border b-strong mb-8">
-              {channels.map(({ key, label, href, ext }, idx) => (
-                <a
-                  key={key}
-                  href={href}
-                  target={ext ? '_blank' : undefined}
-                  rel={ext ? 'noopener noreferrer' : undefined}
-                  className={`flex items-baseline gap-4 px-4 sm:px-5 py-3.5 group transition-colors hover:bg-accent-wash ${
-                    idx > 0 ? 'border-t b-line' : ''
-                  }`}
-                >
-                  <span className="annot t-accent w-16 shrink-0">{key}</span>
-                  <span className="font-annot text-sm t-soft group-hover:t-ink transition-colors truncate">
-                    {label}
-                  </span>
-                  <span className="ml-auto annot t-faint group-hover:t-accent transition-colors shrink-0">
-                    {ext ? '↗' : '→'}
-                  </span>
-                </a>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a href="mailto:zulfaqarhafez@gmail.com" className="btn-ink">
-                File a correspondence
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </a>
-              <a href="/Zulfaqar_Hafez_Resume.pdf" download className="btn-ghost">
-                Request the résumé
-              </a>
-            </div>
-          </div>
+        <div className="scroll-fade-in flex flex-wrap justify-center gap-3">
+          {socials.map((s) => (
+            <a
+              key={s.name}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline !py-2.5 !px-5 !text-sm"
+            >
+              {s.name} ↗
+            </a>
+          ))}
         </div>
       </div>
     </section>

@@ -2,17 +2,16 @@ import { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 
 const navLinks = [
-  { name: 'Abstract', href: '#about' },
-  { name: 'Exhibits', href: '#projects' },
-  { name: 'Field Trials', href: '#hackathons' },
-  { name: 'Records', href: '#experience' },
+  { name: 'About', href: '#about' },
+  { name: 'Work', href: '#projects' },
+  { name: 'Wins', href: '#hackathons' },
+  { name: 'Journey', href: '#experience' },
   { name: 'Contact', href: '#contact' },
 ];
 
 const sectionIds = ['home', 'about', 'skills', 'projects', 'hackathons', 'experience', 'contact'];
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
@@ -20,8 +19,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-      const scrollPosition = window.scrollY + 140;
+      const scrollPosition = window.scrollY + 160;
       let currentSection = 'home';
       for (const section of sectionIds) {
         const element = document.getElementById(section);
@@ -33,7 +31,7 @@ const Navbar = () => {
       setActiveSection(currentSection);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -54,123 +52,134 @@ const Navbar = () => {
     };
   }, [isMobileMenuOpen]);
 
-  const isActive = (href: string) => activeSection === href.slice(1);
+  const isActive = (href: string) =>
+    activeSection === href.slice(1) ||
+    (href === '#projects' && activeSection === 'skills');
+
+  const ThemeIcon = theme === 'dark' ? (
+    // sun
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4" />
+      <path strokeLinecap="round" d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4l1.4-1.4" />
+    </svg>
+  ) : (
+    // moon
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M20.4 15.4A9 9 0 018.6 3.6 9 9 0 1020.4 15.4z" />
+    </svg>
+  );
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 bg-paper border-b transition-shadow duration-300 ${
-        isScrolled ? 'b-strong shadow-md' : 'b-line'
-      }`}
-      style={{ backgroundColor: 'color-mix(in srgb, var(--bg) 92%, transparent)', backdropFilter: 'blur(8px)' }}
-    >
-      <div className="container-custom px-4 sm:px-6">
-        <div className="flex items-stretch justify-between h-16 md:h-[4.5rem]">
-          {/* Title block */}
-          <a href="#home" className="flex items-center gap-3 group min-w-0">
-            <div className="w-9 h-9 md:w-10 md:h-10 border b-strong flex items-center justify-center font-display text-lg t-accent shrink-0 group-hover:bg-accent-wash transition-colors">
-              ZH
-            </div>
-            <div className="hidden sm:block min-w-0 leading-tight">
-              <div className="font-display text-lg t-ink truncate">Zulfaqar Hafez</div>
-              <div className="annot t-faint">Application No. ZH-2026</div>
-            </div>
+    <>
+      <header className="fixed top-4 md:top-5 left-0 right-0 z-50 px-4">
+        <nav
+          className="mx-auto max-w-3xl flex items-center justify-between gap-2 rounded-full border b-line pl-4 pr-2 py-2"
+          style={{
+            backgroundColor: 'color-mix(in srgb, var(--surface) 78%, transparent)',
+            backdropFilter: 'blur(14px)',
+            WebkitBackdropFilter: 'blur(14px)',
+            boxShadow: 'var(--shadow-card)',
+          }}
+          aria-label="Primary"
+        >
+          {/* Mark */}
+          <a href="#home" className="flex items-center gap-2 group shrink-0" aria-label="Back to top">
+            <span className="relative flex items-center justify-center w-8 h-8 rounded-full bg-accent-solid t-on-accent font-bold text-sm">
+              Z
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--emerald)' }}></span>
+            </span>
+            <span className="hidden md:block font-semibold text-sm t-ink tracking-tight group-hover:t-accent transition-colors">
+              zulfaqar.dev
+            </span>
           </a>
 
-          {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-6">
-            {navLinks.map((link, idx) => (
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-0.5">
+            {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 aria-current={isActive(link.href) ? 'page' : undefined}
-                className={`annot-md relative py-1 transition-colors ${
-                  isActive(link.href) ? 't-accent' : 't-soft hover:t-ink'
+                className={`px-3.5 py-1.5 rounded-full text-sm transition-all duration-300 ${
+                  isActive(link.href)
+                    ? 'bg-accent-wash t-accent font-semibold'
+                    : 't-soft hover:t-ink hover:bg-accent-wash'
                 }`}
               >
-                <span className="t-faint mr-1.5">{String(idx + 1).padStart(2, '0')}</span>
                 {link.name}
-                <span
-                  className={`absolute -bottom-0.5 left-0 h-px bg-accent-solid transition-all duration-300 ${
-                    isActive(link.href) ? 'w-full' : 'w-0'
-                  }`}
-                ></span>
               </a>
             ))}
           </div>
 
-          {/* Right controls */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* Controls */}
+          <div className="flex items-center gap-1.5">
             <button
               onClick={toggleTheme}
-              className="annot t-soft border b-line px-3 py-2.5 hover:b-accent hover:t-accent hover:bg-accent-wash transition-colors"
-              aria-label={theme === 'dark' ? 'Switch to paper theme' : 'Switch to blueprint theme'}
-              title={theme === 'dark' ? 'Switch to paper' : 'Switch to blueprint'}
+              className="w-9 h-9 rounded-full border b-line t-soft hover:t-accent hover:b-accent flex items-center justify-center transition-colors"
+              aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
             >
-              {theme === 'dark' ? 'Paper' : 'Blueprint'}
+              {ThemeIcon}
             </button>
-            <a href="/Zulfaqar_Hafez_Resume.pdf" download className="btn-ink !py-2.5 !px-4 text-xs">
+            <a
+              href="/Zulfaqar_Hafez_Resume.pdf"
+              download
+              className="hidden md:inline-flex btn-gold !py-2 !px-4 !text-xs"
+            >
               Résumé
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
-              </svg>
             </a>
+            <button
+              ref={mobileMenuButtonRef}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden w-9 h-9 rounded-full border b-line t-ink flex items-center justify-center"
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+            >
+              <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" d="M4 8h16M4 16h16" />
+                )}
+              </svg>
+            </button>
           </div>
+        </nav>
+      </header>
 
-          {/* Mobile menu button */}
-          <button
-            ref={mobileMenuButtonRef}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden self-center p-2 border b-line t-ink hover:bg-accent-wash transition-colors"
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isMobileMenuOpen}
-            aria-controls="primary-navigation-mobile"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7h16M4 12h16M4 17h16" />
-              )}
-            </svg>
-          </button>
-        </div>
-
-        {/* Mobile menu */}
-        {isMobileMenuOpen && (
-          <div
-            id="primary-navigation-mobile"
-            className="lg:hidden py-3 pb-5 border-t b-line max-h-[calc(100vh-4rem)] overflow-y-auto"
-          >
+      {/* Mobile full-screen menu */}
+      {isMobileMenuOpen && (
+        <div
+          id="mobile-menu"
+          className="fixed inset-0 z-40 md:hidden bg-base flex flex-col justify-center px-8"
+        >
+          <div className="glow-blob breathe w-72 h-72 -top-10 -right-16" style={{ background: 'var(--glow-a)', position: 'absolute' }} aria-hidden="true"></div>
+          <nav className="flex flex-col gap-2" aria-label="Mobile">
             {navLinks.map((link, idx) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                aria-current={isActive(link.href) ? 'page' : undefined}
-                className={`block py-3 px-2 annot-md border-b b-line last:border-b-0 transition-colors ${
-                  isActive(link.href) ? 't-accent' : 't-soft'
+                className={`font-display text-4xl py-2.5 transition-colors ${
+                  isActive(link.href) ? 't-accent' : 't-ink'
                 }`}
               >
-                <span className="t-faint mr-2">{String(idx + 1).padStart(2, '0')}</span>
+                <span className="label t-faint mr-3 align-middle">0{idx + 1}</span>
                 {link.name}
               </a>
             ))}
-            <div className="flex gap-3 pt-4">
-              <button
-                onClick={toggleTheme}
-                className="annot t-soft border b-line px-3 py-2.5 flex-1"
-                aria-label="Toggle theme"
-              >
-                {theme === 'dark' ? 'Paper mode' : 'Blueprint mode'}
-              </button>
-              <a href="/Zulfaqar_Hafez_Resume.pdf" download className="btn-ink !py-2.5 !px-4 text-xs flex-1">
-                Résumé
-              </a>
-            </div>
+          </nav>
+          <div className="mt-10 flex gap-3">
+            <a href="/Zulfaqar_Hafez_Resume.pdf" download className="btn-gold flex-1" onClick={() => setIsMobileMenuOpen(false)}>
+              Résumé
+            </a>
+            <a href="#contact" className="btn-outline flex-1" onClick={() => setIsMobileMenuOpen(false)}>
+              Say hi
+            </a>
           </div>
-        )}
-      </div>
-    </nav>
+        </div>
+      )}
+    </>
   );
 };
 

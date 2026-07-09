@@ -11,10 +11,11 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    // Check localStorage first, then system preference
+    // Saved choice wins; otherwise default to the night garden unless the
+    // system explicitly prefers light.
     const saved = localStorage.getItem('theme') as Theme;
     if (saved) return saved;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   });
 
   useEffect(() => {

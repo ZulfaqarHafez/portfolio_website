@@ -1,27 +1,26 @@
 # Zulfaqar Hafez — Portfolio Website
 
-**"Apparatus & Method for Applied Intelligence"** — a personal portfolio designed as a patent
-drawing. Light mode is drafting paper; dark mode is a blueprint. Built with React, TypeScript,
+**The Estate** — a luxury emerald-and-champagne-gold portfolio. Dark mode is a deep emerald
+estate at dusk; light mode is ivory parchment with antique gold. Built with React, TypeScript,
 and Tailwind CSS 4.
 
-## Design concept
+## Design
 
-Every section is a numbered figure in a patent filing:
-
-1. **Fig. 1 — The Applicant**: hero with an annotated portrait (reference numerals included), a
-   specifications table, and a perception → reasoning → verification pipeline schematic
-2. **Materials & Components**: marquee strip of core tools
-3. **Fig. 2 — Abstract & Claims**: about section written as a patent abstract with numbered claims
-4. **Fig. 3 — Bill of Materials**: technical skills as a parts list
-5. **Fig. 4 — The Exhibits**: projects as lettered exhibits, plus published Hugging Face weights
-6. **Fig. 5 — Field Trials**: hackathon record as a ledger table
-7. **Fig. 6 — Record of Service**: experience timeline, education, and certifications ledger
-8. **Fig. 7 — Correspondence**: contact channels
-9. **Title block footer**: drawn by / checked by / scale / sheet 1 of 1
-
-Details: a CAD-style crosshair cursor with live coordinates (desktop only), rubber-stamp
-accents with distressed ink, corner registration ticks on panels, and scroll-drawn SVG schematics.
-All animation respects `prefers-reduced-motion`.
+- **Palette**: deep emerald surfaces, champagne-gold accents, parchment neutrals — 2–3 core
+  colors, luxury-by-restraint
+- **Type**: Fraunces (display, with italics), Space Grotesk (body), JetBrains Mono (labels)
+- **Hero**: oversized kinetic headline ("I build AI that *sees / learns / ships / grows*"),
+  breathing gold glow, floating chips, magnetic gold-gradient buttons
+- **Work**: featured project card plus an interactive list — a live image preview follows the
+  cursor across each row (desktop)
+- **Skills**: numeral-watermarked craft cards with animated gold hairlines and a
+  proof-over-progress-bars philosophy
+- **Credentials**: dedicated showcase with issuer-tinted badges (NVIDIA ×3, AI Singapore,
+  HackerRank, Google)
+- **Journey**: a timeline vine that grows in on scroll
+- **Details**: cursor-trailing glow, film grain, gold sheen sweeps, scroll-progress hairline,
+  live Singapore clock in the contact section
+- All animation respects `prefers-reduced-motion`
 
 ## Getting started
 
@@ -30,7 +29,7 @@ npm install
 npm run dev        # http://localhost:5173
 ```
 
-## Build for production
+## Build
 
 ```bash
 npm run build
@@ -39,20 +38,9 @@ npm run preview
 
 ## Customization
 
-- Content lives in the components under [src/components](src/components):
-  [Hero.tsx](src/components/Hero.tsx), [AboutSkills.tsx](src/components/AboutSkills.tsx),
-  [ProjectsHackathons.tsx](src/components/ProjectsHackathons.tsx),
-  [ExperienceEducation.tsx](src/components/ExperienceEducation.tsx),
-  [Contact.tsx](src/components/Contact.tsx), [Footer.tsx](src/components/Footer.tsx)
-- Design tokens (paper/blueprint palettes, type, textures) live in
-  [src/index.css](src/index.css)
-
-## Technologies
-
-- **React 19** + **TypeScript**
-- **Vite 7**
-- **Tailwind CSS 4** (CSS-first config)
-- Fonts: Instrument Serif, IBM Plex Mono, Inter
+- Content lives in [src/components](src/components): `Hero.tsx`, `AboutSkills.tsx`,
+  `ProjectsHackathons.tsx`, `ExperienceEducation.tsx`, `Contact.tsx`
+- Design tokens (both palettes, type, motion) live in [src/index.css](src/index.css)
 
 ## Author
 

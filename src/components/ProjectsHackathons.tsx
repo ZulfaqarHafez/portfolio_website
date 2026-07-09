@@ -1,237 +1,257 @@
-const projects = [
+import { useEffect, useRef, useState } from 'react';
+
+interface Project {
+  title: string;
+  blurb: string;
+  tech: string[];
+  github: string;
+  live: string | null;
+  image: string | null;
+  role: string;
+  year: string;
+}
+
+const featured: Project = {
+  title: 'GuideMeSG',
+  blurb:
+    'A mobile app that helps persons with intellectual disabilities navigate Singapore\'s public transport on their own — turning a daunting daily journey into an independent one. SIT HackRift finalist, still growing.',
+  tech: ['Next.js', 'TypeScript', 'Supabase'],
+  github: 'https://github.com/ZulfaqarHafez/GuideMeSG',
+  live: 'https://guide-me-sg-r22y.vercel.app/',
+  image: '/images/guideme.png',
+  role: 'Lead Developer',
+  year: '2025',
+};
+
+const projects: Project[] = [
   {
-    exhibit: 'A',
-    title: 'GuideMeSG',
-    description:
-      'Mobile app empowering persons with intellectual disabilities to navigate Singapore’s public transport independently. SIT HackRift finalist, still in active development.',
-    technologies: ['Next.js', 'TypeScript', 'Supabase'],
-    github: 'https://github.com/ZulfaqarHafez/GuideMeSG',
-    live: 'https://guide-me-sg-r22y.vercel.app/',
-    image: '/images/guideme.png',
-    role: 'Lead Developer',
-  },
-  {
-    exhibit: 'B',
     title: 'PPE Compliance Dashboard',
-    description:
-      'Real-time PPE compliance monitoring with pose-aware validation — YOLOv8 detection cross-checked against Mediapipe skeletons, tracked in the cloud.',
-    technologies: ['YOLOv8', 'Mediapipe', 'FastAPI'],
+    blurb: 'Real-time safety monitoring: YOLOv8 detections cross-checked against Mediapipe pose skeletons.',
+    tech: ['YOLOv8', 'Mediapipe', 'FastAPI'],
     github: 'https://github.com/ZulfaqarHafez/AAI3001_Deep_Learning',
     live: 'https://youtu.be/0caldjkLU7g',
     image: '/images/ppecompliance.png',
     role: 'ML Engineer',
+    year: '2025',
   },
   {
-    exhibit: 'C',
     title: 'HelpLah.AI',
-    description:
-      'AI-powered virtual assistant that triages and routes help requests so the right people see them faster. Flask backend, ML-driven classification.',
-    technologies: ['Flask', 'Machine Learning', 'NLP'],
+    blurb: 'AI assistant that triages and routes help requests so the right people see them faster.',
+    tech: ['Flask', 'NLP', 'ML'],
     github: 'https://github.com/ZulfaqarHafez/HelpLah.AI',
     live: null,
     image: null,
     role: 'Creator',
+    year: '2025',
   },
   {
-    exhibit: 'D',
     title: 'EduQuery SG',
-    description:
-      'Centralized platform for Singapore’s educational landscape — search and analytics across schools and courses, backed by dual databases.',
-    technologies: ['Node.js', 'MongoDB', 'PostgreSQL'],
+    blurb: 'Search and analytics across Singapore\'s educational landscape, backed by dual databases.',
+    tech: ['Node.js', 'MongoDB', 'PostgreSQL'],
     github: 'https://github.com/ZulfaqarHafez/INF2003_EduQuery',
     live: 'https://youtu.be/Wo4YhykGx-8',
     image: '/images/eduquery.png',
-    role: 'Full Stack Developer',
+    role: 'Full Stack',
+    year: '2024',
   },
   {
-    exhibit: 'E',
     title: 'FairWork Contract',
-    description:
-      'Translates English payslips into native languages for foreign workers in Singapore, so nobody signs what they can’t read.',
-    technologies: ['Next.js', 'Gemini', 'FastAPI'],
+    blurb: 'Translates English payslips into native languages for foreign workers — nobody signs what they can\'t read.',
+    tech: ['Next.js', 'Gemini', 'FastAPI'],
     github: 'https://github.com/KevanSoon/FairWork-Contract',
     live: 'https://fair-work-contract.vercel.app/',
     image: '/images/fairwork.png',
-    role: 'Backend Developer',
+    role: 'Backend',
+    year: '2025',
   },
 ];
 
-const trials = [
-  { year: '2026', event: 'SMU Hack For Cities', project: 'Urban systems', result: 'Finalist', top: true },
-  { year: '2025', event: 'SIT HackRift', project: 'GuideMeSG', result: 'Finalist', top: true },
-  { year: '2025', event: 'OGP Community Hackathon', project: 'Churp — allotment garden booking for Tengah', result: 'CIT funded · $20k', top: true },
-  { year: '2025', event: 'Pan-SEA AI Developer Challenge', project: 'Regional AI challenge', result: 'Top 100', top: false },
-  { year: '2025', event: 'SMU Hack For Cities', project: 'GreenMerlion — CV waste classification', result: 'Finalist', top: true },
-  { year: '2022', event: 'Google Cloud Hackathon SG', project: 'CareFall Vision — fall detection for seniors', result: 'Top 20', top: false },
+const trophies = [
+  { year: '2026', event: 'SMU Hack For Cities', project: 'Urban systems', result: 'Finalist', big: false },
+  { year: '2025', event: 'OGP Community Hackathon', project: 'Churp — garden booking for Tengah', result: 'Funded · $20k', big: true },
+  { year: '2025', event: 'SIT HackRift', project: 'GuideMeSG', result: 'Finalist', big: false },
+  { year: '2025', event: 'SMU Hack For Cities', project: 'GreenMerlion — CV recycling', result: 'Finalist', big: false },
+  { year: '2025', event: 'Pan-SEA AI Dev Challenge', project: 'Regional AI challenge', result: 'Top 100', big: false },
+  { year: '2022', event: 'Google Cloud Hackathon', project: 'CareFall Vision — fall detection', result: 'Top 20', big: false },
 ];
 
-const ProjectCard = ({ project }: { project: (typeof projects)[0] }) => (
-  <article className="panel panel-hover ticks group flex flex-col">
-    <span className="tick-b"></span>
-    <div className="relative overflow-hidden m-3 mb-0 border b-line">
-      {project.image ? (
-        <img
-          src={project.image}
-          alt={project.title}
-          loading="lazy"
-          decoding="async"
-          className="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-          style={{ filter: 'saturate(0.92)' }}
-        />
-      ) : (
-        <div className="w-full aspect-[16/10] crosshatch flex items-center justify-center relative">
-          <svg viewBox="0 0 220 100" className="w-3/5" fill="none" stroke="var(--line-strong)" strokeWidth="1" aria-hidden="true">
-            <rect x="10" y="30" width="55" height="40" />
-            <rect x="155" y="30" width="55" height="40" />
-            <circle cx="110" cy="50" r="22" />
-            <line x1="65" y1="50" x2="88" y2="50" />
-            <line x1="132" y1="50" x2="155" y2="50" />
-            <path d="M84 46 L 90 50 L 84 54" />
-            <path d="M151 46 L 157 50 L 151 54" />
-          </svg>
-          <span className="absolute bottom-2 right-3 annot t-faint">Figure withheld</span>
+const ProjectsHackathons = () => {
+  const previewRef = useRef<HTMLDivElement>(null);
+  const [previewSrc, setPreviewSrc] = useState<string | null>(null);
+  const raf = useRef<number | null>(null);
+
+  useEffect(() => {
+    const fine = window.matchMedia('(pointer: fine)').matches;
+    if (!fine) return;
+    const onMove = (e: MouseEvent) => {
+      if (raf.current !== null) return;
+      raf.current = requestAnimationFrame(() => {
+        raf.current = null;
+        if (previewRef.current) {
+          previewRef.current.style.transform = `translate(${e.clientX + 28}px, ${e.clientY - 110}px) scale(${previewSrc ? 1 : 0.9})`;
+        }
+      });
+    };
+    window.addEventListener('mousemove', onMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      if (raf.current !== null) cancelAnimationFrame(raf.current);
+    };
+  }, [previewSrc]);
+
+  const linkFor = (p: Project) => p.live ?? p.github;
+
+  return (
+    <section id="projects" className="relative py-20 md:py-28 bg-deep border-y b-line overflow-hidden">
+      <div className="glow-blob w-[28rem] h-[28rem] top-10 -right-32" style={{ background: 'radial-gradient(circle, var(--glow-b), transparent 70%)', position: 'absolute' }} aria-hidden="true"></div>
+
+      {/* Floating preview that follows the cursor (desktop) */}
+      <div ref={previewRef} className={`project-preview hidden lg:block ${previewSrc ? 'on' : ''}`} aria-hidden="true">
+        {previewSrc && <img src={previewSrc} alt="" />}
+      </div>
+
+      <div className="container-custom relative z-10 px-5 sm:px-8">
+        <div className="scroll-fade-in flex flex-wrap items-end justify-between gap-4 mb-12 md:mb-14">
+          <div>
+            <p className="label t-accent mb-4">03 — Selected work</p>
+            <h2 className="display-hero t-ink text-4xl sm:text-5xl lg:text-6xl">
+              The <span className="display-italic t-accent">harvest</span>
+            </h2>
+          </div>
+          <p className="t-faint text-sm max-w-xs leading-relaxed">
+            Every project here shipped to real users — no lab demos gathering dust.
+          </p>
         </div>
-      )}
-      <span className="absolute top-2.5 left-2.5 annot bg-raised t-ink border b-strong px-2 py-1">
-        Exhibit {project.exhibit}
-      </span>
-    </div>
 
-    <div className="p-4 sm:p-5 flex flex-col flex-1">
-      <div className="flex items-baseline justify-between gap-2 mb-2">
-        <h3 className="font-display text-2xl t-ink group-hover:t-accent transition-colors">{project.title}</h3>
-        <span className="annot t-faint shrink-0">{project.role}</span>
-      </div>
-      <p className="t-soft text-sm leading-relaxed mb-4">{project.description}</p>
-
-      <div className="flex flex-wrap gap-1.5 mb-4">
-        {project.technologies.map((tech) => (
-          <span key={tech} className="chip">
-            {tech}
-          </span>
-        ))}
-      </div>
-
-      <div className="flex items-center gap-5 pt-3 mt-auto border-t b-line">
+        {/* Featured */}
         <a
-          href={project.github}
+          href={linkFor(featured)}
           target="_blank"
           rel="noopener noreferrer"
-          className="annot-md t-soft hover:t-accent transition-colors"
+          className="scroll-fade-in card card-hover overflow-hidden grid md:grid-cols-[1.1fr_0.9fr] mb-6 group block"
         >
-          Source ↗
+          <div className="relative overflow-hidden">
+            <img
+              src={featured.image!}
+              alt={featured.title}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-56 md:h-full object-cover transition-transform duration-700 group-hover:scale-[1.04] portrait-treat"
+            />
+            <span className="absolute top-4 left-4 chip !bg-surface-2">Featured · {featured.year}</span>
+          </div>
+          <div className="p-6 md:p-9 flex flex-col">
+            <div className="flex items-center justify-between mb-4">
+              <span className="label t-faint">{featured.role}</span>
+              <span
+                className="w-10 h-10 rounded-full border b-strong flex items-center justify-center t-ink transition-all duration-300 group-hover:bg-accent-solid group-hover:t-on-accent group-hover:rotate-45"
+                aria-hidden="true"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M9 7h8v8" />
+                </svg>
+              </span>
+            </div>
+            <h3 className="font-display text-3xl sm:text-4xl t-ink mb-3 group-hover:t-accent transition-colors">
+              {featured.title}
+            </h3>
+            <p className="t-soft leading-relaxed mb-6">{featured.blurb}</p>
+            <div className="flex flex-wrap gap-1.5 mt-auto">
+              {featured.tech.map((t) => (
+                <span key={t} className="chip">{t}</span>
+              ))}
+            </div>
+          </div>
         </a>
-        {project.live && (
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="annot-md t-soft hover:t-accent transition-colors"
-          >
-            Live demo ↗
-          </a>
-        )}
-      </div>
-    </div>
-  </article>
-);
 
-const ProjectsHackathons = () => {
-  return (
-    <section id="projects" className="relative py-16 md:py-24 bg-paper-deep border-t b-line">
-      <div className="container-custom px-4 sm:px-6">
-        {/* Exhibits */}
-        <div className="scroll-fade-in flex items-end justify-between gap-4 mb-10 md:mb-12">
-          <div>
-            <p className="annot t-accent mb-2">Fig. 4 · Evidence of practice</p>
-            <h2 className="font-display t-ink text-4xl sm:text-5xl">The Exhibits</h2>
-          </div>
-          <div className="dim-rule flex-1 max-w-40 hidden sm:block mb-3"></div>
-        </div>
-
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 stagger-children mb-16 md:mb-20">
-          {projects.map((project) => (
-            <ProjectCard key={project.exhibit} project={project} />
-          ))}
-
-          {/* Hugging Face card completes the grid */}
-          <article className="panel panel-hover ticks group flex flex-col justify-between p-5 bg-accent-wash">
-            <span className="tick-b"></span>
-            <div>
-              <div className="flex items-baseline justify-between gap-2 mb-2">
-                <span className="annot t-accent">Published weights</span>
-                <span className="annot t-faint">🤗 Hub</span>
-              </div>
-              <h3 className="font-display text-2xl t-ink mb-2">ClaimLens</h3>
-              <p className="t-soft text-sm leading-relaxed mb-4">
-                A fine-tuned DeBERTa-v3 natural language inference model that scores whether evidence
-                supports, refutes, or stays neutral toward a claim. Open weights, live on the Hub —
-                verification, as promised in Fig. 1.
-              </p>
-              <div className="flex flex-wrap gap-1.5 mb-5">
-                {['PyTorch', 'Transformers', 'DeBERTa-v3'].map((tech) => (
-                  <span key={tech} className="chip">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <a
-              href="https://huggingface.co/Zulfhagez"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-ghost self-start"
+        {/* Interactive list */}
+        <div className="scroll-fade-in border-t b-strong mb-20 md:mb-24">
+          {projects.map((p) => (
+            <div
+              key={p.title}
+              className="group relative grid grid-cols-[1fr_auto] lg:grid-cols-[4.5rem_1.4fr_1fr_auto] items-center gap-x-4 gap-y-2 py-6 lg:py-7 border-b b-line transition-colors duration-300 hover:bg-accent-wash lg:px-4 lg:-mx-4 lg:rounded-2xl lg:border-b lg:hover:border-transparent"
+              onMouseOver={() => p.image && setPreviewSrc(p.image)}
+              onMouseOut={(e) => {
+                if (!(e.currentTarget as Node).contains(e.relatedTarget as Node)) setPreviewSrc(null);
+              }}
             >
-              View on Hugging Face ↗
-            </a>
-          </article>
+              <span className="hidden lg:block label t-faint">{p.year}</span>
+
+              <div className="min-w-0">
+                <h3 className="font-display text-2xl sm:text-3xl t-ink transition-all duration-300 group-hover:t-accent group-hover:translate-x-1.5">
+                  {p.title}
+                </h3>
+                <p className="t-faint text-sm mt-1 lg:hidden">{p.blurb}</p>
+              </div>
+
+              <div className="hidden lg:block min-w-0">
+                <p className="t-soft text-sm leading-relaxed">{p.blurb}</p>
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {p.tech.map((t) => (
+                    <span key={t} className="label t-faint">{t}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 justify-self-end col-start-2 row-start-1 lg:col-start-4">
+                <a
+                  href={p.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="chip"
+                  aria-label={`${p.title} source code`}
+                >
+                  Code
+                </a>
+                {p.live && (
+                  <a
+                    href={p.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="chip !border-strong"
+                    aria-label={`${p.title} live demo`}
+                  >
+                    Live ↗
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Field trials ledger */}
+        {/* Trophy shelf */}
         <div id="hackathons" className="scroll-fade-in">
-          <div className="flex items-end justify-between gap-4 mb-7">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
             <div>
-              <p className="annot t-accent mb-2">Fig. 5 · Stress testing, self-inflicted</p>
-              <h2 className="font-display t-ink text-3xl sm:text-4xl">Field Trials</h2>
+              <p className="label t-accent mb-3">04 — Field wins</p>
+              <h2 className="font-display t-ink text-3xl sm:text-4xl">The trophy shelf</h2>
             </div>
-            <div className="dim-rule flex-1 max-w-40 hidden sm:block mb-2.5"></div>
+            <p className="label t-faint hidden sm:block">scroll sideways →</p>
           </div>
 
-          <div className="border b-strong bg-raised overflow-x-auto">
-            <table className="w-full min-w-[620px] text-left">
-              <thead>
-                <tr className="border-b b-strong">
-                  <th className="annot t-faint font-medium px-5 py-3 w-20">Year</th>
-                  <th className="annot t-faint font-medium px-5 py-3">Trial</th>
-                  <th className="annot t-faint font-medium px-5 py-3">Apparatus under test</th>
-                  <th className="annot t-faint font-medium px-5 py-3 text-right">Outcome</th>
-                </tr>
-              </thead>
-              <tbody>
-                {trials.map((trial, idx) => (
-                  <tr
-                    key={idx}
-                    className={`transition-colors hover:bg-accent-wash ${idx > 0 ? 'border-t b-line' : ''}`}
+          <div className="shelf -mx-5 px-5 sm:mx-0 sm:px-0">
+            {trophies.map((t) => (
+              <article
+                key={`${t.year}-${t.event}`}
+                className={`card card-hover p-6 w-64 sm:w-72 flex flex-col ${t.big ? 'border-accent/40' : ''}`}
+                style={t.big ? { borderColor: 'color-mix(in srgb, var(--accent) 45%, transparent)' } : undefined}
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <span className="font-display text-4xl t-faint">{t.year.slice(2)}'</span>
+                  <span
+                    className={`label px-2.5 py-1.5 rounded-full border ${t.big ? 'bg-accent-solid t-on-accent border-transparent' : 'bg-accent-wash t-accent b-line'}`}
                   >
-                    <td className="font-annot text-xs t-faint px-5 py-3.5 align-top">{trial.year}</td>
-                    <td className="t-ink text-sm font-medium px-5 py-3.5 align-top">{trial.event}</td>
-                    <td className="t-soft text-sm px-5 py-3.5 align-top">{trial.project}</td>
-                    <td className="px-5 py-3.5 align-top text-right">
-                      <span
-                        className={`annot inline-block border px-2 py-1 whitespace-nowrap ${
-                          trial.top ? 't-accent b-accent bg-accent-wash' : 't-soft b-line'
-                        }`}
-                      >
-                        {trial.result}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    {t.result}
+                  </span>
+                </div>
+                <h3 className="font-semibold t-ink text-lg leading-snug mb-1">{t.event}</h3>
+                <p className="t-faint text-sm leading-relaxed">{t.project}</p>
+              </article>
+            ))}
           </div>
-          <p className="annot t-faint mt-3 normal-case tracking-normal text-[0.7rem]">
-            Six trials, zero regressions in enthusiasm.
+          <p className="t-faint text-sm mt-4">
+            Six competitive finishes — including a <span className="t-accent font-medium">$20k CIT-funded</span> build
+            now serving the Tengah community.
           </p>
         </div>
       </div>
