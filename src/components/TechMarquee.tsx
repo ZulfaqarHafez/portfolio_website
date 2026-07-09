@@ -24,7 +24,7 @@ const TechMarquee = () => {
         <div className="marquee-track flex w-max items-center gap-9 pr-9">
           {loop.map((tool, idx) => (
             <span key={idx} className="flex items-center gap-9 shrink-0">
-              <span className="font-mono2 text-xs uppercase tracking-[0.18em] t-faint">
+              <span className="label t-faint">
                 {tool}
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-accent-solid opacity-60 shrink-0" />

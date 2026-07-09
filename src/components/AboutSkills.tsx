@@ -4,36 +4,31 @@ const bento = [
     kicker: 'Right now',
     title: 'Louis Dreyfus Company',
     body: 'Applied AI Engineer intern (computer vision) — building models that look at the physical world of agricultural commodities and make sense of it.',
-    emoji: '🌾',
   },
   {
     span: '',
     kicker: 'Studying',
     title: 'BSc (Hons) Applied AI',
     body: 'Singapore Institute of Technology, class of 2027.',
-    emoji: '🎓',
   },
   {
     span: '',
     kicker: 'Community',
     title: '300+ lives reached',
     body: 'Ex-President of SIT Magical Hearts; Special Olympics volunteer.',
-    emoji: '💚',
   },
   {
     span: '',
     kicker: 'Credentials',
     title: 'NVIDIA-certified ×3',
     body: 'Deep Learning, Generative AI with Diffusion Models, Adversarial ML — plus AI4I by AI Singapore.',
-    emoji: '📜',
     href: '#credentials',
   },
   {
     span: '',
     kicker: 'Open weights',
-    title: '2 models on 🤗',
-    body: 'Including ClaimLens, a DeBERTa-v3 claim-verification model.',
-    emoji: '🤖',
+    title: 'Two published models',
+    body: 'Including ClaimLens, a DeBERTa-v3 claim-verification model, live on Hugging Face.',
     href: 'https://huggingface.co/Zulfhagez',
   },
 ];
@@ -85,7 +80,7 @@ const AboutSkills = () => {
           <p className="label t-accent mb-4">01 — About</p>
           <h2 className="display-hero t-ink text-4xl sm:text-5xl lg:text-6xl">
             Technology is only interesting when it{' '}
-            <span className="display-italic t-accent">reaches people.</span>
+            reaches people<span className="t-accent">.</span>
           </h2>
         </div>
 
@@ -117,10 +112,7 @@ const AboutSkills = () => {
             {bento.map((cell) => {
               const inner = (
                 <>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="label t-faint">{cell.kicker}</span>
-                    <span className="text-lg" aria-hidden="true">{cell.emoji}</span>
-                  </div>
+                  <p className="label t-accent mb-3">{cell.kicker}</p>
                   <h3 className="font-display text-xl sm:text-2xl t-ink mb-1.5">{cell.title}</h3>
                   <p className="t-soft text-sm leading-relaxed">{cell.body}</p>
                 </>
@@ -151,7 +143,7 @@ const AboutSkills = () => {
             <div>
               <p className="label t-accent mb-3">02 — Craft</p>
               <h2 className="font-display t-ink text-3xl sm:text-4xl">
-                What I build <span className="display-italic t-accent">with</span>
+                What I build with<span className="t-accent">.</span>
               </h2>
             </div>
             <p className="label t-faint">no skill bars — the work below is the proof</p>

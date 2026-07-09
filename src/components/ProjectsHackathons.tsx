@@ -115,7 +115,7 @@ const ProjectsHackathons = () => {
           <div>
             <p className="label t-accent mb-4">03 — Selected work</p>
             <h2 className="display-hero t-ink text-4xl sm:text-5xl lg:text-6xl">
-              The <span className="display-italic t-accent">harvest</span>
+              The harvest<span className="t-accent">.</span>
             </h2>
           </div>
           <p className="t-faint text-sm max-w-xs leading-relaxed">
@@ -237,7 +237,7 @@ const ProjectsHackathons = () => {
                 style={t.big ? { borderColor: 'color-mix(in srgb, var(--accent) 45%, transparent)' } : undefined}
               >
                 <div className="flex items-center justify-between mb-6">
-                  <span className="font-display text-4xl t-faint">{t.year.slice(2)}'</span>
+                  <span className="font-display text-3xl t-faint">{t.year}</span>
                   <span
                     className={`label px-2.5 py-1.5 rounded-full border ${t.big ? 'bg-accent-solid t-on-accent border-transparent' : 'bg-accent-wash t-accent b-line'}`}
                   >

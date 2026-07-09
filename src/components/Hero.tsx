@@ -11,12 +11,6 @@ const stats = [
   { end: 2, suffix: '', label: 'Models published' },
 ];
 
-const floatChips = [
-  { text: 'Computer Vision', className: '-top-3 -left-6 md:-left-10', tilt: '-4deg', delay: '0s' },
-  { text: 'PyTorch', className: 'top-1/4 -right-4 md:-right-8', tilt: '3deg', delay: '1.2s' },
-  { text: 'aspiring farmer 🌱', className: '-bottom-4 left-4 md:-left-6', tilt: '-2deg', delay: '2.1s' },
-];
-
 const Hero = () => {
   const [wordIdx, setWordIdx] = useState(0);
   const primaryRef = useMagnetic<HTMLAnchorElement>(0.22);
@@ -50,7 +44,9 @@ const Hero = () => {
               </span>
             </div>
 
-            <p className="label t-faint mb-4">Zulfaqar Hafez — AI Engineer, Singapore</p>
+            <p className="label t-faint mb-4">
+              Zulfaqar Hafez · AI Engineer · Singapore <span className="t-accent">· "aspiring farmer"</span>
+            </p>
 
             <h1 className="display-hero t-ink text-5xl sm:text-6xl lg:text-7xl xl:text-[5.2rem] mb-7">
               I build AI that
@@ -106,7 +102,7 @@ const Hero = () => {
                 aria-hidden="true"
               ></div>
 
-              <div className="relative card overflow-hidden rounded-3xl rotate-2 hover:rotate-0 transition-transform duration-500">
+              <div className="relative card overflow-hidden !rounded-2xl">
                 <img
                   src="/images/zul.jpg"
                   alt="Zulfaqar Hafez"
@@ -114,24 +110,13 @@ const Hero = () => {
                 />
                 <div
                   className="absolute inset-x-0 bottom-0 px-4 py-3"
-                  style={{ background: 'linear-gradient(to top, rgba(4,13,9,0.82), transparent)' }}
+                  style={{ background: 'linear-gradient(to top, rgba(2,23,17,0.85), transparent)' }}
                 >
-                  <p className="text-sm font-semibold text-white">Zulfaqar (Zulf) Hafez</p>
-                  <p className="label" style={{ color: 'rgba(236,245,236,0.75)' }}>SIT · Applied AI · Class of 2027</p>
+                  <p className="text-sm font-medium text-white">Zulfaqar (Zulf) Hafez</p>
+                  <p className="label" style={{ color: 'rgba(242,240,227,0.72)' }}>SIT · Applied AI · 2027</p>
                 </div>
+                <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{ boxShadow: 'inset 0 0 0 1px var(--accent-glow)' }} aria-hidden="true"></div>
               </div>
-
-              {/* floating chips */}
-              {floatChips.map((chip) => (
-                <span
-                  key={chip.text}
-                  className={`chip float-slow absolute ${chip.className} !bg-surface-2 shadow-lg`}
-                  style={{ '--tilt': chip.tilt, animationDelay: chip.delay } as React.CSSProperties}
-                  aria-hidden="true"
-                >
-                  {chip.text}
-                </span>
-              ))}
             </div>
           </div>
         </div>

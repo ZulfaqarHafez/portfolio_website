@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 /* ============================================================
@@ -9,8 +9,7 @@
 
 @theme {
   --font-display: "Fraunces", Georgia, serif;
-  --font-sans: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", "Consolas", monospace;
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
 }
 
 /* --- Emerald estate (dark, default) --- */
@@ -108,18 +107,20 @@
   .b-accent { border-color: var(--accent); }
 
   .font-display { font-family: var(--font-display); }
-  .font-mono2 { font-family: var(--font-mono); }
 
+  /* One label style, used everywhere a small heading is needed */
   .label {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
   }
   .label-md {
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    letter-spacing: 0.12em;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
@@ -148,10 +149,10 @@
 
   /* Chips */
   .chip {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.03em;
-    padding: 0.32rem 0.7rem;
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    font-weight: 500;
+    padding: 0.32rem 0.75rem;
     border: 1px solid var(--line);
     border-radius: 999px;
     color: var(--soft);
@@ -316,17 +317,16 @@
     transform: scaleX(1);
   }
 
-  /* Oversized numeral watermark for cards */
+  /* Quiet index number for cards */
   .numeral {
     position: absolute;
-    top: 0.2rem;
-    right: 1rem;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 4.6rem;
-    line-height: 1;
-    color: var(--accent-text);
-    opacity: 0.13;
+    top: 1.4rem;
+    right: 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--faint);
     pointer-events: none;
     user-select: none;
   }

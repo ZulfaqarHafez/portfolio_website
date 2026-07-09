@@ -119,7 +119,7 @@ const ExperienceEducation = () => {
         <div className="scroll-fade-in mb-12 md:mb-16">
           <p className="label t-accent mb-4">05 — Journey</p>
           <h2 className="display-hero t-ink text-4xl sm:text-5xl lg:text-6xl">
-            Still <span className="display-italic t-accent">growing.</span>
+            Still growing<span className="t-accent">.</span>
           </h2>
         </div>
 
@@ -196,7 +196,7 @@ const ExperienceEducation = () => {
             <div>
               <p className="label t-accent mb-3">Credentials</p>
               <h3 className="font-display t-ink text-3xl sm:text-4xl">
-                Certified, <span className="display-italic t-accent">verifiably.</span>
+                Certified, verifiably<span className="t-accent">.</span>
               </h3>
             </div>
             <p className="label t-faint">full credential IDs on LinkedIn</p>
@@ -214,7 +214,7 @@ const ExperienceEducation = () => {
                     <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: cert.dot }}></span>
                     {cert.by}
                   </span>
-                  <span className="font-display display-italic text-lg t-faint">{cert.year}</span>
+                  <span className="label t-faint">{cert.year}</span>
                 </div>
                 <h4 className="font-display text-xl t-ink leading-snug mb-2">{cert.name}</h4>
                 <p className="t-faint text-sm mt-auto">{cert.note}</p>

@@ -123,7 +123,7 @@ const Navbar = () => {
             <a
               href="/Zulfaqar_Hafez_Resume.pdf"
               download
-              className="hidden md:inline-flex btn-gold !py-2 !px-4 !text-xs"
+              className="hidden md:inline-flex btn-outline !py-2 !px-4 !text-xs"
             >
               Résumé
             </a>
