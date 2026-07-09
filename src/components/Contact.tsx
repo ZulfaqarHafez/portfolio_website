@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useMagnetic } from '../hooks/useMagnetic';
+import Ornament from './art/Ornament';
 
 const socials = [
   { name: 'GitHub', href: 'https://github.com/ZulfaqarHafez' },
@@ -31,6 +32,9 @@ const Contact = () => {
       </div>
 
       <div className="container-custom relative z-10 px-5 sm:px-8 text-center">
+        <div className="scroll-fade-in flex justify-center mb-6">
+          <Ornament />
+        </div>
         <p className="scroll-fade-in label t-accent mb-6">06 — Contact</p>
 
         <h2 className="scroll-fade-in display-hero t-ink text-5xl sm:text-6xl lg:text-7xl xl:text-8xl mb-6 max-w-4xl mx-auto">

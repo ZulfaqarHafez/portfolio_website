@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
+import Monogram from './art/Monogram';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -83,11 +84,8 @@ const Navbar = () => {
           aria-label="Primary"
         >
           {/* Mark */}
-          <a href="#home" className="flex items-center gap-2 group shrink-0" aria-label="Back to top">
-            <span className="relative flex items-center justify-center w-8 h-8 rounded-full bg-accent-solid t-on-accent font-bold text-sm">
-              Z
-              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--emerald)' }}></span>
-            </span>
+          <a href="#home" className="flex items-center gap-2.5 group shrink-0" aria-label="Back to top">
+            <Monogram size={34} className="transition-transform duration-500 group-hover:rotate-[360deg]" />
             <span className="hidden md:block font-semibold text-sm t-ink tracking-tight group-hover:t-accent transition-colors">
               zulfaqar.dev
             </span>

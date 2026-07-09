@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import CountUp from './CountUp';
 import { useMagnetic } from '../hooks/useMagnetic';
+import ArtTopo from './art/ArtTopo';
 
 const WORDS = ['sees.', 'learns.', 'ships.', 'grows.'];
 
@@ -27,8 +28,11 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-14">
-      {/* Ambient garden glow */}
+      {/* Ambient garden glow + bespoke contour backdrop */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute inset-0 opacity-90">
+          <ArtTopo />
+        </div>
         <div className="glow-blob breathe w-[34rem] h-[34rem] -top-40 -left-40" style={{ background: 'radial-gradient(circle, var(--glow-a), transparent 70%)' }}></div>
         <div className="glow-blob w-[30rem] h-[30rem] -bottom-32 -right-24" style={{ background: 'radial-gradient(circle, var(--glow-b), transparent 70%)' }}></div>
       </div>

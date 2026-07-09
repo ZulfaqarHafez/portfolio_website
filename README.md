@@ -18,6 +18,10 @@ and Tailwind CSS 4.
 - **Credentials**: dedicated showcase with issuer-tinted badges (NVIDIA ×3, AI Singapore,
   HackerRank, Google)
 - **Journey**: a timeline vine that grows in on scroll
+- **Bespoke art suite**: every project has hand-drawn SVG cover art (transit map, pose skeleton,
+  triage routes, book-to-database, payslip ribbons, balance scale) that adapts to both themes,
+  plus a ZH monogram seal with wheat sprigs, a topographic hero backdrop, a botanical ornament,
+  and a custom OG social card ([public/og.png](public/og.png))
 - **Details**: cursor-trailing glow, film grain, gold sheen sweeps, scroll-progress hairline,
   live Singapore clock in the contact section
 - All animation respects `prefers-reduced-motion`

@@ -1,12 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
+import type { ComponentType } from 'react';
+import ArtGuideMe from './art/ArtGuideMe';
+import ArtPpe from './art/ArtPpe';
+import ArtHelplah from './art/ArtHelplah';
+import ArtEduquery from './art/ArtEduquery';
+import ArtFairwork from './art/ArtFairwork';
+import ArtClaimlens from './art/ArtClaimlens';
+
+interface ProjectLink {
+  label: string;
+  href: string;
+}
 
 interface Project {
   title: string;
   blurb: string;
   tech: string[];
-  github: string;
-  live: string | null;
-  image: string | null;
+  links: ProjectLink[];
+  screenshot: string | null;
+  art: ComponentType;
   role: string;
   year: string;
 }
@@ -16,9 +28,12 @@ const featured: Project = {
   blurb:
     'A mobile app that helps persons with intellectual disabilities navigate Singapore\'s public transport on their own — turning a daunting daily journey into an independent one. SIT HackRift finalist, still growing.',
   tech: ['Next.js', 'TypeScript', 'Supabase'],
-  github: 'https://github.com/ZulfaqarHafez/GuideMeSG',
-  live: 'https://guide-me-sg-r22y.vercel.app/',
-  image: '/images/guideme.png',
+  links: [
+    { label: 'Live ↗', href: 'https://guide-me-sg-r22y.vercel.app/' },
+    { label: 'Code', href: 'https://github.com/ZulfaqarHafez/GuideMeSG' },
+  ],
+  screenshot: '/images/guideme.png',
+  art: ArtGuideMe,
   role: 'Lead Developer',
   year: '2025',
 };
@@ -28,9 +43,12 @@ const projects: Project[] = [
     title: 'PPE Compliance Dashboard',
     blurb: 'Real-time safety monitoring: YOLOv8 detections cross-checked against Mediapipe pose skeletons.',
     tech: ['YOLOv8', 'Mediapipe', 'FastAPI'],
-    github: 'https://github.com/ZulfaqarHafez/AAI3001_Deep_Learning',
-    live: 'https://youtu.be/0caldjkLU7g',
-    image: '/images/ppecompliance.png',
+    links: [
+      { label: 'Code', href: 'https://github.com/ZulfaqarHafez/AAI3001_Deep_Learning' },
+      { label: 'Demo ↗', href: 'https://youtu.be/0caldjkLU7g' },
+    ],
+    screenshot: '/images/ppecompliance.png',
+    art: ArtPpe,
     role: 'ML Engineer',
     year: '2025',
   },
@@ -38,19 +56,32 @@ const projects: Project[] = [
     title: 'HelpLah.AI',
     blurb: 'AI assistant that triages and routes help requests so the right people see them faster.',
     tech: ['Flask', 'NLP', 'ML'],
-    github: 'https://github.com/ZulfaqarHafez/HelpLah.AI',
-    live: null,
-    image: null,
+    links: [{ label: 'Code', href: 'https://github.com/ZulfaqarHafez/HelpLah.AI' }],
+    screenshot: null,
+    art: ArtHelplah,
     role: 'Creator',
+    year: '2025',
+  },
+  {
+    title: 'ClaimLens',
+    blurb: 'A fine-tuned DeBERTa-v3 model that scores whether evidence supports, refutes, or stays neutral toward a claim. Open weights.',
+    tech: ['PyTorch', 'Transformers', 'DeBERTa-v3'],
+    links: [{ label: 'Model ↗', href: 'https://huggingface.co/Zulfhagez' }],
+    screenshot: null,
+    art: ArtClaimlens,
+    role: 'ML Engineer',
     year: '2025',
   },
   {
     title: 'EduQuery SG',
     blurb: 'Search and analytics across Singapore\'s educational landscape, backed by dual databases.',
     tech: ['Node.js', 'MongoDB', 'PostgreSQL'],
-    github: 'https://github.com/ZulfaqarHafez/INF2003_EduQuery',
-    live: 'https://youtu.be/Wo4YhykGx-8',
-    image: '/images/eduquery.png',
+    links: [
+      { label: 'Code', href: 'https://github.com/ZulfaqarHafez/INF2003_EduQuery' },
+      { label: 'Demo ↗', href: 'https://youtu.be/Wo4YhykGx-8' },
+    ],
+    screenshot: '/images/eduquery.png',
+    art: ArtEduquery,
     role: 'Full Stack',
     year: '2024',
   },
@@ -58,9 +89,12 @@ const projects: Project[] = [
     title: 'FairWork Contract',
     blurb: 'Translates English payslips into native languages for foreign workers — nobody signs what they can\'t read.',
     tech: ['Next.js', 'Gemini', 'FastAPI'],
-    github: 'https://github.com/KevanSoon/FairWork-Contract',
-    live: 'https://fair-work-contract.vercel.app/',
-    image: '/images/fairwork.png',
+    links: [
+      { label: 'Live ↗', href: 'https://fair-work-contract.vercel.app/' },
+      { label: 'Code', href: 'https://github.com/KevanSoon/FairWork-Contract' },
+    ],
+    screenshot: '/images/fairwork.png',
+    art: ArtFairwork,
     role: 'Backend',
     year: '2025',
   },
@@ -99,13 +133,13 @@ const ProjectsHackathons = () => {
     };
   }, [previewSrc]);
 
-  const linkFor = (p: Project) => p.live ?? p.github;
+  const FeaturedArt = featured.art;
 
   return (
     <section id="projects" className="relative py-20 md:py-28 bg-deep border-y b-line overflow-hidden">
       <div className="glow-blob w-[28rem] h-[28rem] top-10 -right-32" style={{ background: 'radial-gradient(circle, var(--glow-b), transparent 70%)', position: 'absolute' }} aria-hidden="true"></div>
 
-      {/* Floating preview that follows the cursor (desktop) */}
+      {/* Floating preview that follows the cursor (desktop): the real app screenshot */}
       <div ref={previewRef} className={`project-preview hidden lg:block ${previewSrc ? 'on' : ''}`} aria-hidden="true">
         {previewSrc && <img src={previewSrc} alt="" />}
       </div>
@@ -119,25 +153,22 @@ const ProjectsHackathons = () => {
             </h2>
           </div>
           <p className="t-faint text-sm max-w-xs leading-relaxed">
-            Every project here shipped to real users — no lab demos gathering dust.
+            Every project shipped to real users. Each artwork below was drawn for this site — hover a
+            row to see the real thing.
           </p>
         </div>
 
         {/* Featured */}
         <a
-          href={linkFor(featured)}
+          href={featured.links[0].href}
           target="_blank"
           rel="noopener noreferrer"
           className="scroll-fade-in card card-hover overflow-hidden grid md:grid-cols-[1.1fr_0.9fr] mb-6 group block"
         >
-          <div className="relative overflow-hidden">
-            <img
-              src={featured.image!}
-              alt={featured.title}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-56 md:h-full object-cover transition-transform duration-700 group-hover:scale-[1.04] portrait-treat"
-            />
+          <div className="relative overflow-hidden h-60 md:h-auto md:min-h-[22rem]">
+            <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.04]">
+              <FeaturedArt />
+            </div>
             <span className="absolute top-4 left-4 chip !bg-surface-2">Featured · {featured.year}</span>
           </div>
           <div className="p-6 md:p-9 flex flex-col">
@@ -166,57 +197,58 @@ const ProjectsHackathons = () => {
 
         {/* Interactive list */}
         <div className="scroll-fade-in border-t b-strong mb-20 md:mb-24">
-          {projects.map((p) => (
-            <div
-              key={p.title}
-              className="group relative grid grid-cols-[1fr_auto] lg:grid-cols-[4.5rem_1.4fr_1fr_auto] items-center gap-x-4 gap-y-2 py-6 lg:py-7 border-b b-line transition-colors duration-300 hover:bg-accent-wash lg:px-4 lg:-mx-4 lg:rounded-2xl lg:border-b lg:hover:border-transparent"
-              onMouseOver={() => p.image && setPreviewSrc(p.image)}
-              onMouseOut={(e) => {
-                if (!(e.currentTarget as Node).contains(e.relatedTarget as Node)) setPreviewSrc(null);
-              }}
-            >
-              <span className="hidden lg:block label t-faint">{p.year}</span>
+          {projects.map((p) => {
+            const Art = p.art;
+            return (
+              <div
+                key={p.title}
+                className="group relative grid grid-cols-[4.5rem_1fr_auto] lg:grid-cols-[7rem_1.3fr_1fr_auto] items-center gap-x-4 sm:gap-x-5 gap-y-2 py-5 lg:py-6 border-b b-line transition-colors duration-300 hover:bg-accent-wash lg:px-4 lg:-mx-4 lg:rounded-2xl lg:hover:border-transparent"
+                onMouseOver={() => p.screenshot && setPreviewSrc(p.screenshot)}
+                onMouseOut={(e) => {
+                  if (!(e.currentTarget as Node).contains(e.relatedTarget as Node)) setPreviewSrc(null);
+                }}
+              >
+                {/* Bespoke artwork thumbnail */}
+                <div className="h-14 lg:h-[4.5rem] rounded-xl overflow-hidden border b-line transition-transform duration-500 group-hover:scale-[1.05]" aria-hidden="true">
+                  <Art />
+                </div>
 
-              <div className="min-w-0">
-                <h3 className="font-display text-2xl sm:text-3xl t-ink transition-all duration-300 group-hover:t-accent group-hover:translate-x-1.5">
-                  {p.title}
-                </h3>
-                <p className="t-faint text-sm mt-1 lg:hidden">{p.blurb}</p>
-              </div>
+                <div className="min-w-0">
+                  <div className="flex items-baseline gap-3">
+                    <h3 className="font-display text-2xl sm:text-3xl t-ink transition-all duration-300 group-hover:t-accent group-hover:translate-x-1.5">
+                      {p.title}
+                    </h3>
+                    <span className="label t-faint hidden sm:inline">{p.year}</span>
+                  </div>
+                  <p className="t-faint text-sm mt-1 lg:hidden">{p.blurb}</p>
+                </div>
 
-              <div className="hidden lg:block min-w-0">
-                <p className="t-soft text-sm leading-relaxed">{p.blurb}</p>
-                <div className="flex flex-wrap gap-1.5 mt-2">
-                  {p.tech.map((t) => (
-                    <span key={t} className="label t-faint">{t}</span>
+                <div className="hidden lg:block min-w-0">
+                  <p className="t-soft text-sm leading-relaxed">{p.blurb}</p>
+                  <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2">
+                    {p.tech.map((t) => (
+                      <span key={t} className="label t-faint">{t}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 justify-self-end col-start-3 row-start-1 lg:col-start-4">
+                  {p.links.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="chip"
+                      aria-label={`${p.title} — ${link.label}`}
+                    >
+                      {link.label}
+                    </a>
                   ))}
                 </div>
               </div>
-
-              <div className="flex items-center gap-2 justify-self-end col-start-2 row-start-1 lg:col-start-4">
-                <a
-                  href={p.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="chip"
-                  aria-label={`${p.title} source code`}
-                >
-                  Code
-                </a>
-                {p.live && (
-                  <a
-                    href={p.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="chip !border-strong"
-                    aria-label={`${p.title} live demo`}
-                  >
-                    Live ↗
-                  </a>
-                )}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Trophy shelf */}
@@ -233,7 +265,7 @@ const ProjectsHackathons = () => {
             {trophies.map((t) => (
               <article
                 key={`${t.year}-${t.event}`}
-                className={`card card-hover p-6 w-64 sm:w-72 flex flex-col ${t.big ? 'border-accent/40' : ''}`}
+                className="card card-hover p-6 w-64 sm:w-72 flex flex-col"
                 style={t.big ? { borderColor: 'color-mix(in srgb, var(--accent) 45%, transparent)' } : undefined}
               >
                 <div className="flex items-center justify-between mb-6">
