@@ -1,166 +1,136 @@
+import { useEffect, useState } from 'react';
 import CountUp from './CountUp';
+import { useMagnetic } from '../hooks/useMagnetic';
+import ArtTopo from './art/ArtTopo';
 
-const specs = [
-  { end: 5, suffix: '+', label: 'Shipped projects' },
+const WORDS = ['sees.', 'learns.', 'ships.', 'grows.'];
+
+const stats = [
+  { end: 5, suffix: '+', label: 'Projects shipped' },
   { end: 6, suffix: '', label: 'Hackathon finishes' },
   { end: 300, suffix: '+', label: 'Lives reached' },
-  { end: 2, suffix: '', label: 'Published models' },
-];
-
-const annotations = [
-  { ref: '10', note: 'The applicant' },
-  { ref: '12', note: 'Ships models to production' },
-  { ref: '14', note: 'Community-first bias, load-bearing' },
+  { end: 2, suffix: '', label: 'Models published' },
 ];
 
 const Hero = () => {
-  return (
-    <section id="home" className="relative overflow-hidden drafting-grid pt-28 md:pt-36 pb-10 md:pb-14">
-      <div className="container-custom relative z-10 px-4 sm:px-6">
-        {/* Sheet header */}
-        <div className="scroll-fade-in flex items-center justify-between gap-4 border-b b-strong pb-3 mb-8 md:mb-12">
-          <p className="annot t-faint">Apparatus &amp; Method for Applied Intelligence</p>
-          <p className="annot t-faint hidden sm:block">Fig. 1 · Sheet 1 of 1 · Singapore</p>
-        </div>
+  const [wordIdx, setWordIdx] = useState(0);
+  const primaryRef = useMagnetic<HTMLAnchorElement>(0.22);
+  const secondaryRef = useMagnetic<HTMLAnchorElement>(0.22);
 
-        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 items-start">
-          {/* Left: the claim */}
-          <div className="scroll-fade-in-left">
-            <div className="inline-flex items-center gap-2.5 mb-6 px-3 py-1.5 border b-line bg-ok-wash">
-              <span className="status-pulse w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: 'var(--ok)' }}></span>
-              <span className="annot t-ok">Currently · Applied AI Engineer intern @ Louis Dreyfus Company</span>
+  useEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+    const id = window.setInterval(() => {
+      setWordIdx((i) => (i + 1) % WORDS.length);
+    }, 2400);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-14">
+      {/* Ambient garden glow + bespoke contour backdrop */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute inset-0 opacity-90">
+          <ArtTopo />
+        </div>
+        <div className="glow-blob breathe w-[34rem] h-[34rem] -top-40 -left-40" style={{ background: 'radial-gradient(circle, var(--glow-a), transparent 70%)' }}></div>
+        <div className="glow-blob w-[30rem] h-[30rem] -bottom-32 -right-24" style={{ background: 'radial-gradient(circle, var(--glow-b), transparent 70%)' }}></div>
+      </div>
+
+      <div className="container-custom relative z-10 px-5 sm:px-8">
+        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-8 items-center">
+          {/* Statement */}
+          <div className="scroll-fade-in visible">
+            <div className="inline-flex items-center gap-2.5 mb-7 pl-3 pr-4 py-2 rounded-full border b-line bg-accent-wash">
+              <span className="status-pulse w-2 h-2 rounded-full bg-accent-solid shrink-0"></span>
+              <span className="label-md t-accent">
+                Growing computer vision @ Louis Dreyfus Company
+              </span>
             </div>
 
-            <h1 className="font-display t-ink text-5xl sm:text-6xl lg:text-7xl leading-[1.02] mb-4">
-              Zulfaqar Hafez
+            <p className="label t-faint mb-4">
+              Zulfaqar Hafez · AI Engineer · Singapore <span className="t-accent">· "aspiring farmer"</span>
+            </p>
+
+            <h1 className="display-hero t-ink text-5xl sm:text-6xl lg:text-7xl xl:text-[5.2rem] mb-7">
+              I build AI that
+              <br />
+              <span className="display-italic t-accent inline-block min-w-[5.5ch]">
+                <span key={wordIdx} className="word-swap">{WORDS[wordIdx]}</span>
+              </span>
             </h1>
 
-            <p className="annot-md t-accent mb-1.5">
-              Applied AI Engineer · Computer Vision
-            </p>
-            <p className="annot t-faint mb-7">
-              also answers to: “aspiring farmer”
-              <a href="#footnote-1" className="t-accent no-underline" aria-label="See footnote one">
-                *
-              </a>
+            <p className="t-soft text-base sm:text-lg leading-relaxed max-w-xl mb-9">
+              Computer vision, language models, and the full stack around them — every project
+              pointed at a problem someone actually has. Trained at the Singapore Institute of
+              Technology, field-tested across six hackathons, currently teaching machines to see
+              for one of the world's largest agricultural merchants.
             </p>
 
-            <p className="t-soft text-base sm:text-lg leading-relaxed max-w-xl mb-8">
-              I build machine learning systems that ship — computer vision, language models, and the
-              full stack around them — and I point every one at a real problem someone actually has.
-              Trained at the Singapore Institute of Technology, field-tested in six hackathons,
-              currently teaching machines to see for one of the world's largest agricultural merchants.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 mb-10">
-              <a href="#projects" className="btn-ink">
-                Inspect the exhibits
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            <div className="flex flex-col sm:flex-row gap-3.5 mb-12">
+              <a ref={primaryRef} href="#projects" className="btn-gold">
+                See the work
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
-              <a href="/Zulfaqar_Hafez_Resume.pdf" download className="btn-ghost">
-                Certified copy (PDF)
+              <a ref={secondaryRef} href="/Zulfaqar_Hafez_Resume.pdf" download className="btn-outline">
+                Download résumé
               </a>
             </div>
 
-            {/* Specifications table */}
-            <div className="border b-strong">
-              <p className="annot t-faint px-4 pt-3">Specifications</p>
-              <dl className="grid grid-cols-2 sm:grid-cols-4">
-                {specs.map((stat, idx) => (
-                  <div
-                    key={stat.label}
-                    className={`px-4 py-3.5 border-t b-line ${idx % 2 === 1 ? 'border-l' : ''} ${
-                      idx >= 2 ? 'sm:border-l' : ''
-                    }`}
-                  >
-                    <dt className="sr-only">{stat.label}</dt>
-                    <dd>
-                      <CountUp
-                        end={stat.end}
-                        suffix={stat.suffix}
-                        className="block font-display text-3xl sm:text-4xl t-ink leading-none"
-                      />
-                      <span className="mt-1.5 block annot t-faint">{stat.label}</span>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-
-            <p id="footnote-1" className="annot t-faint mt-5 normal-case tracking-normal text-[0.7rem] leading-relaxed">
-              * Building computer vision for agricultural commodities at Louis Dreyfus Company.
-              The farming is currently metaphorical. Mostly.
-            </p>
+            <dl className="grid grid-cols-2 sm:grid-cols-4 gap-y-6 max-w-2xl">
+              {stats.map((stat, idx) => (
+                <div key={stat.label} className={`${idx > 0 ? 'sm:border-l sm:pl-6 b-line' : ''} ${idx % 2 === 1 ? 'border-l pl-6 sm:pl-6 b-line' : ''}`}>
+                  <dt className="sr-only">{stat.label}</dt>
+                  <dd>
+                    <CountUp
+                      end={stat.end}
+                      suffix={stat.suffix}
+                      className="block font-display text-3xl sm:text-4xl t-ink leading-none"
+                    />
+                    <span className="mt-1.5 block label t-faint">{stat.label}</span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
-          {/* Right: FIG. 1 — the annotated applicant */}
-          <div className="scroll-fade-in-right">
-            <figure className="relative max-w-[340px] mx-auto lg:mx-0 lg:ml-auto">
-              <div className="panel ticks p-3 pb-2">
-                <span className="tick-b"></span>
-                <div className="relative overflow-hidden border b-line">
-                  <img
-                    src="/images/zul.jpg"
-                    alt="Zulfaqar Hafez"
-                    className="w-full aspect-[3/4] object-cover"
-                    style={{ filter: 'saturate(0.88) contrast(1.03)' }}
-                  />
-                  {/* reference numeral markers on the image */}
-                  <span className="absolute top-[16%] right-[8%] annot t-ink bg-raised border b-strong px-1.5 py-0.5" aria-hidden="true">10</span>
-                  <span className="absolute top-[52%] left-[7%] annot t-ink bg-raised border b-strong px-1.5 py-0.5" aria-hidden="true">12</span>
-                  <span className="absolute bottom-[30%] right-[10%] annot t-ink bg-raised border b-strong px-1.5 py-0.5" aria-hidden="true">14</span>
+          {/* Portrait */}
+          <div className="scroll-fade-in visible relative mx-auto lg:mx-0 lg:justify-self-end">
+            <div className="relative w-64 sm:w-72">
+              {/* breathing glow */}
+              <div
+                className="absolute -inset-8 rounded-full breathe pointer-events-none"
+                style={{ background: 'radial-gradient(circle, var(--accent-glow), transparent 70%)' }}
+                aria-hidden="true"
+              ></div>
+
+              <div className="relative card overflow-hidden !rounded-2xl">
+                <img
+                  src="/images/zul.jpg"
+                  alt="Zulfaqar Hafez"
+                  className="w-full aspect-[3/4] object-cover portrait-treat"
+                />
+                <div
+                  className="absolute inset-x-0 bottom-0 px-4 py-3"
+                  style={{ background: 'linear-gradient(to top, rgba(2,23,17,0.85), transparent)' }}
+                >
+                  <p className="text-sm font-medium text-white">Zulfaqar (Zulf) Hafez</p>
+                  <p className="label" style={{ color: 'rgba(242,240,227,0.72)' }}>SIT · Applied AI · 2027</p>
                 </div>
-                <figcaption className="flex items-center justify-between gap-2 pt-2.5 pb-1 px-0.5">
-                  <span className="annot t-ink">Fig. 1 — The Applicant</span>
-                  <span className="annot t-faint">Scale 1:1</span>
-                </figcaption>
+                <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{ boxShadow: 'inset 0 0 0 1px var(--accent-glow)' }} aria-hidden="true"></div>
               </div>
-
-              {/* stamp overlapping the photo corner */}
-              <div className="absolute bottom-16 -right-3 sm:-right-5">
-                <span className="stamp bg-raised">Open to opportunity</span>
-              </div>
-            </figure>
-
-            {/* legend */}
-            <div className="max-w-[340px] mx-auto lg:mx-0 lg:ml-auto mt-9">
-              <p className="annot t-faint mb-2">Reference numerals</p>
-              <ul className="space-y-1.5">
-                {annotations.map((a) => (
-                  <li key={a.ref} className="flex items-baseline gap-3">
-                    <span className="annot t-accent shrink-0">{a.ref}</span>
-                    <span className="dim-rule w-6 shrink-0 self-center opacity-60"></span>
-                    <span className="font-annot text-xs t-soft">{a.note}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
 
-        {/* Pipeline schematic, echoing the banner */}
-        <div className="scroll-fade-in mt-14 md:mt-20 hidden md:block" aria-hidden="true">
-          <svg viewBox="0 0 1000 96" className="w-full" fill="none">
-            <g stroke="var(--line-strong)" strokeWidth="1">
-              <rect x="40" y="24" width="200" height="48" className="draw-on-load" style={{ '--dash': 500 } as React.CSSProperties} />
-              <rect x="400" y="24" width="200" height="48" className="draw-on-load" style={{ '--dash': 500 } as React.CSSProperties} />
-              <rect x="760" y="24" width="200" height="48" className="draw-on-load" style={{ '--dash': 500 } as React.CSSProperties} />
-              <line x1="240" y1="48" x2="392" y2="48" className="draw-on-load" style={{ '--dash': 160 } as React.CSSProperties} />
-              <line x1="600" y1="48" x2="752" y2="48" className="draw-on-load" style={{ '--dash': 160 } as React.CSSProperties} />
-              <path d="M386 43 L 396 48 L 386 53" className="draw-on-load" style={{ '--dash': 30 } as React.CSSProperties} />
-              <path d="M746 43 L 756 48 L 746 53" className="draw-on-load" style={{ '--dash': 30 } as React.CSSProperties} />
-            </g>
-            <g fill="var(--ink-faint)" fontFamily="IBM Plex Mono, monospace" fontSize="11" letterSpacing="2.5">
-              <text x="140" y="52" textAnchor="middle" dominantBaseline="middle">PERCEPTION</text>
-              <text x="500" y="52" textAnchor="middle" dominantBaseline="middle">REASONING</text>
-              <text x="860" y="52" textAnchor="middle" dominantBaseline="middle">VERIFICATION</text>
-              <text x="140" y="14" textAnchor="middle" fontSize="9">100</text>
-              <text x="500" y="14" textAnchor="middle" fontSize="9">200</text>
-              <text x="860" y="14" textAnchor="middle" fontSize="9">300</text>
-            </g>
-          </svg>
+        {/* scroll cue */}
+        <div className="mt-16 hidden md:flex justify-center">
+          <a href="#about" className="group flex flex-col items-center gap-2 t-faint hover:t-accent transition-colors" aria-label="Scroll to about">
+            <span className="label">Scroll to explore</span>
+            <span className="w-px h-10 bg-current opacity-50 group-hover:opacity-100 transition-opacity"></span>
+          </a>
         </div>
       </div>
     </section>
