@@ -35,7 +35,7 @@ const Contact = () => {
         <div className="scroll-fade-in flex justify-center mb-6">
           <Ornament />
         </div>
-        <p className="scroll-fade-in label t-accent mb-6">06 — Contact</p>
+        <p className="scroll-fade-in label t-accent mb-6">07 — Contact</p>
 
         <h2 className="scroll-fade-in display-hero t-ink text-5xl sm:text-6xl lg:text-7xl xl:text-8xl mb-6 max-w-4xl mx-auto">
           Let's grow something{' '}

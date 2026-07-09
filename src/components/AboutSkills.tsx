@@ -95,9 +95,11 @@ const AboutSkills = () => {
             </p>
             <p>
               By day I'm teaching machines to see for one of the world's oldest industries;
-              by night (and most weekends) I'm at a hackathon or building for the community.
-              My LinkedIn says <em className="t-accent not-italic font-medium">"aspiring farmer"</em> —
-              agriculture AI is close enough for now.
+              by night (and most weekends) I'm at a hackathon, building for the community, or deep
+              in this year's rabbit hole — <a href="#lab" className="t-accent font-medium hover:opacity-80 transition-opacity">agentic AI tooling</a>:
+              auditing agents, guardrailing them, orchestrating them. My LinkedIn says{' '}
+              <em className="t-accent not-italic font-medium">"aspiring farmer"</em> — agriculture AI
+              is close enough for now.
             </p>
             <a href="#contact" className="inline-flex items-center gap-2 t-accent font-semibold group">
               Let's build something together
